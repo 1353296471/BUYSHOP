@@ -11,8 +11,8 @@ import cn.com.demo.javaweb.shopping.dao.IProDao;
 import cn.com.demo.javaweb.shopping.dao.IShopCarDao;
 import cn.com.demo.javaweb.shopping.entity.Product;
 import cn.com.demo.javaweb.shopping.entity.ShopCar;
-import cn.com.demo.javaweb.shopping.entity.ShowProduct;
-import cn.com.demo.javaweb.shopping.entity.ShowShopCar;
+import cn.com.demo.javaweb.shopping.entity.toshow.ShowProduct;
+import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 import cn.com.demo.javaweb.shopping.service.IIndexService;
 
 @Service
@@ -63,6 +63,27 @@ public class IIndexServiceImpl implements IIndexService {
 			items.add(item);
 		}
 		return items;
+	}
+
+	@Override
+	public boolean removeShopCarItem(int userId, int proId, int num) {
+		if (num <= 0) {
+			return deleteShopCarItem(userId, proId);
+		} else {
+			ShopCar shopCar = new ShopCar();
+			shopCar.setUserId(userId);
+			shopCar.setProId(proId);
+			shopCar.setNum(num);
+			return shopCarDao.removeShopCar(shopCar);
+		}
+	}
+
+	@Override
+	public boolean deleteShopCarItem(int userId, int proId) {
+		ShopCar shopCar = new ShopCar();
+		shopCar.setUserId(userId);
+		shopCar.setProId(proId);
+		return shopCarDao.deleteShopCar(shopCar);
 	}
 
 }

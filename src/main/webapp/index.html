@@ -126,9 +126,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		}else{
 			var txt = "";
-			
 		}
 		
+	}
+	
+	function deletePro(proId) {
+		var r = confirm("确定要删除购物项吗？");
+		if(r == true){
+			$.ajax({
+				type : 'post',
+				url : 'deleteShopCarItem/' + proId,
+				success : function(countMsg) {
+					if (countMsg == "操作成功！") {
+						alert("删除成功！");
+					}else{
+						alert("删除失败！");
+					}
+				}
+			});
+		}
 	}
 </script>
 </head>

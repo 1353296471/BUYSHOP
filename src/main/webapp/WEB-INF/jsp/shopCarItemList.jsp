@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <h3>
 	Recently added items(
 	<c:choose>
@@ -17,7 +16,7 @@
 		<c:forEach items="${itemList }" var="item">
 			<div class="cart_box">
 				<div class="message">
-					<div class="alert-close"></div>
+					<div class="alert-close" onclick="deletePro(${item.showProduct.pro.id })"></div>
 					<div class="list_img">
 						<img src="images/${item.showProduct.mainImg.imgUrl }"
 							class="img-responsive" alt="" />
@@ -43,8 +42,8 @@
 	<div class="clearfix"></div>
 </div>
 <div class="login_buttons">
-	<div class="check_button">
-		<a href="checkout.html">Check out</a>
+	<div class="login_button">
+		<a href="checkout.html">结算</a>
 	</div>
 	<div class="clearfix"></div>
 </div>

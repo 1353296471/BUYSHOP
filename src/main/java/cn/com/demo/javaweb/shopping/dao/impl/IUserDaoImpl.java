@@ -31,4 +31,10 @@ public class IUserDaoImpl implements IUserDao {
 		return DaoUtils.getListBySql(User.class, sql, email, password).get(0);
 	}
 
+	@Override
+	public User getUser(int userId) {
+		String sql = "select * from user where id = ?";
+		return DaoUtils.getListBySql(User.class, sql, userId).get(0);
+	}
+
 }

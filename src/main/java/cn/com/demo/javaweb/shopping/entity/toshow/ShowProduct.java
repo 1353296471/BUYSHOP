@@ -1,4 +1,7 @@
-package cn.com.demo.javaweb.shopping.entity;
+package cn.com.demo.javaweb.shopping.entity.toshow;
+
+import cn.com.demo.javaweb.shopping.entity.Img;
+import cn.com.demo.javaweb.shopping.entity.Product;
 
 public class ShowProduct {
 	private Product pro;

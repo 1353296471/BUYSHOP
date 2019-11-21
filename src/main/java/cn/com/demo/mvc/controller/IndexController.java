@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.com.demo.javaweb.shopping.entity.ShowShopCar;
 import cn.com.demo.javaweb.shopping.entity.User;
+import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 import cn.com.demo.javaweb.shopping.service.IIndexService;
 
 @Controller
@@ -47,9 +47,35 @@ public class IndexController {
 		String msg = null;
 		User user = (User) session.getAttribute("user");
 		if (indexService.addShopCarItem(user.getId(), proId, 1)) {
-			msg = "添加成功！";
+			msg = "操作成功！";
 		} else {
-			msg = "添加失败！";
+			msg = "操作失败！";
+		}
+		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/removeShopCarItem/{proId}")
+	public String removeShopCarItem(@PathVariable("proId") Integer proId, HttpSession session) throws Exception {
+		String msg = null;
+		User user = (User) session.getAttribute("user");
+		if (indexService.removeShopCarItem(user.getId(), proId, 1)) {
+			msg = "操作成功！";
+		} else {
+			msg = "操作失败！";
+		}
+		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/deleteShopCarItem/{proId}")
+	public String deleteShopCarItem(@PathVariable("proId") Integer proId, HttpSession session) throws Exception {
+		String msg = null;
+		User user = (User) session.getAttribute("user");
+		if (indexService.deleteShopCarItem(user.getId(), proId)) {
+			msg = "操作成功！";
+		} else {
+			msg = "操作失败！";
 		}
 		return msg;
 	}

@@ -8,4 +8,6 @@ public interface IUserDao {
 	public boolean addUser(User user);
 
 	public User getUser(String email, String password);
+
+	public User getUser(int userId);
 }

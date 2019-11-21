@@ -1,4 +1,4 @@
-package cn.com.demo.javaweb.shopping.entity;
+package cn.com.demo.javaweb.shopping.entity.toshow;
 
 public class ShowShopCar {
 	private ShowProduct showProduct;
