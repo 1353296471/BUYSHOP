@@ -89,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	}
 
-	function add(proId) {
+	function addPro(proId) {
 		$.ajax({
 			type : 'post',
 			url : 'addShopCarItem/' + proId,
@@ -130,6 +130,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 		} else {
 			var txt = "";
+		}
+	}
+	
+	function checkPro() {
+		if (isLogin()) {
+			obj = document.getElementsByName("proIds");
+			proIds = [];
+		    for(k in obj){
+		        if(obj[k].checked)
+		        	proIds.push(obj[k].value);
+		    }
+		    
+		    $.ajax({
+				type : 'post',
+				url : 'getPrice/'+proIds,
+				data:proIds,
+				success : function(msg) {
+					$("#totalPrice").html(msg);
+				}
+			});
+
 		}
 	}
 </script>

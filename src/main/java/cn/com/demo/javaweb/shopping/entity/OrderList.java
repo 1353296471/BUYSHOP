@@ -1,13 +1,22 @@
 package cn.com.demo.javaweb.shopping.entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
-public class Order {
+public class OrderList {
 	private int orderPkid;
 	private int proPkid;
+	private int proNum;
 	private int receivePkid;
 	private int orderConditionPkid;
-	private Date orderTime;
+	private Timestamp orderTime;
+
+	public int getProNum() {
+		return proNum;
+	}
+
+	public void setProNum(int proNum) {
+		this.proNum = proNum;
+	}
 
 	public int getOrderPkid() {
 		return orderPkid;
@@ -41,15 +50,15 @@ public class Order {
 		this.orderConditionPkid = orderConditionPkid;
 	}
 
-	public Date getOrderTime() {
+	public Timestamp getOrderTime() {
 		return orderTime;
 	}
 
-	public void setOrderTime(Date orderTime) {
+	public void setOrderTime(Timestamp orderTime) {
 		this.orderTime = orderTime;
 	}
 
-	public Order() {
+	public OrderList() {
 		// TODO 自动生成的构造函数存根
 	}
 

@@ -7,6 +7,8 @@ public interface IUserDao {
 
 	public boolean addUser(User user);
 
+	public boolean payMoney(User user, double price);
+
 	public User getUser(String email, String password);
 
 	public User getUser(int userId);

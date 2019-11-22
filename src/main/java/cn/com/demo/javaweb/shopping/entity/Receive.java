@@ -65,6 +65,12 @@ public class Receive {
 		this.userPhone = userPhone;
 	}
 
+	@Override
+	public String toString() {
+		return "Receive [receivePkid=" + receivePkid + ", userPkid=" + userPkid + ", sheng=" + sheng + ", shi=" + shi
+				+ ", qu=" + qu + ", userAddress=" + userAddress + ", userPhone=" + userPhone + "]";
+	}
+
 	public Receive() {
 		// TODO 自动生成的构造函数存根
 	}

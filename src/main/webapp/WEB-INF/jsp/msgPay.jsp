@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -21,7 +23,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -172,9 +176,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="cssmenu">
 				<ul>
-					<li class="active">
-						<a href="login.html">My Account</a>
-					</li>
+					<li class="active"><a href="login.html" id="account">My
+							Account</a></li>
 				</ul>
 			</div>
 		</div>
@@ -468,49 +471,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	<script src="js/location.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			$("#province").change(function() {
-				var location = $('#province option:selected').text();
-				document.getElementById('sheng').innerText = location;
-			})
-
-			$("#city").change(function() {
-				var location = $('#city option:selected').text();
-				document.getElementById('shi').value = location;
-			})
-
-			$("#county").change(function() {
-				var location = $('#county option:selected').text();
-				document.getElementById('qu').value = location;
-			})
-
+	$(function() {
+		$("#province").change(function() {
+			var location = $('#province option:selected').text();
+			document.getElementById('sheng').value = location;
 		})
+
+		$("#city").change(function() {
+			var location = $('#city option:selected').text();
+			document.getElementById('shi').value = location;
+		})
+
+		$("#county").change(function() {
+			var location = $('#county option:selected').text();
+			document.getElementById('qu').value = location;
+		})
+
+	})
 	</script>
 	<center id="topay">
 		<br>
 		<br>
 		<br>
-		<h3 id="price">您需要支付$ 0,请填写您的收货信息</h3>
+		<h3 id="msg">${msg }</h3>
 		<br>
 		<br>
-省份： <select id="province" name="sheng" class="loc"></select>
-		 城市： <select id="city" name="shi" class="loc"></select> 区县： <select id="county" name="qu" class="loc"></select>
-		<span id="address" hidden="true"></span>
 		<br>
-		<br>
-		<form action="">
-			
-			<input type="text" id="sheng" name="sheng" disabled="true" >
-			<input type="text" id="shi" name="shi" disabled="true">
-			<input type="text" id="qu" name="qu" disabled="true" >
-			 <label>详细地址：</label><input type="text" name="moreMsg">
-			<br>
-			<br>
-			<label>电话号码：</label><input type="number" name="moreMsg">
-			<br>
-			<br>
-			<input type="button" value="取消"> <input type="submit" value="确认付款">
-		</form>
 	</center>
 
 

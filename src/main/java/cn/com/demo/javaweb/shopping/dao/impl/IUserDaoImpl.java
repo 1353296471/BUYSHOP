@@ -37,4 +37,10 @@ public class IUserDaoImpl implements IUserDao {
 		return DaoUtils.getListBySql(User.class, sql, userId).get(0);
 	}
 
+	@Override
+	public boolean payMoney(User user, double price) {
+		String sql = "update user set money = money - ? where id = ?";
+		return DaoUtils.insertOrUpdate(sql, price, user.getId());
+	}
+
 }

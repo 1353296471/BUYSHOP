@@ -55,39 +55,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script>
-	function isLogin() {
-		var flag = false;
-		$.ajax({
-			async : false,
-			//async. 默认是 true，即为异步方式，$.ajax执行后，会继续执行ajax后面的脚本，
-			//直到服务器端返回数据后，触发$.ajax里的success方法，这时候执行的是两个线程。
-			//async 设置为 false，则所有的请求均为同步请求，在没有返回值之前，
-			//同步请求将锁住浏览器，用户其它操作必须等待请求完成才可以执行。
-			type : 'post',
-			url : 'isLogin',
-			success : function(msg) {
-				if (msg == "isLogin") {
-					flag = true;
-				} else {
-					flag = false;
-				}
-			}
-		});
-		return flag;
-	}
 
-	function updateBuyList() {
+	function showOrderList() {
 		$.ajax({
 			type : 'post',
-			url : 'updateBuyList',
+			url : 'showOrderList',
 			success : function(msg) {
-				$("#buyList").html(msg);
+				$("#orderList").html(msg);
 			}
 		});
 	}
 
 	$(document).ready(function() {
-		updateBuyList();
+		showOrderList();
 		if (isLogin()) {
 			$.ajax({
 				type : 'post',
@@ -100,61 +80,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 	})
 
-	function remove(proId) {
-		$.ajax({
-			type : 'post',
-			url : 'removeShopCarItem/' + proId,
-			success : function(countMsg) {
-				if (countMsg == "操作成功！") {
-					updateBuyList();
-				}
-			}
-		});
-	}
-
-	function add(proId) {
-		$.ajax({
-			type : 'post',
-			url : 'addShopCarItem/' + proId,
-			success : function(countMsg) {
-				if (countMsg == "操作成功！") {
-					updateBuyList();
-				}
-			}
-		});
-	}
-
-	function deletePro(proId) {
-		var r = confirm("确定要删除购物项吗？");
-		if (r == true) {
-			$.ajax({
-				type : 'post',
-				url : 'deleteShopCarItem/' + proId,
-				success : function(countMsg) {
-					if (countMsg == "操作成功！") {
-						alert("删除成功！");
-						updateBuyList();
-					} else {
-						alert("删除失败！");
-					}
-				}
-			});
-		}
-	}
-
-	function toShowShopCarItem() {
-		if (isLogin()) {
-			$.ajax({
-				type : 'post',
-				url : 'showShopCar',
-				success : function(msg) {
-					$("#shopCarItemListDiv").html(msg);
-				}
-			});
-		} else {
-			var txt = "";
-		}
-	}
 </script>
 
 </head>
@@ -466,60 +391,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-	<script src="js/location.js"></script>
-	<script type="text/javascript">
-		$(function() {
-			$("#province").change(function() {
-				var location = $('#province option:selected').text();
-				document.getElementById('sheng').innerText = location;
-			})
+	
+		<!-- -------------------orderList--------------------------- -->
+	<div class="checkout">
+		<div class="container" id="orderList">
+			<h1 class="title1">Shopping cart is empty</h1>
+			<p class="cart">
+				You have no items in your orderList.
+				<br>
+				Click
+				<a href="index.html"> here</a>
+				to continue shopping
+			</p>
+		</div>
+	</div>
 
-			$("#city").change(function() {
-				var location = $('#city option:selected').text();
-				document.getElementById('shi').value = location;
-			})
-
-			$("#county").change(function() {
-				var location = $('#county option:selected').text();
-				document.getElementById('qu').value = location;
-			})
-
-		})
-	</script>
-	<center id="topay">
-		<br>
-		<br>
-		<br>
-		<h3 id="price">您需要支付$ 0,请填写您的收货信息</h3>
-		<br>
-		<br>
-省份： <select id="province" name="sheng" class="loc"></select>
-		 城市： <select id="city" name="shi" class="loc"></select> 区县： <select id="county" name="qu" class="loc"></select>
-		<span id="address" hidden="true"></span>
-		<br>
-		<br>
-		<form action="">
-			
-			<input type="text" id="sheng" name="sheng" disabled="true" >
-			<input type="text" id="shi" name="shi" disabled="true">
-			<input type="text" id="qu" name="qu" disabled="true" >
-			 <label>详细地址：</label><input type="text" name="moreMsg">
-			<br>
-			<br>
-			<label>电话号码：</label><input type="number" name="moreMsg">
-			<br>
-			<br>
-			<input type="button" value="取消"> <input type="submit" value="确认付款">
-		</form>
-	</center>
-
-
-	<script>
-		var loc = beva.locationutil.attach('province', 'city', 'county',
-				'address');
-
-		// loc.setSelectedCodes([697,698]);
-	</script>
 
 	<br>
 	<br>

@@ -18,14 +18,14 @@
 							</h4>
 							<input type="button" name="remove" value="-" onclick="remove(${item.showProduct.pro.id })">
 							${item.num }
-							<input type="button" name="add" value="+" onclick="add(${item.showProduct.pro.id })">
+							<input type="button" name="add" value="+" onclick="addPro(${item.showProduct.pro.id })">
 							x
 							<span class="actual"> $${item.showProduct.pro.price }</span>
 						</div>
 						<br>
-						<input type="checkbox" name="buyProId" value="${item.showProduct.pro.id }" checked="checked" />
+						<input type="checkbox" name="proIds" value="${item.showProduct.pro.id }" checked="checked" onclick="checkPro()"/>
 						<div class="login_button">
-							<a href="">单个结算</a>
+							<a href="toPay?proIds=${item.showProduct.pro.id }">单个结算</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -36,12 +36,12 @@
 	</div>
 	<div class="total">
 		<div class="total_left">CartSubtotal :</div>
-		<div class="total_right">$${sum }</div>
+		<div class="total_right" id="totalPrice">$${sum }</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="login_buttons">
 		<div class="login_button">
-			<input type="button" value="全部结算">
+			<input type="submit" value="全部结算">
 		</div>
 		<div class="clearfix"></div>
 	</div>
