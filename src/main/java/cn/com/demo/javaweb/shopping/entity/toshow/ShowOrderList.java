@@ -10,6 +10,15 @@ public class ShowOrderList {
 	private Product pro;
 	private Receive receive;
 	private OrderList orderList;
+	private String conditionType;
+
+	public String getConditionType() {
+		return conditionType;
+	}
+
+	public void setConditionType(String conditionType) {
+		this.conditionType = conditionType;
+	}
 
 	public Img getMainImg() {
 		return mainImg;

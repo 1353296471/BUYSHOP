@@ -7,35 +7,7 @@
 <meta name="keywords" content="Flatro Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -48,14 +20,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- start menu -->
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
+
+<!-- 引入全局函数myFunction.js -->
+<script type="text/javascript" src="js/myFunction.js"></script>
 <script>
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
 	});
 </script>
 
-<script>
-
+<script type="text/javascript" >
 	function showOrderList() {
 		$.ajax({
 			type : 'post',
@@ -67,19 +41,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	$(document).ready(function() {
+		init();
 		showOrderList();
-		if (isLogin()) {
-			$.ajax({
-				type : 'post',
-				url : 'getUser',
-				success : function(user) {
-					$("#account").html(user.userName);
-				}
-			});
-
-		}
 	})
-
 </script>
 
 </head>
@@ -97,9 +61,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="cssmenu">
 				<ul>
-					<li class="active">
-						<a href="login.html">My Account</a>
-					</li>
+					<li class="active"><a href="login.html" id="account">My
+							Account</a></li>
 				</ul>
 			</div>
 		</div>
@@ -391,8 +354,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	</div>
 
-	
-		<!-- -------------------orderList--------------------------- -->
+
+	<!-- -------------------orderList--------------------------- -->
 	<div class="checkout">
 		<div class="container" id="orderList">
 			<h1 class="title1">Shopping cart is empty</h1>

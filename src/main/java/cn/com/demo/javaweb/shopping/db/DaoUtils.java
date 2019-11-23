@@ -15,8 +15,65 @@ import java.util.ArrayList;
  *
  */
 public class DaoUtils {
+//	private static boolean commit = true; //// 将自动提交设置为false 即开启事务 ，默认true
+//
+//	public static boolean isCommit() {
+//		return commit;
+//	}
+
+//	private static Connection connCommit = JDBCUtils.getConnection(); // 为事务设置唯一的conn
+
+//	/**
+//	 * 成功后手动提交 失败时回滚
+//	 */
+//	public static void commit() {
+//		DaoUtils.commit = true;
+//		try {
+//			connCommit.commit();
+//		} catch (Exception e) {
+//			try {
+//				connCommit.rollback();
+//			} catch (SQLException e1) {
+//				e1.printStackTrace();
+//			}
+//		}
+//	}
+
+//	/**
+//	 * 将自动提交设置为falg 开启事务需要将自动提交设置为false
+//	 * 
+//	 * @param falg
+//	 */
+//	public static void setAutoCommit(boolean falg) {
+//		DaoUtils.commit = falg;
+//		try {
+//			connCommit.setAutoCommit(falg);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 	private DaoUtils() {
 		// TODO 自动生成的构造函数存根
+	}
+
+	public static Connection getConn() {
+		Connection conn = null;
+//		if (commit) {
+//			conn = JDBCUtils.getConnectionByPool();
+//			connCommit = conn;
+//		} else {
+//			conn = connCommit;
+//		}
+		conn = JDBCUtils.getConnectionByPool();
+		return conn;
+	}
+
+	public static void releaseConn(Connection conn) {
+//		if (commit) {
+		// 事务开启时，暂时不需要将conn释放
+		JDBCUtils.releaseConnection(conn);
+//		}
 	}
 
 	/**
@@ -28,7 +85,7 @@ public class DaoUtils {
 	 */
 	public static boolean insertOrUpdate(String sql, Object... args) {
 		boolean bool = false;
-		Connection conn = JDBCUtils.getConnectionByPool();
+		Connection conn = getConn();
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
@@ -49,6 +106,36 @@ public class DaoUtils {
 	}
 
 	/**
+	 * 方便进行事务处理重载方法 去除了conn的close
+	 * 
+	 * @param connection
+	 * @param sql
+	 * @param args
+	 * @return
+	 */
+	public static boolean insertOrUpdate(Connection connection, String sql, Object... args) {
+		boolean bool = false;
+		Connection conn = connection;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			pstm = conn.prepareStatement(sql);
+			for (int i = 0; i < args.length; i++) {
+				pstm.setObject(i + 1, args[i]);
+			}
+			int result = pstm.executeUpdate();
+			if (result != 0) {
+				bool = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			free(rs, pstm);
+		}
+		return bool;
+	}
+
+	/**
 	 * 输入查询语句返回相对应的数据集合
 	 * 
 	 * 要求：类属性要和数据库列名一致
@@ -62,7 +149,7 @@ public class DaoUtils {
 	public static <T> ArrayList<T> getListBySql(Class<T> obj, String sql, Object... args) {
 		T entity = null;
 		ArrayList<T> entityList = new ArrayList<>();
-		Connection conn = JDBCUtils.getConnectionByPool();
+		Connection conn = getConn();
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
@@ -110,7 +197,7 @@ public class DaoUtils {
 		ResultSet set = null;
 		boolean bool = true;
 		try {
-			conn = JDBCUtils.getConnectionByPool();
+			conn = getConn();
 			ps = conn.prepareStatement(sql);
 			/* 有可能有参数 */
 			for (int i = 0; i < args.length; i++) {
@@ -143,7 +230,24 @@ public class DaoUtils {
 			}
 		}
 		if (conn != null) {
-			JDBCUtils.releaseConnection(conn);
+			releaseConn(conn);
+		}
+	}
+
+	public static void free(ResultSet rs, Statement pstm) {
+		if (rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		if (pstm != null) {
+			try {
+				pstm.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -156,7 +260,7 @@ public class DaoUtils {
 			}
 		}
 		if (conn != null) {
-			JDBCUtils.releaseConnection(conn);
+			releaseConn(conn);
 		}
 	}
 }

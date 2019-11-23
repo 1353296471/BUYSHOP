@@ -1,6 +1,7 @@
 package cn.com.demo.javaweb.shopping.service.imp;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,9 +64,27 @@ public class IPersonalServiceImpl implements IPersonalService {
 				so.setPro(pro);
 				so.setOrderList(o);
 				so.setReceive(re);
+				if (o.getOrderConditionPkid() == 1) {
+					so.setConditionType("订单正在处理");
+				} else {
+					so.setConditionType("已发货");
+				}
+
 				items.add(so);
 			}
 		}
+		// 6.根据时间顺序排序，倒序
+		items.sort(new Comparator<ShowOrderList>() {
+
+			@Override
+			public int compare(ShowOrderList o1, ShowOrderList o2) {
+				if (o1.getOrderList().getOrderTime().getTime() >= o2.getOrderList().getOrderTime().getTime()) {
+					return -1; // 负整数表示将往前移动
+				}
+				return 1;// 正整数表示将往后移动
+			}
+
+		});
 		return items;
 	}
 

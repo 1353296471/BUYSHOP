@@ -39,7 +39,7 @@ public class IUserDaoImpl implements IUserDao {
 
 	@Override
 	public boolean payMoney(User user, double price) {
-		String sql = "update user set money = money - ? where id = ?";
+		String sql = "updates user set money = money - ? where id = ?";
 		return DaoUtils.insertOrUpdate(sql, price, user.getId());
 	}
 

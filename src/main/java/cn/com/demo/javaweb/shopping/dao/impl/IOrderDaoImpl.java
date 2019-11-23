@@ -27,7 +27,7 @@ public class IOrderDaoImpl implements IOrderDao {
 
 	@Override
 	public boolean add(OrderList order) {
-		String sql = "insert into orderList (proPkid,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?) ";
+		String sql = "insert into orderList (proPkid,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
 		return DaoUtils.insertOrUpdate(sql, order.getProPkid(), order.getReceivePkid(), order.getOrderConditionPkid(),
 				order.getOrderTime(), order.getProNum());
 	}

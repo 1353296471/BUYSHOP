@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>
 	Recently added items(
@@ -18,33 +17,45 @@
 				<div class="message">
 					<div class="alert-close" onclick="deletePro(${item.showProduct.pro.id })"></div>
 					<div class="list_img">
-						<img src="images/${item.showProduct.mainImg.imgUrl }"
-							class="img-responsive" alt="" />
+						<img src="images/${item.showProduct.mainImg.imgUrl }" class="img-responsive" alt="" />
 					</div>
 					<div class="list_desc">
 						<h4>
 							<a href="#">${item.showProduct.pro.proName }</a>
 						</h4>
-						${item.num } x<span class="actual">
-							$${item.showProduct.pro.price }</span>
+						${item.num } x
+						<span class="actual"> $${item.showProduct.pro.price }</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			<c:set var="sum"
-				value="${sum + item.showProduct.pro.price*item.num }" />
+			<c:set var="sum" value="${sum + item.showProduct.pro.price*item.num }" />
 		</c:forEach>
 	</c:if>
 </div>
-<div class="total">
-	<div class="total_left">CartSubtotal :</div>
-	<div class="total_right">$${sum }</div>
-	<div class="clearfix"></div>
-</div>
-<div class="login_buttons">
-	<div class="login_button">
-		<a href="checkout.html">结算</a>
-	</div>
-	<div class="clearfix"></div>
-</div>
+<c:choose>
+	<c:when test="${itemSize>0 }">
+		<div class="total">
+			<div class="total_left">CartSubtotal :</div>
+			<div class="total_right">$${sum }</div>
+			<div class="clearfix"></div>
+		</div>
+	</c:when>
+</c:choose>
+
+<c:choose>
+	<c:when test="${itemSize==0 }">
+		<center>
+			<h4>空空如也</h4><br><br><br>
+		</center>
+	</c:when>
+	<c:otherwise>
+		<div class="login_buttons">
+			<div class="login_button">
+				<a href="checkout.html">结算</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</c:otherwise>
+</c:choose>
 <div class="clearfix"></div>
