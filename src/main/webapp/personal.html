@@ -35,7 +35,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			type : 'post',
 			url : 'showOrderList',
 			success : function(msg) {
-				$("#orderList").html(msg);
+				$("#mainShow").html(msg);
+			}
+		});
+	}
+	
+	function toCharge() {
+		$.ajax({
+			type : 'post',
+			url : 'toCharge',
+			success : function(msg) {
+				$("#mainShow").html(msg);
+			}
+		});
+	}
+	
+	function chargeMoney(money) {
+		$.ajax({
+			type : 'post',
+			url : 'chargeMoney/'+ money,
+			success : function(msg) {
+				if(msg == 'true'){
+					alert("充值成功！");
+				}else{
+					alert("充值失败！");
+				}
 			}
 		});
 	}
@@ -355,9 +379,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 
 
-	<!-- -------------------orderList--------------------------- -->
+	<!-- -------------------personal meun--------------------------- -->
+		<div class="col-xs-7 menu">
+		<ul class="megamenu skyblue">
+			<li>
+				<a class="color1" href="#" onclick="showOrderList()">我的订单</a>
+			</li>
+			<li class="grid">
+				<a class="color2" href="#" onclick="toCharge()">充值</a>
+			</li>
+			<li>
+				<a class="color4" href="about.html" id="meun">About</a>
+			</li>
+			<li class="active grid">
+				<a class="color5" href="404.html" id="meun">Blog</a>
+			</li>
+			<li>
+				<a class="color6" href="contact.html" id="meun">Support</a>
+			</li>
+		</ul>
+	</div>
 	<div class="checkout">
-		<div class="container" id="orderList">
+		<div class="container" id="mainShow">
 			<h1 class="title1">Shopping cart is empty</h1>
 			<p class="cart">
 				You have no items in your orderList.

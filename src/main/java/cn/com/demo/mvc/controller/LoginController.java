@@ -31,7 +31,6 @@ public class LoginController {
 		System.out.println(user);
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:/index.html");
-
 		if (result.getErrorCount() > 0) {
 			System.out.println("出错了!");
 			model.setViewName("error");

@@ -88,4 +88,13 @@ public class IPersonalServiceImpl implements IPersonalService {
 		return items;
 	}
 
+	@Override
+	public boolean chargeMoney(int userId, double money) {
+		boolean falg = false;
+		if (money >= 0) {
+			falg = userDao.chargeMoney(userId, money);
+		}
+		return falg;
+	}
+
 }

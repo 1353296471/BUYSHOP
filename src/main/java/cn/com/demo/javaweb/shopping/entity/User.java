@@ -1,10 +1,13 @@
 package cn.com.demo.javaweb.shopping.entity;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Email;
 
 public class User {
 	private int id;
 	private String userName;
+	@NotNull
 	private String password;
 	@Email
 	private String email;

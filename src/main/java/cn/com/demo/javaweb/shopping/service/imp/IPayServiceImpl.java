@@ -78,6 +78,7 @@ public class IPayServiceImpl implements IPayService {
 				// 4.更新用户的余额信息
 //				userDao.payMoney(user, price);
 //				DaoUtils.setAutoCommit(false);
+
 				if (shopCarDao.deleteShopCar(shopcar) && orderDao.add(order)
 						&& warehouseDao.remove(shopcar.getProId(), shopcar.getNum()) && userDao.payMoney(user, price)) {
 					falg = true;

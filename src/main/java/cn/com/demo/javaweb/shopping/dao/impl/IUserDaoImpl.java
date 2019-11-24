@@ -22,7 +22,8 @@ public class IUserDaoImpl implements IUserDao {
 
 	@Override
 	public boolean addUser(User user) {
-		return false;
+		String sql = "insert into user (userName , password , email) values (?,?,?) ";
+		return DaoUtils.insertOrUpdate(sql, user.getUserName(), user.getPassword(), user.getEmail());
 	}
 
 	@Override
@@ -39,8 +40,20 @@ public class IUserDaoImpl implements IUserDao {
 
 	@Override
 	public boolean payMoney(User user, double price) {
-		String sql = "updates user set money = money - ? where id = ?";
+		String sql = "update user set money = money - ? where id = ?";
 		return DaoUtils.insertOrUpdate(sql, price, user.getId());
+	}
+
+	@Override
+	public boolean isCheck(String email) {
+		String sql = "select * from user where email = ?";
+		return DaoUtils.executeQuery(sql, email);
+	}
+
+	@Override
+	public boolean chargeMoney(int userId, double money) {
+		String sql = "update user set money = money + ? where id = ?";
+		return DaoUtils.insertOrUpdate(sql, money, userId);
 	}
 
 }

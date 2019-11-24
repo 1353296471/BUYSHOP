@@ -29,4 +29,24 @@ public class PersonalController {
 		return model;
 	}
 
+	@RequestMapping("/toCharge")
+	public ModelAndView toCharge(HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("chargeMoney");
+		return model;
+	}
+
+	@RequestMapping("/chargeMoney")
+	public ModelAndView chargeMoney(HttpSession session, double money) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("msg");
+		String msg = "充值失败！";
+		User user = (User) session.getAttribute("user");
+		if (personalService.chargeMoney(user.getId(), money)) {
+			msg = "充值成功！";
+		}
+		model.addObject("msg", msg);
+		return model;
+	}
+
 }

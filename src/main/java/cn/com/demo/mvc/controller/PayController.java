@@ -33,7 +33,7 @@ public class PayController {
 	public ModelAndView pay(HttpSession session, Receive receive) {
 		System.out.println(receive);
 		ModelAndView model = new ModelAndView();
-		model.setViewName("msgPay");
+		model.setViewName("msg");
 		String msg = "";
 		User user = (User) session.getAttribute("user");
 		String[] proIds = (String[]) session.getAttribute("proIds");
