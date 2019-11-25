@@ -112,26 +112,25 @@ public class DaoUtils {
 	 * @param sql
 	 * @param args
 	 * @return
+	 * @throws SQLException
 	 */
-	public static boolean insertOrUpdate(Connection connection, String sql, Object... args) {
+	public static boolean insertOrUpdate(Connection connection, String sql, Object... args) throws SQLException {
 		boolean bool = false;
 		Connection conn = connection;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		try {
-			pstm = conn.prepareStatement(sql);
-			for (int i = 0; i < args.length; i++) {
-				pstm.setObject(i + 1, args[i]);
-			}
-			int result = pstm.executeUpdate();
-			if (result != 0) {
-				bool = true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			free(rs, pstm);
+
+		pstm = conn.prepareStatement(sql);
+		for (int i = 0; i < args.length; i++) {
+			pstm.setObject(i + 1, args[i]);
 		}
+		int result = pstm.executeUpdate();
+		if (result != 0) {
+			bool = true;
+		}
+
+		free(rs, pstm);
+
 		return bool;
 	}
 

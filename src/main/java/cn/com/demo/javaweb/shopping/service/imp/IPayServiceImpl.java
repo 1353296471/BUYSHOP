@@ -1,5 +1,7 @@
 package cn.com.demo.javaweb.shopping.service.imp;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -12,6 +14,7 @@ import cn.com.demo.javaweb.shopping.dao.IReceiveDao;
 import cn.com.demo.javaweb.shopping.dao.IShopCarDao;
 import cn.com.demo.javaweb.shopping.dao.IUserDao;
 import cn.com.demo.javaweb.shopping.dao.IWarehouseDao;
+import cn.com.demo.javaweb.shopping.db.DaoUtils;
 import cn.com.demo.javaweb.shopping.entity.OrderList;
 import cn.com.demo.javaweb.shopping.entity.Product;
 import cn.com.demo.javaweb.shopping.entity.Receive;
@@ -41,7 +44,8 @@ public class IPayServiceImpl implements IPayService {
 	private IWarehouseDao warehouseDao;
 
 	/**
-	 * 购买操作，现阶段很不稳定，后续应加上事务，防止数据出错可回滚
+	 * 购买操作,添加了事务操作，出错了即可回滚
+	 * 
 	 * 
 	 * @param shopcar
 	 * @param receive
@@ -77,13 +81,26 @@ public class IPayServiceImpl implements IPayService {
 
 				// 4.更新用户的余额信息
 //				userDao.payMoney(user, price);
-//				DaoUtils.setAutoCommit(false);
 
-				if (shopCarDao.deleteShopCar(shopcar) && orderDao.add(order)
-						&& warehouseDao.remove(shopcar.getProId(), shopcar.getNum()) && userDao.payMoney(user, price)) {
-					falg = true;
+				// 用事务包围操作
+				Connection conn = DaoUtils.getConn();
+				try {
+					conn.setAutoCommit(false);
+					if (shopCarDao.deleteShopCar(conn, shopcar) && orderDao.add(conn, order)
+							&& warehouseDao.remove(conn, shopcar.getProId(), shopcar.getNum())
+							&& userDao.payMoney(conn, user, price)) {
+						falg = true;
+					}
+					conn.commit();
+				} catch (SQLException e) {
+					e.printStackTrace();
+					try {
+						conn.rollback();
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 				}
-//				DaoUtils.commit();
+
 			}
 		}
 		return falg;

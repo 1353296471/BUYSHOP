@@ -1,7 +1,9 @@
 package cn.com.demo.mvc.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.hibernate.validator.constraints.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import cn.com.demo.javaweb.shopping.dao.IUserDao;
 import cn.com.demo.javaweb.shopping.entity.User;
+import cn.com.demo.javaweb.shopping.service.IRegisterService;
 
 @Controller
 public class RegisterController {
-	@Autowired // 自动装配类 装配之前需要在配置中包含扫面的包，且需要在类名上加上注解
-	private IUserDao userDao;
+
+	@Autowired
+	private IRegisterService registerService;
 
 	@ResponseBody
 	@RequestMapping("/register")
@@ -29,7 +32,7 @@ public class RegisterController {
 				msg = msg + "</br>" + error.getField() + ":" + error.getDefaultMessage();
 			}
 		} else {
-			if (userDao.addUser(user)) {
+			if (registerService.addUser(user)) {
 				msg = "isRegister";
 			}
 		}
@@ -47,9 +50,32 @@ public class RegisterController {
 	@RequestMapping("/isCheck/{email}")
 	public String isCheck(@PathVariable("email") String email) {
 		String msg = "isCheck";
-		if (!userDao.isCheck(email)) {
+		if (!registerService.isCheck(email)) {
 			msg = "notCheck";
 		}
 		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/isCode/{code}")
+	public boolean isCode(@PathVariable("code") String code, HttpSession session) {
+		boolean falg = false;
+		String codeOfsession = (String) session.getAttribute("code");
+		if (code.equals(codeOfsession)) {
+			falg = true;
+		}
+		return falg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/sendCode/{email}")
+	public boolean sendCode(@PathVariable("email") @Email String email, HttpSession session) {
+		boolean falg = false;
+		String code = registerService.createCode();
+		if (registerService.sendEmailCode(email, code)) {
+			session.setAttribute("code", code);
+			falg = true;
+		}
+		return falg;
 	}
 }

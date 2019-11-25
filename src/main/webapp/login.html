@@ -46,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		//判断邮箱格式是否输入正确
 		$(".email").change(function () {
 			var email = $(this).val();
-			var reg = /^[a-zA-Z0-9]+@[a-z0-9]{2,5}\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+			var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 			var result = reg.test(email);
 			if (!result) {
 				alert("邮箱格式错误！");

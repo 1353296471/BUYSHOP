@@ -29,11 +29,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 </script>
 
-<script type="text/javascript" >
-	function showOrderList() {
+<script>
+	
+
+	function toOrderListPage(pageNo) {
 		$.ajax({
 			type : 'post',
-			url : 'showOrderList',
+			url : 'showOrderList/'+ pageNo,
 			success : function(msg) {
 				$("#mainShow").html(msg);
 			}
@@ -66,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 	$(document).ready(function() {
 		init();
-		showOrderList();
+		toOrderListPage(1);
 	})
 </script>
 
@@ -383,7 +385,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="col-xs-7 menu">
 		<ul class="megamenu skyblue">
 			<li>
-				<a class="color1" href="#" onclick="showOrderList()">我的订单</a>
+				<a class="color1" href="#" onclick="toOrderListPage(1)">我的订单</a>
 			</li>
 			<li class="grid">
 				<a class="color2" href="#" onclick="toCharge()">充值</a>

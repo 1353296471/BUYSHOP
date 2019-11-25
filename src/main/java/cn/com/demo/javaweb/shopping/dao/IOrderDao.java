@@ -1,5 +1,7 @@
 package cn.com.demo.javaweb.shopping.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import cn.com.demo.javaweb.shopping.entity.OrderList;
@@ -14,5 +16,7 @@ public interface IOrderDao {
 	public List<OrderList> getOrders(int receivePkid);
 
 	public OrderList getOrder(int receivePkid, int proId);
+
+	public boolean add(Connection conn, OrderList order) throws SQLException;
 
 }

@@ -59,7 +59,7 @@
 	function checkEmail() {
 		var falg = false;
 		var email = $(".email").val();
-		var reg = /^[a-zA-Z0-9]+@[a-z0-9]{2,5}\.[a-z]{2,3}(\.[a-z]{2,3})?$/;
+		var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 		var result = reg.test(email);
 		if (!result) {
 			alert("邮箱格式错误！请重新输入！");
@@ -104,6 +104,47 @@
 		}
 		return falg;
 	}
+	
+	function checkCode() {
+		var falg = false;
+		var code = $(".code").val();
+		if (code == "") {
+			alert("验证码不能为空！");
+		} else {
+			$.ajax({
+				async : false,
+				type : 'post',
+				url : 'isCode/' + code,
+				success : function(msg) {
+					if (!msg) {
+						alert("验证码不正确！请重新输入！");
+					} else {
+						falg = true;
+					}
+				}
+			});
+		}
+		return falg;
+	}
+	
+	function sendCode() {
+		var email = $(".email").val();
+		if(checkEmail()){
+			$.ajax({
+				type : 'post',
+				url : 'sendCode/' + email,
+				success : function(msg) {
+					if (!msg) {
+						alert("发送失败！");
+					} else {
+						alert("发送成功！");
+					}
+				}
+			});
+		}
+		
+	}
+	
 	// 前端数据校验
 	$(function() {
 		//判断邮箱格式是否输入正确
@@ -118,6 +159,10 @@
 		$(".userName").change(function() {
 			checkUserName();
 		})
+		
+		$(".code").change(function() {
+			checkCode();
+		})
 	})
 
 	function toregister() {
@@ -126,7 +171,7 @@
 			email : $(".email").val(),
 			password : $(".password").val()
 		};
-		if (checkUserName() && checkEmail() && checkPassword()) {
+		if (checkUserName() && checkEmail() && checkPassword() && checkCode()) {
 			$.ajax({
 				type : 'post',
 				url : 'register',
@@ -471,6 +516,11 @@
 							Email Address<label>*</label>
 						</span>
 						<input type="text" name="email" class="email">
+						<input type="button" value="发送验证码" onclick="sendCode()">
+						<span>
+							Code<label>*</label>
+						</span>
+						<input type="text" name="code" class="code">
 					</div>
 					<div class="clearfix"></div>
 					<a class="news-letter" href="#"> </a>
@@ -494,7 +544,7 @@
 
 				<div class="clearfix"></div>
 				<div class="register-but">
-					<form>
+					<form action="#">
 						<input type="submit" value="register" onclick="toregister()">
 						<div class="clearfix"></div>
 					</form>

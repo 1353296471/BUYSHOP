@@ -1,5 +1,8 @@
 package cn.com.demo.javaweb.shopping.dao.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import org.springframework.stereotype.Repository;
 
 import cn.com.demo.javaweb.shopping.dao.IUserDao;
@@ -54,6 +57,12 @@ public class IUserDaoImpl implements IUserDao {
 	public boolean chargeMoney(int userId, double money) {
 		String sql = "update user set money = money + ? where id = ?";
 		return DaoUtils.insertOrUpdate(sql, money, userId);
+	}
+
+	@Override
+	public boolean payMoney(Connection conn, User user, double price) throws SQLException {
+		String sql = "update user set money = money - ? where id = ?";
+		return DaoUtils.insertOrUpdate(conn, sql, price, user.getId());
 	}
 
 }

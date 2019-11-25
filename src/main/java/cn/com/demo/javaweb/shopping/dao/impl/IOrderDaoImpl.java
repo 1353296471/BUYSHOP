@@ -1,5 +1,7 @@
 package cn.com.demo.javaweb.shopping.dao.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -54,6 +56,13 @@ public class IOrderDaoImpl implements IOrderDao {
 	public OrderList getOrder(int receivePkid, int proPkid) {
 		String sql = "select * from orderList where receivePkid = ? and proPkid = ?";
 		return DaoUtils.getListBySql(OrderList.class, sql, receivePkid, proPkid).get(0);
+	}
+
+	@Override
+	public boolean add(Connection conn, OrderList order) throws SQLException {
+		String sql = "insert into orderList (proPkid,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
+		return DaoUtils.insertOrUpdate(conn, sql, order.getProPkid(), order.getReceivePkid(),
+				order.getOrderConditionPkid(), order.getOrderTime(), order.getProNum());
 	}
 
 }

@@ -1,5 +1,7 @@
 package cn.com.demo.javaweb.shopping.dao.impl;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,12 @@ public class IShopCarDaoImpl implements IShopCarDao {
 	public ShopCar getShopCar(int userId, int proId) {
 		String sql = "select * from shopCar where userId = ? and proId = ?";
 		return DaoUtils.getListBySql(ShopCar.class, sql, userId, proId).get(0);
+	}
+
+	@Override
+	public boolean deleteShopCar(Connection conn, ShopCar shopcar) throws SQLException {
+		String sql = "delete from shopCar where userId = ? and proId = ?";
+		return DaoUtils.insertOrUpdate(conn, sql, shopcar.getUserId(), shopcar.getProId());
 	}
 
 }

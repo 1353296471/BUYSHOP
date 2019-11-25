@@ -1,5 +1,8 @@
 package cn.com.demo.javaweb.shopping.dao;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import cn.com.demo.javaweb.shopping.entity.User;
 
 public interface IUserDao {
@@ -16,4 +19,6 @@ public interface IUserDao {
 	public User getUser(String email, String password);
 
 	public User getUser(int userId);
+
+	public boolean payMoney(Connection conn, User user, double price) throws SQLException;
 }

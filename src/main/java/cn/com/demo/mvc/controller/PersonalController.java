@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.demo.javaweb.shopping.entity.User;
+import cn.com.demo.javaweb.shopping.entity.toshow.Page;
 import cn.com.demo.javaweb.shopping.entity.toshow.ShowOrderList;
 import cn.com.demo.javaweb.shopping.service.IPersonalService;
 
@@ -19,13 +21,17 @@ public class PersonalController {
 	@Autowired
 	private IPersonalService personalService;
 
-	@RequestMapping("/showOrderList")
-	public ModelAndView showOrderList(HttpSession session) {
+	private int pageSize = 3;
+
+	@RequestMapping("/showOrderList/{pageNo}")
+	public ModelAndView showOrderList(HttpSession session, @PathVariable("pageNo") int pageNo) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("orderList");
 		User user = (User) session.getAttribute("user");
-		List<ShowOrderList> items = personalService.getShowOrderLists(user.getId());
+		List<ShowOrderList> items = personalService.getShowOrderListsByPage(user.getId(), pageNo, pageSize);
+		Page page = new Page(pageNo, personalService.getMaxPage(user.getId(), pageSize));
 		model.addObject("items", items);
+		model.addObject("page", page);
 		return model;
 	}
 
