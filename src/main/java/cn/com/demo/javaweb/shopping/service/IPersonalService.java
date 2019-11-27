@@ -11,5 +11,7 @@ public interface IPersonalService {
 
 	public int getMaxPage(int userId, int pageSize);
 
+	public double getCash(int userId);
+
 	public boolean chargeMoney(int userId, double money);
 }

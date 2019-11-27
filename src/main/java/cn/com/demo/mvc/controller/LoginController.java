@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import cn.com.demo.javaweb.shopping.dao.IUserDao;
 import cn.com.demo.javaweb.shopping.entity.User;
@@ -26,23 +27,22 @@ public class LoginController {
 	 * 
 	 * @return
 	 */
+	@ResponseBody
 	@RequestMapping("/login")
-	public ModelAndView login(@Valid User user, BindingResult result, HttpSession session) {
+	public boolean login(@RequestBody @Valid User user, BindingResult result, HttpSession session) {
 		System.out.println(user);
-		ModelAndView model = new ModelAndView();
-		model.setViewName("redirect:/index.html");
+		boolean flag = false;
 		if (result.getErrorCount() > 0) {
 			System.out.println("出错了!");
-			model.setViewName("error");
 			for (FieldError error : result.getFieldErrors()) {
 				System.out.println(error.getField() + ":" + error.getDefaultMessage());
 			}
 		} else if (!userDao.isRight(user.getEmail(), user.getPassword())) {
 			System.out.println(result);
-			model.setViewName("error");
 		} else {
 			session.setAttribute("user", userDao.getUser(user.getEmail(), user.getPassword()));
+			flag = true;
 		}
-		return model;
+		return flag;
 	}
 }

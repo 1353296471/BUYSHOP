@@ -7,7 +7,11 @@
 <meta name="keywords" content="Flatro Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -30,18 +34,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script>
-	
+	function checkMoney(money) {
+		var flag = false;
+		if (!(money > 0)) {
+			alert("请输入正确的充值金额！")
+		} else {
+			flag = true;
+		}
+		return flag;
+	}
 
 	function toOrderListPage(pageNo) {
 		$.ajax({
 			type : 'post',
-			url : 'showOrderList/'+ pageNo,
+			url : 'showOrderList/' + pageNo,
 			success : function(msg) {
 				$("#mainShow").html(msg);
 			}
 		});
 	}
-	
+
 	function toCharge() {
 		$.ajax({
 			type : 'post',
@@ -51,19 +63,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		});
 	}
-	
-	function chargeMoney(money) {
-		$.ajax({
-			type : 'post',
-			url : 'chargeMoney/'+ money,
-			success : function(msg) {
-				if(msg == 'true'){
-					alert("充值成功！");
-				}else{
-					alert("充值失败！");
+
+	function chargeMoney() {
+		var money = $(".money").val();
+		if (checkMoney(money)) {
+			$.ajax({
+				type : 'post',
+				url : 'chargeMoney/' + money,
+				success : function(msg) {
+					if (msg) {
+						alert("充值成功！");
+					} else {
+						alert("充值失败！");
+					}
+					toCharge()
 				}
-			}
-		});
+			});
+		}
+
 	}
 
 	$(document).ready(function() {
@@ -87,8 +104,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="cssmenu">
 				<ul>
-					<li class="active"><a href="login.html" id="account">My
-							Account</a></li>
+					<li class="active">
+						<a href="login.html" id="account">My Account</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -382,7 +400,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<!-- -------------------personal meun--------------------------- -->
-		<div class="col-xs-7 menu">
+
+	<div class="col-xs-7 menu">
 		<ul class="megamenu skyblue">
 			<li>
 				<a class="color1" href="#" onclick="toOrderListPage(1)">我的订单</a>
@@ -401,6 +420,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</li>
 		</ul>
 	</div>
+
 	<div class="checkout">
 		<div class="container" id="mainShow">
 			<h1 class="title1">Shopping cart is empty</h1>

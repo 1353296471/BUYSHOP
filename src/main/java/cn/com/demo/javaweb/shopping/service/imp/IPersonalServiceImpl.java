@@ -112,4 +112,11 @@ public class IPersonalServiceImpl implements IPersonalService {
 	public static void main(String[] args) {
 
 	}
+
+	@Override
+	public double getCash(int userId) {
+		double cash = 0;
+		cash = userDao.getUser(userId).getMoney();
+		return cash;
+	}
 }

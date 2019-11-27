@@ -11,7 +11,9 @@
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -56,14 +58,10 @@
 </script>
 
 <script>
-	function checkEmail() {
+	function checkMail() {
 		var falg = false;
 		var email = $(".email").val();
-		var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-		var result = reg.test(email);
-		if (!result) {
-			alert("邮箱格式错误！请重新输入！");
-		} else {
+		if (checkEmail(email)) {
 			$.ajax({
 				async : false,
 				type : 'post',
@@ -86,7 +84,7 @@
 		var password = $(".password").val();
 		if (password != confirmPassowrd) {
 			alert("两次密码不一致！请重新输入！");
-		} else if (password == null) {
+		} else if (password == "") {
 			alert("密码不能为空！");
 		} else {
 			falg = true;
@@ -97,14 +95,14 @@
 	function checkUserName() {
 		var falg = false;
 		var userName = $(".userName").val();
-		if (userName == null) {
+		if (userName == "") {
 			alert("用户名不能为空！");
 		} else {
 			falg = true;
 		}
 		return falg;
 	}
-	
+
 	function checkCode() {
 		var falg = false;
 		var code = $(".code").val();
@@ -126,10 +124,10 @@
 		}
 		return falg;
 	}
-	
+
 	function sendCode() {
 		var email = $(".email").val();
-		if(checkEmail()){
+		if (checkMail()) {
 			$.ajax({
 				type : 'post',
 				url : 'sendCode/' + email,
@@ -142,14 +140,14 @@
 				}
 			});
 		}
-		
+
 	}
-	
+
 	// 前端数据校验
 	$(function() {
 		//判断邮箱格式是否输入正确
 		$(".email").change(function() {
-			checkEmail();
+			checkMail();
 		})
 
 		$(".confirmPassowrd").change(function() {
@@ -159,7 +157,7 @@
 		$(".userName").change(function() {
 			checkUserName();
 		})
-		
+
 		$(".code").change(function() {
 			checkCode();
 		})
@@ -171,7 +169,7 @@
 			email : $(".email").val(),
 			password : $(".password").val()
 		};
-		if (checkUserName() && checkEmail() && checkPassword() && checkCode()) {
+		if (checkUserName() && checkMail() && checkPassword() && checkCode()) {
 			$.ajax({
 				type : 'post',
 				url : 'register',
@@ -515,8 +513,7 @@
 						<span>
 							Email Address<label>*</label>
 						</span>
-						<input type="text" name="email" class="email">
-						<input type="button" value="发送验证码" onclick="sendCode()">
+						<input type="text" name="email" class="email"> <input type="button" value="发送验证码" onclick="sendCode()">
 						<span>
 							Code<label>*</label>
 						</span>

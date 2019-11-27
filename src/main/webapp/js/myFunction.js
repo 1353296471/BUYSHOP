@@ -83,5 +83,42 @@ function deletePro(proId) {
 		});
 	}
 }
+ 
+// 检查页码格式是否正确  id = pageNo $("#pageNo").val()
+function checkPage(val){
+	val = $.trim(val);
+	//1. 校验 val 是否为数字 1, 2, 而不是 a12, b
+	var flag = false;
+	var reg = /^\d+$/g;
+	var pageNo = 0;
+	
+	if(reg.test(val)){
+		//2. 校验 val 在一个合法的范围内： 1-maxPage
+		pageNo = parseInt(val);
+		if(pageNo >= 1 && pageNo <= parseInt("${requestScope.page.maxPage }")){
+			flag = true;
+		}
+	}
+	
+	
+	if(!flag){
+		alert("输入的不是合法的页码.");
+		$(this).val("");
+	}
+	return flag;
+}
+
+// 检查邮箱格式是否正确 class = email
+function checkEmail(email) {
+	var falg = false;
+	var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+	var result = reg.test(email);
+	if (!result) {
+		alert("邮箱格式错误！请重新输入！");
+	} else {
+		falg = true;
+	}
+	return falg;
+}
 
 

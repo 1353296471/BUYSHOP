@@ -63,7 +63,7 @@ public class MailUtil implements Runnable {
 			// 2.2设置接收人
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			// 2.3设置邮件主题
-			message.setSubject("你的男神给你发送了一封账号激活邮件");
+			message.setSubject("BUYSHOP账号激活邮件");
 			// 2.4设置邮件内容
 			String content = "<html><head></head><body><h1>这是一封激活邮件,您的激活码是：</h1>" + "<h3>" + code
 					+ "</href></h3></body></html>";

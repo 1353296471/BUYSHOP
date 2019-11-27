@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.com.demo.javaweb.shopping.entity.User;
@@ -39,20 +40,22 @@ public class PersonalController {
 	public ModelAndView toCharge(HttpSession session) {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("chargeMoney");
+		User user = (User) session.getAttribute("user");
+		double cash = 0;
+		cash = personalService.getCash(user.getId());
+		model.addObject("cash", cash);
 		return model;
 	}
 
-	@RequestMapping("/chargeMoney")
-	public ModelAndView chargeMoney(HttpSession session, double money) {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("msg");
-		String msg = "充值失败！";
+	@ResponseBody
+	@RequestMapping("/chargeMoney/{money}")
+	public boolean chargeMoney(HttpSession session, @PathVariable("money") double money) {
+		boolean flag = false;
 		User user = (User) session.getAttribute("user");
 		if (personalService.chargeMoney(user.getId(), money)) {
-			msg = "充值成功！";
+			flag = true;
 		}
-		model.addObject("msg", msg);
-		return model;
+		return flag;
 	}
 
 }
