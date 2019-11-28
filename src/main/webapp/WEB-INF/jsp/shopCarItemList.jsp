@@ -22,6 +22,8 @@
 					<div class="list_desc">
 						<h4>
 							<a href="#">${item.showProduct.pro.proName }</a>
+							<a>${item.colorType }</a>
+							<a>${item.sizeType }</a>
 						</h4>
 						${item.num } x
 						<span class="actual"> $${item.showProduct.pro.price }</span>

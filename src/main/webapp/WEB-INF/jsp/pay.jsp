@@ -376,7 +376,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		})
 	</script>
-	<center id="topay">
+	<center id="topay"> 
 		<br>
 		<br>
 		<br>

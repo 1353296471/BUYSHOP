@@ -8,24 +8,26 @@
 			<c:forEach items="${itemList }" var="item">
 				<div class="cart_box">
 					<div class="message">
-						<div class="alert-close" onclick="deletePro(${item.showProduct.pro.id })"></div>
+						<div class="alert-close" onclick="deletePro(${item.warehouseId })"></div>
 						<div class="list_img" style="border: none;">
 							<img src="images/${item.showProduct.mainImg.imgUrl }" class="img-responsive" alt="" width="50px" height="67px" />
 						</div>
 						<div class="list_desc">
 							<h4>
 								<a href="#">${item.showProduct.pro.proName }</a>
+								<a>${item.colorType }</a>
+								<a>${item.sizeType }</a>
 							</h4>
-							<input type="button" name="remove" value="-" onclick="remove(${item.showProduct.pro.id })">
+							<input type="button" name="remove" value="-" onclick="remove(${item.warehouseId })">
 							${item.num }
-							<input type="button" name="add" value="+" onclick="addPro(${item.showProduct.pro.id })">
+							<input type="button" name="add" value="+" onclick="addPro(${item.warehouseId })">
 							x
 							<span class="actual"> $${item.showProduct.pro.price }</span>
 						</div>
 						<br>
-						<input type="checkbox" name="proIds" value="${item.showProduct.pro.id }" checked="checked" onclick="checkPro()"/>
+						<input type="checkbox" name="warehouseIds" value="${item.warehouseId }" checked="checked" onclick="checkPro()"/>
 						<div class="login_button">
-							<a href="toPay?proIds=${item.showProduct.pro.id }">单个结算</a>
+							<a href="toPay?warehouseIds=${item.warehouseId }">单个结算</a>
 						</div>
 						<div class="clearfix"></div>
 					</div>

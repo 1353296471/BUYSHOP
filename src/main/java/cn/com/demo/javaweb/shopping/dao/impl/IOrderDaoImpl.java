@@ -29,9 +29,9 @@ public class IOrderDaoImpl implements IOrderDao {
 
 	@Override
 	public boolean add(OrderList order) {
-		String sql = "insert into orderList (proPkid,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
-		return DaoUtils.insertOrUpdate(sql, order.getProPkid(), order.getReceivePkid(), order.getOrderConditionPkid(),
-				order.getOrderTime(), order.getProNum());
+		String sql = "insert into orderList (warehouseId,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
+		return DaoUtils.insertOrUpdate(sql, order.getWarehouseId(), order.getReceivePkid(),
+				order.getOrderConditionPkid(), order.getOrderTime(), order.getProNum());
 	}
 
 	@Override
@@ -53,15 +53,15 @@ public class IOrderDaoImpl implements IOrderDao {
 	}
 
 	@Override
-	public OrderList getOrder(int receivePkid, int proPkid) {
-		String sql = "select * from orderList where receivePkid = ? and proPkid = ?";
-		return DaoUtils.getListBySql(OrderList.class, sql, receivePkid, proPkid).get(0);
+	public OrderList getOrder(int receivePkid, int warehouseId) {
+		String sql = "select * from orderList where receivePkid = ? and warehouseId = ?";
+		return DaoUtils.getListBySql(OrderList.class, sql, receivePkid, warehouseId).get(0);
 	}
 
 	@Override
 	public boolean add(Connection conn, OrderList order) throws SQLException {
-		String sql = "insert into orderList (proPkid,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
-		return DaoUtils.insertOrUpdate(conn, sql, order.getProPkid(), order.getReceivePkid(),
+		String sql = "insert into orderList (warehouseId,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
+		return DaoUtils.insertOrUpdate(conn, sql, order.getWarehouseId(), order.getReceivePkid(),
 				order.getOrderConditionPkid(), order.getOrderTime(), order.getProNum());
 	}
 

@@ -37,25 +37,32 @@ public class CheckoutController {
 	}
 
 	@RequestMapping("/toPay")
-	public ModelAndView toPay(HttpSession session, @RequestParam("proIds") String[] proIds) {
+	public ModelAndView toPay(HttpSession session, @RequestParam("warehouseIds") String[] warehouseIds) {
 		ModelAndView model = new ModelAndView();
-		model.setViewName("pay");
+
 		User user = (User) session.getAttribute("user");
-		session.setAttribute("proIds", proIds);
+		session.setAttribute("warehouseIds", warehouseIds);
 		List<ShowShopCar> itemList = indexService.getShopCar(user.getId());
-		double price = checkoutService.getPrice(proIds, itemList);
-		model.addObject("price", price);
-		model.addObject("userId", user.getId());
+		double price = checkoutService.getPrice(warehouseIds, itemList);
+		if (price > user.getMoney()) {
+			model.setViewName("msg");
+			model.addObject("type", "price");
+			model.addObject("msg", "您的账户余额不足，请先充值！");
+		} else {
+			model.setViewName("pay");
+			model.addObject("price", price);
+			model.addObject("userId", user.getId());
+		}
 		return model;
 	}
 
 	@ResponseBody
-	@RequestMapping("/getPrice/{proIds}")
-	public String getPrice(HttpSession session, @PathVariable("proIds") String[] proIds) {
+	@RequestMapping("/getPrice/{warehouseIds}")
+	public String getPrice(HttpSession session, @PathVariable("warehouseIds") String[] warehouseIds) {
 		User user = (User) session.getAttribute("user");
-		session.setAttribute("proIds", proIds);
+		session.setAttribute("warehouseIds", warehouseIds);
 		List<ShowShopCar> itemList = indexService.getShopCar(user.getId());
-		double price = checkoutService.getPrice(proIds, itemList);
+		double price = checkoutService.getPrice(warehouseIds, itemList);
 		return String.valueOf(price);
 	}
 }

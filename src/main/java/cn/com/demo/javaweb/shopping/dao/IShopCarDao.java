@@ -9,7 +9,7 @@ import cn.com.demo.javaweb.shopping.entity.ShopCar;
 public interface IShopCarDao {
 	public List<ShopCar> getShopCar(int userId);
 
-	public ShopCar getShopCar(int userId, int proId);
+	public ShopCar getShopCar(int userId, int warehouseId);
 
 	public boolean addShopCar(ShopCar shopcar);
 

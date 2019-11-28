@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class OrderList {
 	private int orderPkid;
-	private int proPkid;
+	private int warehouseId;
 	private int proNum;
 	private int receivePkid;
 	private int orderConditionPkid;
@@ -26,12 +26,12 @@ public class OrderList {
 		this.orderPkid = orderPkid;
 	}
 
-	public int getProPkid() {
-		return proPkid;
+	public int getWarehouseId() {
+		return warehouseId;
 	}
 
-	public void setProPkid(int proPkid) {
-		this.proPkid = proPkid;
+	public void setWarehouseId(int warehouseId) {
+		this.warehouseId = warehouseId;
 	}
 
 	public int getReceivePkid() {

@@ -5,7 +5,16 @@ public class Warehouse {
 	private int proId;
 	private int colorId;
 	private int cataId;
+	private int sizeId;
 	private int num;
+
+	public int getSizeId() {
+		return sizeId;
+	}
+
+	public void setSizeId(int sizeId) {
+		this.sizeId = sizeId;
+	}
 
 	public int getId() {
 		return id;

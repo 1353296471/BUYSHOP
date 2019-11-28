@@ -16,7 +16,10 @@ public class IShowOrderListDaoImpl implements IShowOrderListDao {
 		int index = (pageNum - 1) * pageSize;
 		String sql = "SELECT *  " + "FROM orderlist  "
 				+ "INNER JOIN receive ON receive.receivePkid = orderlist.receivePkid "
-				+ "INNER JOIN product ON product.id = orderlist.proPkid " + "INNER JOIN img ON img.proId = product.id "
+				+ "INNER JOIN warehouse ON warehouse.id = orderlist.warehouseId "
+				+ "INNER JOIN color ON warehouse.colorId = color.colorPkid "
+				+ "INNER JOIN size ON warehouse.sizeId = size.sizePkid "
+				+ "INNER JOIN product ON product.id = warehouse.proId " + "INNER JOIN img ON img.proId = product.id "
 				+ "INNER JOIN `user` ON `user`.id = receive.userPkid "
 				+ "INNER JOIN ordercondition ON ordercondition.orderConditionPkid = orderlist.orderConditionPkid "
 				+ "WHERE `user`.id = ?  " + "ORDER BY orderlist.orderTime DESC " + "limit ?,? ";
@@ -27,7 +30,10 @@ public class IShowOrderListDaoImpl implements IShowOrderListDao {
 	public List<ShowOrderList> getShowOrderLists(int userId) {
 		String sql = "SELECT *  " + "FROM orderlist  "
 				+ "INNER JOIN receive ON receive.receivePkid = orderlist.receivePkid "
-				+ "INNER JOIN product ON product.id = orderlist.proPkid " + "INNER JOIN img ON img.proId = product.id "
+				+ "INNER JOIN warehouse ON warehouse.id = orderlist.warehouseId "
+				+ "INNER JOIN color ON warehouse.colorId = color.colorPkid "
+				+ "INNER JOIN size ON warehouse.sizeId = size.sizePkid "
+				+ "INNER JOIN product ON product.id = warehouse.proId " + "INNER JOIN img ON img.proId = product.id "
 				+ "INNER JOIN `user` ON `user`.id = receive.userPkid "
 				+ "INNER JOIN ordercondition ON ordercondition.orderConditionPkid = orderlist.orderConditionPkid "
 				+ "WHERE `user`.id = ?  " + "ORDER BY orderlist.orderTime DESC ";

@@ -36,11 +36,11 @@ public class PayController {
 		model.setViewName("msg");
 		String msg = "";
 		User user = (User) session.getAttribute("user");
-		String[] proIds = (String[]) session.getAttribute("proIds");
-		System.out.println(Arrays.toString(proIds));
+		String[] warehouseIds = (String[]) session.getAttribute("warehouseIds");
+		System.out.println(Arrays.toString(warehouseIds));
 		List<ShowShopCar> itemList = indexService.getShopCar(user.getId());
-		double price = checkoutService.getPrice(proIds, itemList);
-		List<ShopCar> shopCars = checkoutService.getShopCars(proIds, itemList, user.getId());
+		double price = checkoutService.getPrice(warehouseIds, itemList);
+		List<ShopCar> shopCars = checkoutService.getShopCars(warehouseIds, itemList, user.getId());
 		if (payService.payShopCars(shopCars, receive)) {
 			msg = "恭喜您支付成功，请继续浏览商品！";
 		} else {

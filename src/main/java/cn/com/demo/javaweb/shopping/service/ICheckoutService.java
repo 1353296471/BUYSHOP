@@ -6,7 +6,9 @@ import cn.com.demo.javaweb.shopping.entity.ShopCar;
 import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 
 public interface ICheckoutService {
-	public double getPrice(String[] proIds, List<ShowShopCar> itemList);
+	public double getPrice(String[] warehouseIds, List<ShowShopCar> itemList);
 
-	public List<ShopCar> getShopCars(String[] proIds, List<ShowShopCar> itemList, int userId);
+	public double getMoney(int userId);
+
+	public List<ShopCar> getShopCars(String[] warehouseIds, List<ShowShopCar> itemList, int userId);
 }

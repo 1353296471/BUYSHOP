@@ -7,26 +7,33 @@ import org.springframework.stereotype.Repository;
 
 import cn.com.demo.javaweb.shopping.dao.IWarehouseDao;
 import cn.com.demo.javaweb.shopping.db.DaoUtils;
+import cn.com.demo.javaweb.shopping.entity.Warehouse;
 
 @Repository
 public class IWarehouseDaoImpl implements IWarehouseDao {
 
 	@Override
-	public boolean remove(int proId, int num) {
-		String sql = "update warehouse set num = num - ? where proId = ?";
-		return DaoUtils.insertOrUpdate(sql, num, proId);
+	public boolean remove(int warehouseId, int num) {
+		String sql = "update warehouse set num = num - ? where id = ?";
+		return DaoUtils.insertOrUpdate(sql, num, warehouseId);
 	}
 
 	@Override
-	public boolean add(int proId, int num) {
+	public boolean add(int warehouseId, int num) {
 		// TODO 自动生成的方法存根
 		return false;
 	}
 
 	@Override
-	public boolean remove(Connection conn, int proId, int num) throws SQLException {
-		String sql = "update warehouse set num = num - ? where proId = ?";
-		return DaoUtils.insertOrUpdate(conn, sql, num, proId);
+	public boolean remove(Connection conn, int warehouseId, int num) throws SQLException {
+		String sql = "update warehouse set num = num - ? where id = ?";
+		return DaoUtils.insertOrUpdate(conn, sql, num, warehouseId);
+	}
+
+	@Override
+	public Warehouse getWarehouse(int id) {
+		String sql = "select * from warehouse where id = ?";
+		return DaoUtils.getListBySql(Warehouse.class, sql, id).get(0);
 	}
 
 }

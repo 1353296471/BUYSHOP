@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 public class ShowOrderList {
 	private String imgUrl;
 	private String proName;
+	private String sizeType;
+	private String colorType;
 	private int proNum;
 	private double price;
 	private String sheng;
@@ -14,6 +16,22 @@ public class ShowOrderList {
 	private String userPhone;
 	private String conditionType;
 	private Timestamp orderTime;
+
+	public String getSizeType() {
+		return sizeType;
+	}
+
+	public void setSizeType(String sizeType) {
+		this.sizeType = sizeType;
+	}
+
+	public String getColorType() {
+		return colorType;
+	}
+
+	public void setColorType(String colorType) {
+		this.colorType = colorType;
+	}
 
 	public String getImgUrl() {
 		return imgUrl;

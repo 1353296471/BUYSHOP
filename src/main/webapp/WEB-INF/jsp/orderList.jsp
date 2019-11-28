@@ -30,6 +30,10 @@ $(function () {
 						<span class="actual"> $${item.price }</span>
 						总价：
 						<span class="actual"> $${item.price*item.proNum }</span>
+						颜色：
+						<span class="actual"> ${item.colorType }</span>
+						尺码：
+						<span class="actual"> ${item.sizeType }</span>
 						<br>
 						地址：
 						<span class="actual"> ${item.sheng }</span>

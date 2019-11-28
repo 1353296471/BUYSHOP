@@ -55,11 +55,12 @@ public class IPayServiceImpl implements IPayService {
 	public boolean payShopCar(ShopCar shopcar, Receive receive) {
 		boolean falg = false;
 		// 判断表中是否存在
-		ShopCar sc = shopCarDao.getShopCar(shopcar.getUserId(), shopcar.getProId());
+		ShopCar sc = shopCarDao.getShopCar(shopcar.getUserId(), shopcar.getWarehouseId());
 		if (sc != null) {
 			// 获取对应的商品和用户，判断价格是否足够
 			User user = userDao.getUser(shopcar.getUserId());
-			Product pro = proDao.getProduct(shopcar.getProId());
+			int proId = warehouseDao.getWarehouse(shopcar.getWarehouseId()).getProId();
+			Product pro = proDao.getProduct(proId);
 			double price = shopcar.getNum() * pro.getPrice();
 			if (user.getMoney() >= price) {
 				// 执行操作，应该采取事务包围，后续需要改进
@@ -69,7 +70,7 @@ public class IPayServiceImpl implements IPayService {
 				// 2.生成对应的订单信息
 				int receivePkid = receiveDao.getReceivePkId(receive);
 				OrderList order = new OrderList();
-				order.setProPkid(shopcar.getProId());
+				order.setWarehouseId(shopcar.getWarehouseId());
 				order.setProNum(shopcar.getNum());
 				order.setReceivePkid(receivePkid);
 				order.setOrderConditionPkid(1);
@@ -87,7 +88,7 @@ public class IPayServiceImpl implements IPayService {
 				try {
 					conn.setAutoCommit(false);
 					if (shopCarDao.deleteShopCar(conn, shopcar) && orderDao.add(conn, order)
-							&& warehouseDao.remove(conn, shopcar.getProId(), shopcar.getNum())
+							&& warehouseDao.remove(conn, shopcar.getWarehouseId(), shopcar.getNum())
 							&& userDao.payMoney(conn, user, price)) {
 						falg = true;
 					}

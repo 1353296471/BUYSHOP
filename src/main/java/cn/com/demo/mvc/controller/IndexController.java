@@ -42,11 +42,13 @@ public class IndexController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/addShopCarItem/{proId}")
-	public String addShopCarItem(@PathVariable("proId") Integer proId, HttpSession session) throws Exception {
+	@RequestMapping("/addShopCarItem/{warehouseId}")
+	public String addShopCarItem(@PathVariable("warehouseId") Integer warehouseId, HttpSession session)
+			throws Exception {
 		String msg = null;
+		System.out.println(warehouseId);
 		User user = (User) session.getAttribute("user");
-		if (indexService.addShopCarItem(user.getId(), proId, 1)) {
+		if (indexService.addShopCarItem(user.getId(), warehouseId, 1)) {
 			msg = "操作成功！";
 		} else {
 			msg = "操作失败！";
@@ -55,11 +57,12 @@ public class IndexController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/removeShopCarItem/{proId}")
-	public String removeShopCarItem(@PathVariable("proId") Integer proId, HttpSession session) throws Exception {
+	@RequestMapping("/removeShopCarItem/{warehouseId}")
+	public String removeShopCarItem(@PathVariable("warehouseId") Integer warehouseId, HttpSession session)
+			throws Exception {
 		String msg = null;
 		User user = (User) session.getAttribute("user");
-		if (indexService.removeShopCarItem(user.getId(), proId, 1)) {
+		if (indexService.removeShopCarItem(user.getId(), warehouseId, 1)) {
 			msg = "操作成功！";
 		} else {
 			msg = "操作失败！";
@@ -68,11 +71,12 @@ public class IndexController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/deleteShopCarItem/{proId}")
-	public String deleteShopCarItem(@PathVariable("proId") Integer proId, HttpSession session) throws Exception {
+	@RequestMapping("/deleteShopCarItem/{warehouseId}")
+	public String deleteShopCarItem(@PathVariable("warehouseId") Integer warehouseId, HttpSession session)
+			throws Exception {
 		String msg = null;
 		User user = (User) session.getAttribute("user");
-		if (indexService.deleteShopCarItem(user.getId(), proId)) {
+		if (indexService.deleteShopCarItem(user.getId(), warehouseId)) {
 			msg = "操作成功！";
 		} else {
 			msg = "操作失败！";
@@ -101,4 +105,13 @@ public class IndexController {
 		User user = (User) session.getAttribute("user");
 		return user;
 	}
+
+	@RequestMapping("/tosingle/{proId}")
+	public ModelAndView tosingle(@PathVariable("proId") String proId, HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:/single.html");
+		session.setAttribute("proId", proId);
+		return model;
+	}
+
 }

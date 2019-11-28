@@ -2,7 +2,7 @@ package cn.com.demo.javaweb.shopping.entity;
 
 public class ShopCar {
 	private int id;
-	private int proId;
+	private int warehouseId;
 	private int userId;
 	private int num;
 
@@ -14,12 +14,12 @@ public class ShopCar {
 		this.id = id;
 	}
 
-	public int getProId() {
-		return proId;
+	public int getWarehouseId() {
+		return warehouseId;
 	}
 
-	public void setProId(int proId) {
-		this.proId = proId;
+	public void setWarehouseId(int warehouseId) {
+		this.warehouseId = warehouseId;
 	}
 
 	public int getUserId() {

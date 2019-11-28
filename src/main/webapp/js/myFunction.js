@@ -35,12 +35,12 @@ function init() {
 	}
 }
 
-function toAddShopCar(proId) {
+function toAddShopCar(warehouseId) {
 
 	if (isLogin()) {
 		$.ajax({
 			type : 'post',
-			url : 'addShopCarItem/' + proId,
+			url : 'addShopCarItem/' + warehouseId,
 			success : function(countMsg) {
 				alert(countMsg);
 			}
@@ -120,5 +120,6 @@ function checkEmail(email) {
 	}
 	return falg;
 }
+
 
 

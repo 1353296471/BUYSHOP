@@ -15,7 +15,7 @@ public interface IOrderDao {
 
 	public List<OrderList> getOrders(int receivePkid);
 
-	public OrderList getOrder(int receivePkid, int proId);
+	public OrderList getOrder(int receivePkid, int warehouseId);
 
 	public boolean add(Connection conn, OrderList order) throws SQLException;
 

@@ -24,19 +24,18 @@ public class RegisterController {
 
 	@ResponseBody
 	@RequestMapping("/register")
-	public String register(@RequestBody @Valid User user, BindingResult result) {
-		String msg = "notRegister";
+	public boolean register(@RequestBody @Valid User user, BindingResult result) {
+		boolean flag = false;
 		if (result.getErrorCount() > 0) {
 			for (FieldError error : result.getFieldErrors()) {
 				System.out.println(error.getField() + ":" + error.getDefaultMessage());
-				msg = msg + "</br>" + error.getField() + ":" + error.getDefaultMessage();
 			}
 		} else {
 			if (registerService.addUser(user)) {
-				msg = "isRegister";
+				flag = true;
 			}
 		}
-		return msg;
+		return flag;
 	}
 
 	/**
@@ -61,7 +60,7 @@ public class RegisterController {
 	public boolean isCode(@PathVariable("code") String code, HttpSession session) {
 		boolean falg = false;
 		String codeOfsession = (String) session.getAttribute("code");
-		if (code.equals(codeOfsession)) {
+		if (code.equalsIgnoreCase(codeOfsession)) {
 			falg = true;
 		}
 		return falg;

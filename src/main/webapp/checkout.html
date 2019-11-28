@@ -51,10 +51,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		updateBuyList();
 	})
 
-	function remove(proId) {
+	function remove(warehouseId) {
 		$.ajax({
 			type : 'post',
-			url : 'removeShopCarItem/' + proId,
+			url : 'removeShopCarItem/' + warehouseId,
 			success : function(countMsg) {
 				if (countMsg == "操作成功！") {
 					updateBuyList();
@@ -63,10 +63,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	}
 
-	function addPro(proId) {
+	function addPro(warehouseId) {
 		$.ajax({
 			type : 'post',
-			url : 'addShopCarItem/' + proId,
+			url : 'addShopCarItem/' + warehouseId,
 			success : function(countMsg) {
 				if (countMsg == "操作成功！") {
 					updateBuyList();
@@ -78,17 +78,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	function checkPro() {
 		if (isLogin()) {
-			obj = document.getElementsByName("proIds");
-			proIds = [];
+			obj = document.getElementsByName("warehouseIds");
+			warehouseIds = [];
 		    for(k in obj){
 		        if(obj[k].checked)
-		        	proIds.push(obj[k].value);
+		        	warehouseIds.push(obj[k].value);
 		    }
-		    if(proIds.length > 0){
+		    if(warehouseIds.length > 0){
 		    	 $.ajax({
 						type : 'post',
-						url : 'getPrice/'+proIds,
-						data:proIds,
+						url : 'getPrice/'+warehouseIds,
+						data:warehouseIds,
 						success : function(msg) {
 							$("#totalPrice").html("$"+ msg);
 						}

@@ -8,7 +8,7 @@
 				<div class="col_1_of_3 span_1_of_3">
 					<div class="shop-holder">
 						<div class="product-img">
-							<a href="single.html"> <img width="225" height="265"
+							<a href="tosingle/${pro.pro.id}"> <img width="225" height="265"
 								src="images/${pro.mainImg.imgUrl }" class="img-responsive" alt="item4">
 							</a> <a id="addShopCarItem"  class="button"  onclick="toAddShopCar(${pro.pro.id})"></a>
 						</div>
