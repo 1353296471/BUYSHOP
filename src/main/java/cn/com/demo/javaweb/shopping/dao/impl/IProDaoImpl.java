@@ -14,7 +14,7 @@ public class IProDaoImpl implements IProDao {
 	@Override
 	public List<Product> getIndexProduct() {
 		// TODO 自动生成的方法存根
-		String sql = "SELECT * from product";
+		String sql = "SELECT * from product where id = 1 or id = 2 or id = 3 ";
 		return DaoUtils.getListBySql(Product.class, sql);
 	}
 

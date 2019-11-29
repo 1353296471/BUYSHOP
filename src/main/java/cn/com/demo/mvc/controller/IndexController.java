@@ -109,6 +109,7 @@ public class IndexController {
 	@RequestMapping("/tosingle/{proId}")
 	public ModelAndView tosingle(@PathVariable("proId") String proId, HttpSession session) {
 		ModelAndView model = new ModelAndView();
+		// 根路径：/single.html 相对路径： single.html
 		model.setViewName("redirect:/single.html");
 		session.setAttribute("proId", proId);
 		return model;

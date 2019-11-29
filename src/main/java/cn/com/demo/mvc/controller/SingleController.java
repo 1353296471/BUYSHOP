@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.com.single.servlet.CommentCountServlet;
 import cn.com.single.servlet.ProCommentServlet;
+import cn.com.single.servlet.ProImgServlet;
 import cn.com.single.servlet.ProductDesServlet;
 import cn.com.single.servlet.ProductServlet;
+import cn.com.single.servlet.RelatedImgServlet;
 import cn.com.single.servlet.WareHouseColorServlet;
 import cn.com.single.servlet.WareHouseServlet;
 import cn.com.single.servlet.WarehouseNumServlet;
@@ -56,6 +58,18 @@ public class SingleController {
 	@RequestMapping("/wareHouseServlet")
 	public void wareHouseServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		WareHouseServlet s = new WareHouseServlet();
+		s.service(request, response);
+	}
+
+	@RequestMapping("/relatedImgServlet")
+	public void relatedImgServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		RelatedImgServlet s = new RelatedImgServlet();
+		s.service(request, response);
+	}
+
+	@RequestMapping("/proImgServlet")
+	public void proImgServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ProImgServlet s = new ProImgServlet();
 		s.service(request, response);
 	}
 }
