@@ -34,4 +34,9 @@ public class WarehouseServiceImpl implements WareHouseService {
 		return this.warehouseDao.findSize(sizeTye);
 	}
 
+	@Override
+	public int findWareId(String colorType, String sizeType, int proId) {
+		return this.warehouseDao.findWareId(colorType, sizeType, proId);
+	}
+
 }

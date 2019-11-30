@@ -372,6 +372,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				document.getElementById('shi').value = location;
 				location = $('#county option:selected').text();
 				document.getElementById('qu').value = location;
+				alert(document.getElementById('sheng').value);
 			})
 
 		})

@@ -4,7 +4,7 @@ public class Warehouse {
 	private int id;
 	private int proId;
 	private int colorId;
-	private int cataId;
+
 	private int sizeId;
 	private int num;
 
@@ -38,14 +38,6 @@ public class Warehouse {
 
 	public void setColorId(int colorId) {
 		this.colorId = colorId;
-	}
-
-	public int getCataId() {
-		return cataId;
-	}
-
-	public void setCataId(int cataId) {
-		this.cataId = cataId;
 	}
 
 	public int getNum() {

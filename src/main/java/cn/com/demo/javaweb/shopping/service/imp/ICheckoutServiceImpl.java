@@ -64,4 +64,21 @@ public class ICheckoutServiceImpl implements cn.com.demo.javaweb.shopping.servic
 		return userDao.getUser(userId).getMoney();
 	}
 
+	@Override
+	public double getPrice(String id, List<ShowShopCar> itemList) {
+		double price = 0;
+		int warehouseId = Integer.parseInt(id);
+		int proId = warehouseDao.getWarehouse(warehouseId).getProId();
+		price = proDao.getProduct(proId).getPrice();
+		return price;
+	}
+
+	@Override
+	public double getPrice(Integer warehouseId, Integer num) {
+		double price = 0;
+		int proId = warehouseDao.getWarehouse(warehouseId).getProId();
+		price = proDao.getProduct(proId).getPrice() * num;
+		return price;
+	}
+
 }

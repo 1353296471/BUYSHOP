@@ -119,4 +119,54 @@ public class IPayServiceImpl implements IPayService {
 		return falg;
 	}
 
+	@Override
+	public boolean paySingle(User user, int id, int num, Receive receive) {
+		boolean falg = false;
+		// 获取对应的商品和用户，判断价格是否足够
+		int warehouseId = id;
+		int proId = warehouseDao.getWarehouse(warehouseId).getProId();
+		Product pro = proDao.getProduct(proId);
+		double price = pro.getPrice();
+		if (user.getMoney() >= price) {
+			// 执行操作，应该采取事务包围，后续需要改进
+
+			// 2.生成对应的订单信息
+			int receivePkid = receiveDao.getReceivePkId(receive);
+			OrderList order = new OrderList();
+			order.setWarehouseId(warehouseId);
+			order.setProNum(num);
+			order.setReceivePkid(receivePkid);
+			order.setOrderConditionPkid(1);
+			order.setOrderTime(new Timestamp(System.currentTimeMillis()));
+//			orderDao.add(order);
+
+			// 3.从库存中减去对应商品数量
+//			warehouseDao.remove(shopcar.getProId(), shopcar.getNum());
+
+			// 4.更新用户的余额信息
+//			userDao.payMoney(user, price);
+
+			// 用事务包围操作
+			Connection conn = DaoUtils.getConn();
+			try {
+				conn.setAutoCommit(false);
+				if (orderDao.add(conn, order) && warehouseDao.remove(conn, warehouseId, num)
+						&& userDao.payMoney(conn, user, price)) {
+					falg = true;
+				}
+				conn.commit();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				try {
+					falg = false;
+					conn.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+		}
+		return falg;
+	}
+
 }

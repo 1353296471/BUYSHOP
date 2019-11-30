@@ -18,7 +18,7 @@
 							<a href="single.html" rel="tag">${pro.pro.proName }</a>
 						</div>
 						<h3>
-							<a href="single.html">Non-charac</a>
+							<a href="single.html">${pro.catalog.sex  }-${pro.catalog.catalogTypeOne }-${ pro.catalog.catalogTypeTwo }</a>
 						</h3>
 						<span><span class="amount">$${pro.pro.price }</span></span>
 					</div>

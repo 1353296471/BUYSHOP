@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import cn.com.demo.javaweb.shopping.dao.ICatalogDao;
 import cn.com.demo.javaweb.shopping.dao.IColorDao;
 import cn.com.demo.javaweb.shopping.dao.IImgDao;
 import cn.com.demo.javaweb.shopping.dao.IProDao;
@@ -32,6 +33,8 @@ public class IIndexServiceImpl implements IIndexService {
 	@Autowired
 	private IShopCarDao shopCarDao;
 	@Autowired
+	private ICatalogDao catalogDao;
+	@Autowired
 	private IWarehouseDao warehouseDao;
 
 	@Override
@@ -43,6 +46,7 @@ public class IIndexServiceImpl implements IIndexService {
 			ShowProduct showProduct = new ShowProduct();
 			showProduct.setPro(pro);
 			showProduct.setMainImg(imgDao.getMainImg(pro.getId()));
+			showProduct.setCatalog(catalogDao.getCatalog(pro.getCatalogId()));
 			showProducts.add(showProduct);
 		}
 		return showProducts;
@@ -65,6 +69,7 @@ public class IIndexServiceImpl implements IIndexService {
 			ShowShopCar item = new ShowShopCar();
 
 			ShowProduct showProduct = new ShowProduct();
+			System.out.println("getWarehouseId = " + shopCar.getWarehouseId());
 			Warehouse warehouse = warehouseDao.getWarehouse(shopCar.getWarehouseId());
 			int proId = warehouse.getProId();
 			showProduct.setPro(proDao.getProduct(proId));

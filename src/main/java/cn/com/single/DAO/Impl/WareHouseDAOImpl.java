@@ -127,4 +127,30 @@ public class WareHouseDAOImpl implements WareHouseDAO {
 		return sizePkid;
 	}
 
+	@Override
+	public int findWareId(String colorType, String sizeType, int proId) {
+		int wareId = 0;
+		Connection conn = DBConn.getDBConn();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String sql = "select warehouse.id from warehouse" + " inner join size on warehouse.sizeId=size.sizePkid"
+				+ "  inner join color on color.colorPkid=warehouse.colorId"
+				+ "  where color.colorType=? and  size.sizeType=? and warehouse.proId=?";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setString(1, colorType);
+			pstm.setString(2, sizeType);
+			pstm.setInt(3, proId);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				wareId = rs.getInt("id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstm, rs);
+		}
+		return wareId;
+	}
+
 }

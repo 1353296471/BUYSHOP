@@ -13,4 +13,6 @@ public interface WareHouseDAO {
 	public int findColor(String colorType);
 
 	public int findSize(String sizeTye);
+
+	public int findWareId(String colorType, String sizeType, int proId);
 }

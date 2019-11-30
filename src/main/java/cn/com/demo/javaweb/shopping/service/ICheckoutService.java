@@ -11,4 +11,8 @@ public interface ICheckoutService {
 	public double getMoney(int userId);
 
 	public List<ShopCar> getShopCars(String[] warehouseIds, List<ShowShopCar> itemList, int userId);
+
+	public double getPrice(String warehouseId, List<ShowShopCar> itemList);
+
+	public double getPrice(Integer warehouseId, Integer num);
 }

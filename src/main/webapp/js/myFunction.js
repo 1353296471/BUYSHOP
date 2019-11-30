@@ -1,4 +1,3 @@
-
 // 全局js函数
 function isLogin() {
 	var flag = false;
@@ -21,7 +20,11 @@ function isLogin() {
 	return flag;
 }
 
-//初始化
+function search() {
+	document.location.href = "search.html?searchdata=" + $("#Sea").val();
+}
+
+// 初始化
 function init() {
 	if (isLogin()) {
 		$.ajax({
@@ -36,7 +39,11 @@ function init() {
 }
 
 function toAddShopCar(warehouseId) {
-
+	if(warehouseId == 0){
+		alert("请先选择好商品的属性！");
+		return;
+	}
+	
 	if (isLogin()) {
 		$.ajax({
 			type : 'post',
@@ -49,7 +56,26 @@ function toAddShopCar(warehouseId) {
 		alert("请先登录！");
 		window.location.href = "login.html";
 	}
+}
 
+function toAddShopCar(warehouseId,num) {
+	if(warehouseId == 0 || num < 1){
+		alert("请先选择好商品的属性！");
+		return;
+	}
+	
+	if (isLogin()) {
+		$.ajax({
+			type : 'post',
+			url : 'addShopCarItem/' + warehouseId + '/'+num,
+			success : function(countMsg) {
+				alert(countMsg);
+			}
+		});
+	} else {
+		alert("请先登录！");
+		window.location.href = "login.html";
+	}
 }
 
 function toShowShopCarItem() {
@@ -62,7 +88,7 @@ function toShowShopCarItem() {
 			}
 		});
 	} else {
-		var txt = "";
+		
 	}
 
 }
@@ -83,25 +109,24 @@ function deletePro(proId) {
 		});
 	}
 }
- 
-// 检查页码格式是否正确  id = pageNo $("#pageNo").val()
-function checkPage(val){
+
+// 检查页码格式是否正确 id = pageNo $("#pageNo").val()
+function checkPage(val) {
 	val = $.trim(val);
-	//1. 校验 val 是否为数字 1, 2, 而不是 a12, b
+	// 1. 校验 val 是否为数字 1, 2, 而不是 a12, b
 	var flag = false;
 	var reg = /^\d+$/g;
 	var pageNo = 0;
-	
-	if(reg.test(val)){
-		//2. 校验 val 在一个合法的范围内： 1-maxPage
+
+	if (reg.test(val)) {
+		// 2. 校验 val 在一个合法的范围内： 1-maxPage
 		pageNo = parseInt(val);
-		if(pageNo >= 1 && pageNo <= parseInt("${requestScope.page.maxPage }")){
+		if (pageNo >= 1 && pageNo <= parseInt("${requestScope.page.maxPage }")) {
 			flag = true;
 		}
 	}
-	
-	
-	if(!flag){
+
+	if (!flag) {
 		alert("输入的不是合法的页码.");
 		$(this).val("");
 	}
@@ -120,6 +145,3 @@ function checkEmail(email) {
 	}
 	return falg;
 }
-
-
-

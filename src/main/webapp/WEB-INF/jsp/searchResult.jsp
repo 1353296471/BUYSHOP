@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<c:forEach items="${requestScope.searchPro }" var="_search">
+         
+               <div class="col-md-3">
+  							<div class="shop-holder">
+								<div class="product-img">
+									<a href="tosingle/${_search.id }">
+										<img width=225 height=265 src="images/${_search.imgUrl }" class="img-responsive"
+											alt="item4"> </a>
+									<a href="" class="button "></a> </div>
+							</div>
+							<div class="shop-content" style="height: 120px;">
+								<h3><a href="single.html">${_search.proName }</a></h3>
+								<span><span class="amount">¥${_search.price }</span></span>
+							</div>
+						</div>
+</c:forEach>

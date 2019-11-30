@@ -56,6 +56,26 @@ public class CheckoutController {
 		return model;
 	}
 
+	@RequestMapping("/toSinglePay/{warehouseId}/{num}")
+	public ModelAndView toSinglePay(HttpSession session, @PathVariable("warehouseId") Integer warehouseId,
+			@PathVariable("num") Integer num) {
+		ModelAndView model = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("warehouseId", warehouseId);
+		session.setAttribute("num", num);
+		double price = checkoutService.getPrice(warehouseId, num);
+		if (price > user.getMoney()) {
+			model.setViewName("msg");
+			model.addObject("type", "price");
+			model.addObject("msg", "您的账户余额不足，请先充值！");
+		} else {
+			model.setViewName("singlePay");
+			model.addObject("price", price);
+			model.addObject("userId", user.getId());
+		}
+		return model;
+	}
+
 	@ResponseBody
 	@RequestMapping("/getPrice/{warehouseIds}")
 	public String getPrice(HttpSession session, @PathVariable("warehouseIds") String[] warehouseIds) {

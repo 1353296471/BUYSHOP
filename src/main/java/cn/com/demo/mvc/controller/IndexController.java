@@ -47,8 +47,33 @@ public class IndexController {
 			throws Exception {
 		String msg = null;
 		System.out.println(warehouseId);
+
 		User user = (User) session.getAttribute("user");
+		if (warehouseId == 0) {
+			msg = "操作失败！";
+			return msg;
+		}
 		if (indexService.addShopCarItem(user.getId(), warehouseId, 1)) {
+			msg = "操作成功！";
+		} else {
+			msg = "操作失败！";
+		}
+		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/addShopCarItem/{warehouseId}/{num}")
+	public String addShopCarItem(@PathVariable("warehouseId") Integer warehouseId, @PathVariable("num") Integer num,
+			HttpSession session) throws Exception {
+		String msg = null;
+		System.out.println(warehouseId);
+
+		User user = (User) session.getAttribute("user");
+		if (warehouseId == 0) {
+			msg = "操作失败！";
+			return msg;
+		}
+		if (indexService.addShopCarItem(user.getId(), warehouseId, num)) {
 			msg = "操作成功！";
 		} else {
 			msg = "操作失败！";
