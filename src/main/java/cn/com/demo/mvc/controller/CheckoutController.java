@@ -16,9 +16,13 @@ import cn.com.demo.javaweb.shopping.entity.User;
 import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 import cn.com.demo.javaweb.shopping.service.ICheckoutService;
 import cn.com.demo.javaweb.shopping.service.IIndexService;
+import cn.com.demo.javaweb.shopping.service.ILoginService;
 
 @Controller
 public class CheckoutController {
+	@Autowired
+	private ILoginService loginService;
+
 	@Autowired
 	private IIndexService indexService;
 
@@ -41,6 +45,7 @@ public class CheckoutController {
 		ModelAndView model = new ModelAndView();
 
 		User user = (User) session.getAttribute("user");
+		user = loginService.getUser(user);
 		session.setAttribute("warehouseIds", warehouseIds);
 		List<ShowShopCar> itemList = indexService.getShopCar(user.getId());
 		double price = checkoutService.getPrice(warehouseIds, itemList);
@@ -61,6 +66,7 @@ public class CheckoutController {
 			@PathVariable("num") Integer num) {
 		ModelAndView model = new ModelAndView();
 		User user = (User) session.getAttribute("user");
+		user = loginService.getUser(user);
 		session.setAttribute("warehouseId", warehouseId);
 		session.setAttribute("num", num);
 		double price = checkoutService.getPrice(warehouseId, num);

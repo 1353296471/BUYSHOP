@@ -366,15 +366,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script type="text/javascript">
 		$(function() {
 			$(".loc").change(function() {
-				var location = $('#province option:selected').text();
-				document.getElementById('sheng').value = location;
-				location = $('#city option:selected').text();
-				document.getElementById('shi').value = location;
-				location = $('#county option:selected').text();
-				document.getElementById('qu').value = location;
-				alert(document.getElementById('sheng').value);
+				choseLocation();
 			})
-
 		})
 	</script>
 	<center id="topay"> 

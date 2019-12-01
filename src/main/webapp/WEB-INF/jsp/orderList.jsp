@@ -50,6 +50,11 @@ $(function () {
 						下单时间：
 						<span class="actual"> ${item.orderTime }</span>
 					</div>
+					<c:when test="">
+						<div class="login_button">
+							<a href="toPay?warehouseIds=${item.warehouseId }">单个结算</a>
+						</div>
+					</c:when>
 
 
 					<br>

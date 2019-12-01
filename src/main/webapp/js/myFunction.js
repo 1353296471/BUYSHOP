@@ -145,3 +145,13 @@ function checkEmail(email) {
 	}
 	return falg;
 }
+
+function choseLocation() {
+	var location = $('#province option:selected').text();
+	document.getElementById('sheng').value = location;
+	location = $('#city option:selected').text();
+	document.getElementById('shi').value = location;
+	location = $('#county option:selected').text();
+	document.getElementById('qu').value = location;
+	
+}

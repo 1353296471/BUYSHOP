@@ -8,7 +8,9 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 </script>
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
@@ -35,6 +37,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+
+
+
+
 
 <script src="js/jquery.etalage.min.js"></script>
 <script>
@@ -104,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 <script type="text/javascript">
 	function toAddShopCarSingle() {
-		var sum=$("#countDiv").val();
+		var sum = $("#countDiv").val();
 		var colorType = $('#colorDiv option:selected').text();
 		var sizeType = $('#sizeDiv option:selected').text();
 		//alert(colorType);
@@ -126,13 +132,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			alert("请先选择好商品的属性！");
 			return;
 		}
-		toAddShopCar(warehouseId,sum);
+		toAddShopCar(warehouseId, sum);
 	}
 
 	function tobuySingle() {
 		if (isLogin()) {
 			var warehouseId = 0;
-			var sum=$("#countDiv").val();
+			var sum = $("#countDiv").val();
 			var colorType = $('#colorDiv option:selected').text();
 			var sizeType = $('#sizeDiv option:selected').text();
 			$.ajax({
@@ -155,9 +161,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 			$.ajax({
 				type : 'post',
-				url : 'toSinglePay/' + warehouseId+'/'+sum,
+				url : 'toSinglePay/' + warehouseId + '/' + sum,
 				success : function(msg) {
-					$('#html').html(msg);
+
+					$('#singPay').html(msg);
 				}
 			});
 		} else {
@@ -165,7 +172,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			window.location.href = "login.html";
 		}
 	}
-
 
 	$(document).ready(function() {
 		init();
@@ -255,6 +261,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	});
 
 	$(function() {
+		
 		$("#sizeDiv").change(function() {
 			var sizeType = $('#sizeDiv option:selected').text();
 			$("#colorDiv").change(function() {
@@ -584,122 +591,125 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="clearfix"></div>
 		</div>
 	</div>
-	<div class="single_top">
-		<div class="container">
-			<div class="single_grid">
-				<div class="grid images_3_of_2" id="proImagDiv">
-					<!-- 商品图片信息 -->
+	<div id="singPay">
+		<div class="single_top">
+			<div class="container">
+				<div class="single_grid">
+					<div class="grid images_3_of_2" id="proImagDiv">
+						<!-- 商品图片信息 -->
 
 
-					<ul id="etalage">
-						<li>
-							<a href="optionallink.html">
-								<img class="etalage_thumb_image" src="#" class="img-responsive" width="300px" hight="400px" />
-								<!-- 
+						<ul id="etalage">
+							<li>
+								<a href="optionallink.html">
+									<img class="etalage_thumb_image" src="#" class="img-responsive" width="300px" hight="400px" />
+									<!-- 
 			<img class="etalage_source_image" src="#" class="img-responsive" title="" />
 			 -->
-							</a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-
-
-
-
-				</div>
-				<div class="desc1 span_3_of_2" id='proDetail'>
-					<!-- 商品名称和价格介绍 -->
-
-
-				</div>
-				<!--  class="dropdown"-->
-				<div class="desc1 span_3_of_2">
-					<div class="dropdown_top">
-						<div class="dropdown_left">
-							<div>
-								<h>选择尺码</h>
-								&nbsp;<select id='sizeDiv' tabindex="5" data-settings='{"wrapperClass":"metro1"}'>
-									<!-- 商品的库存尺码 -->
-
-
-								</select>
-								<br>
-								<br>
-								<h>选择颜色</h>
-								&nbsp;<select id='colorDiv' tabindex="5" data-settings='{"wrapperClass":"metro1"}'>
-									<!-- 商品的库存颜色 -->
-
-
-
-								</select>
-								<br>
-								<br>
-								<h>购买数量</h>
-								&nbsp;&nbsp;
-								<button id="delete" onclick="toDelete()">-</button>
-								<input id="countDiv" type="text" value='1' size="2" style="text-align: center" />
-								<button id="add">+</button>
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<h>(库存</h>
-								&nbsp;
-								<span id='wareCount'>20</span>
-								&nbsp;
-								<h>件)</h>
-							</div>
-						</div>
-						<div class="dropdown_left"></div>
+								</a>
+							</li>
+						</ul>
 						<div class="clearfix"></div>
+
+
+
+
 					</div>
-					<a href="#" id="tobuy" onclick="tobuySingle()" class="btn1 btn2 btn-primary1">
-						<span>立即购买</span>
-					</a>
-					<a href="#" id="toAddShopCar" onclick="toAddShopCarSingle()" class="btn1 btn2 btn-primary1">
-						<span>加入购物车</span>
-					</a>
+					<div class="desc1 span_3_of_2" id='proDetail'>
+						<!-- 商品名称和价格介绍 -->
+
+
+					</div>
+					<!--  class="dropdown"-->
+					<div class="desc1 span_3_of_2">
+						<div class="dropdown_top">
+							<div class="dropdown_left">
+								<div>
+									<h>选择尺码</h>
+									&nbsp;<select id='sizeDiv' tabindex="5" data-settings='{"wrapperClass":"metro1"}'>
+										<!-- 商品的库存尺码 -->
+
+
+									</select>
+									<br>
+									<br>
+									<h>选择颜色</h>
+									&nbsp;<select id='colorDiv' tabindex="5" data-settings='{"wrapperClass":"metro1"}'>
+										<!-- 商品的库存颜色 -->
+
+
+
+									</select>
+									<br>
+									<br>
+									<h>购买数量</h>
+									&nbsp;&nbsp;
+									<button id="delete" onclick="toDelete()">-</button>
+									<input id="countDiv" type="text" value='1' size="2" style="text-align: center" />
+									<button id="add">+</button>
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<h>(库存</h>
+									&nbsp;
+									<span id='wareCount'>20</span>
+									&nbsp;
+									<h>件)</h>
+								</div>
+							</div>
+							<div class="dropdown_left"></div>
+							<div class="clearfix"></div>
+						</div>
+						<a href="#" id="tobuy" onclick="tobuySingle()" class="btn1 btn2 btn-primary1">
+							<span>立即购买</span>
+						</a>
+						<a href="#" id="toAddShopCar" onclick="toAddShopCarSingle()" class="btn1 btn2 btn-primary1">
+							<span>加入购物车</span>
+						</a>
+					</div>
+
+					<div class="clearfix"></div>
 				</div>
 
-				<div class="clearfix"></div>
+				<div class="single_social_top"></div>
+				<ul class="menu_drop">
+					<li class="item1">
+						<a href="#">
+							<img src="images/product_arrow.png">
+							商品描述
+						</a>
+						<ul id='proDes'>
+							<!-- 商品描述 -->
+
+
+						</ul>
+					</li>
+					<li class="item2">
+						<a href="#">
+							<img src="images/product_arrow.png">
+							评价
+							<span id="commentCount"> </span>
+						</a>
+						<ul id='proComment'>
+
+
+						</ul>
+					</li>
+
+				</ul>
+
 			</div>
-
-			<div class="single_social_top"></div>
-			<ul class="menu_drop">
-				<li class="item1">
-					<a href="#">
-						<img src="images/product_arrow.png">
-						商品描述
-					</a>
-					<ul id='proDes'>
-						<!-- 商品描述 -->
-
-
-					</ul>
-				</li>
-				<li class="item2">
-					<a href="#">
-						<img src="images/product_arrow.png">
-						评价
-						<span id="commentCount"> </span>
-					</a>
-					<ul id='proComment'>
-
-
-					</ul>
-				</li>
-
-			</ul>
-
-		</div>
-		<h3 class="m_2">Related Products</h3>
-		<div class="container">
-			<div class="box_3" id="imagDiv">
-				<!-- 商品详情页的相似商品列表 -->
+			<h3 class="m_2">Related Products</h3>
+			<div class="container">
+				<div class="box_3" id="imagDiv">
+					<!-- 商品详情页的相似商品列表 -->
 
 
 
 
-				<div class="clearfix"></div>
+					<div class="clearfix"></div>
+				</div>
 			</div>
 		</div>
+
 	</div>
 	<div class="footer">
 		<div class="container">
