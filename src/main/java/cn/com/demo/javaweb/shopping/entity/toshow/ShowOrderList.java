@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 
 public class ShowOrderList {
 	private String imgUrl;
+	private int orderPkid;
+	private int proId;
 	private String proName;
 	private String sizeType;
 	private String colorType;
@@ -14,8 +16,51 @@ public class ShowOrderList {
 	private String qu;
 	private String userAddress;
 	private String userPhone;
+	private int orderConditionPkid;
 	private String conditionType;
 	private Timestamp orderTime;
+	private int commentPkid;
+	private String commentDes;
+
+	public int getOrderPkid() {
+		return orderPkid;
+	}
+
+	public void setOrderPkid(int orderPkid) {
+		this.orderPkid = orderPkid;
+	}
+
+	public String getCommentDes() {
+		return commentDes;
+	}
+
+	public void setCommentDes(String commentDes) {
+		this.commentDes = commentDes;
+	}
+
+	public int getCommentPkid() {
+		return commentPkid;
+	}
+
+	public void setCommentPkid(int commentPkid) {
+		this.commentPkid = commentPkid;
+	}
+
+	public int getProId() {
+		return proId;
+	}
+
+	public void setProId(int proId) {
+		this.proId = proId;
+	}
+
+	public int getOrderConditionPkid() {
+		return orderConditionPkid;
+	}
+
+	public void setOrderConditionPkid(int orderConditionPkid) {
+		this.orderConditionPkid = orderConditionPkid;
+	}
 
 	public String getSizeType() {
 		return sizeType;

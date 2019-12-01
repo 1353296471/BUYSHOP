@@ -20,4 +20,22 @@ public class ProCommentServiceImpl implements ProCommentService {
 		return this.commentDAO.findByProPkid(proPkid);
 	}
 
+	@Override
+	public boolean addComment(int proId, String commentDes, int userId, String commentTime) {
+		// TODO Auto-generated method stub
+		return this.commentDAO.addComment(proId, commentDes, userId, commentTime);
+	}
+
+	@Override
+	public int getCommentPkid(int proId, String commentDes, int userId, String commentTime) {
+		// TODO 自动生成的方法存根
+		return this.commentDAO.getCommentPkid(proId, commentDes, userId, commentTime);
+	}
+
+	@Override
+	public boolean updateOrder(int commentPkid, int orderPkid) {
+		// TODO 自动生成的方法存根
+		return this.commentDAO.updateOrder(commentPkid, orderPkid);
+	}
+
 }

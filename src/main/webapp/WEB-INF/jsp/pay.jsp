@@ -88,248 +88,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="col-xs-7 menu">
 					<ul class="megamenu skyblue">
-						<li>
-							<a class="color1" href="index.html">Men</a>
-							<div class="megapanel">
-								<div class="row">
-									<div class="col1">
-										<div class="h_nav">
-											<ul>
-												<li>
-													<a href="men.html">Accessories</a>
-												</li>
-												<li>
-													<a href="men.html">Bags</a>
-												</li>
-												<li>
-													<a href="men.html">Caps & Hats</a>
-												</li>
-												<li>
-													<a href="men.html">Hoodies & Sweatshirts</a>
-												</li>
-												<li>
-													<a href="men.html">Jackets & Coats</a>
-												</li>
-												<li>
-													<a href="men.html">Jeans</a>
-												</li>
-												<li>
-													<a href="men.html">Jewellery</a>
-												</li>
-												<li>
-													<a href="men.html">Jumpers & Cardigans</a>
-												</li>
-												<li>
-													<a href="men.html">Leather Jackets</a>
-												</li>
-												<li>
-													<a href="men.html">Long Sleeve T-Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Loungewear</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col1">
-										<div class="h_nav">
-											<ul>
-												<li>
-													<a href="men.html">Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Shoes, Boots & Trainers</a>
-												</li>
-												<li>
-													<a href="men.html">Shorts</a>
-												</li>
-												<li>
-													<a href="men.html">Suits & Blazers</a>
-												</li>
-												<li>
-													<a href="men.html">Sunglasses</a>
-												</li>
-												<li>
-													<a href="men.html">Sweatpants</a>
-												</li>
-												<li>
-													<a href="men.html">Swimwear</a>
-												</li>
-												<li>
-													<a href="men.html">Trousers & Chinos</a>
-												</li>
-												<li>
-													<a href="men.html">T-Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Underwear & Socks</a>
-												</li>
-												<li>
-													<a href="men.html">Vests</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col1">
-										<div class="h_nav">
-											<h4>Popular Brands</h4>
-											<ul>
-												<li>
-													<a href="men.html">Levis</a>
-												</li>
-												<li>
-													<a href="men.html">Persol</a>
-												</li>
-												<li>
-													<a href="men.html">Nike</a>
-												</li>
-												<li>
-													<a href="men.html">Edwin</a>
-												</li>
-												<li>
-													<a href="men.html">New Balance</a>
-												</li>
-												<li>
-													<a href="men.html">Jack & Jones</a>
-												</li>
-												<li>
-													<a href="men.html">Paul Smith</a>
-												</li>
-												<li>
-													<a href="men.html">Ray-Ban</a>
-												</li>
-												<li>
-													<a href="men.html">Wood Wood</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+						<li class="active grid">
+							<a class="color1" href="search.html?searchdata=男">Men</a>
+
 						</li>
 						<li class="grid">
-							<a class="color2" href="#">Women</a>
-							<div class="megapanel">
-								<div class="row">
-									<div class="col1">
-										<div class="h_nav">
-											<ul>
-												<li>
-													<a href="men.html">Accessories</a>
-												</li>
-												<li>
-													<a href="men.html">Bags</a>
-												</li>
-												<li>
-													<a href="men.html">Caps & Hats</a>
-												</li>
-												<li>
-													<a href="men.html">Hoodies & Sweatshirts</a>
-												</li>
-												<li>
-													<a href="men.html">Jackets & Coats</a>
-												</li>
-												<li>
-													<a href="men.html">Jeans</a>
-												</li>
-												<li>
-													<a href="men.html">Jewellery</a>
-												</li>
-												<li>
-													<a href="men.html">Jumpers & Cardigans</a>
-												</li>
-												<li>
-													<a href="men.html">Leather Jackets</a>
-												</li>
-												<li>
-													<a href="men.html">Long Sleeve T-Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Loungewear</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col1">
-										<div class="h_nav">
-											<ul>
-												<li>
-													<a href="men.html">Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Shoes, Boots & Trainers</a>
-												</li>
-												<li>
-													<a href="men.html">Shorts</a>
-												</li>
-												<li>
-													<a href="men.html">Suits & Blazers</a>
-												</li>
-												<li>
-													<a href="men.html">Sunglasses</a>
-												</li>
-												<li>
-													<a href="men.html">Sweatpants</a>
-												</li>
-												<li>
-													<a href="men.html">Swimwear</a>
-												</li>
-												<li>
-													<a href="men.html">Trousers & Chinos</a>
-												</li>
-												<li>
-													<a href="men.html">T-Shirts</a>
-												</li>
-												<li>
-													<a href="men.html">Underwear & Socks</a>
-												</li>
-												<li>
-													<a href="men.html">Vests</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div class="col1">
-										<div class="h_nav">
-											<h4>Popular Brands</h4>
-											<ul>
-												<li>
-													<a href="men.html">Levis</a>
-												</li>
-												<li>
-													<a href="men.html">Persol</a>
-												</li>
-												<li>
-													<a href="men.html">Nike</a>
-												</li>
-												<li>
-													<a href="men.html">Edwin</a>
-												</li>
-												<li>
-													<a href="men.html">New Balance</a>
-												</li>
-												<li>
-													<a href="men.html">Jack & Jones</a>
-												</li>
-												<li>
-													<a href="men.html">Paul Smith</a>
-												</li>
-												<li>
-													<a href="men.html">Ray-Ban</a>
-												</li>
-												<li>
-													<a href="men.html">Wood Wood</a>
-												</li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+							<a class="color2" href="search.html?searchdata=女">Women</a>
+
 						</li>
 						<li>
 							<a class="color4" href="about.html">About</a>
 						</li>
-						<li class="active grid">
+						<li>
 							<a class="color5" href="404.html">Blog</a>
 						</li>
 						<li>
@@ -379,21 +149,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<br>
 		省份： <select id="province" name="sheng" class="loc"></select> 城市： <select id="city" name="shi" class="loc"></select> 区县： <select id="county" name="qu" class="loc"></select>
 		<span id="address" hidden="true"></span>
-		默认值：湖南省 长沙市 芙蓉区 （测试）
+		
 		<br>
 		<br>
-		<form action="pay" method="post">
+		<form action="pay" method="post" name="payForm">
 			<input type="text" id="userPkid" name="userPkid" value="${userId }" hidden="true"> 
 			<input type="text" id="sheng" name="sheng" hidden="true" value="湖南省"> 
 			<input type="text" id="shi" name="shi" hidden="true" value="长沙市"> 
 			<input type="text" id="qu" name="qu" hidden="true" value="芙蓉区"> 
-			<label>详细地址：</label><input type="text" name="userAddress" value="农大路一号">
+			<label>详细地址：</label><input type="text" name="userAddress"  id="userAddress">
 			<br>
 			<br>
-			<label>电话号码：</label><input type="number" name="userPhone" value="13737375656">
+			<label>电话号码：</label><input type="number" name="userPhone"  id="userPhone">
 			<br>
 			<br>
-			<input type="button" value="取消"> <input type="submit" value="确认付款">
+			<input type="button" value="取消"> <input type="button" onclick="payFormClick()" value="确认付款">
 		</form>
 	</center>
 

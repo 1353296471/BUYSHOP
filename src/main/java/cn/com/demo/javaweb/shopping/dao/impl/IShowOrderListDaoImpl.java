@@ -22,7 +22,8 @@ public class IShowOrderListDaoImpl implements IShowOrderListDao {
 				+ "INNER JOIN product ON product.id = warehouse.proId " + "INNER JOIN img ON img.proId = product.id "
 				+ "INNER JOIN `user` ON `user`.id = receive.userPkid "
 				+ "INNER JOIN ordercondition ON ordercondition.orderConditionPkid = orderlist.orderConditionPkid "
-				+ "WHERE `user`.id = ?  " + "ORDER BY orderlist.orderTime DESC " + "limit ?,? ";
+				+ "LEFT JOIN `comment` ON `comment`.commentPkid = orderlist.commentPkid " + "WHERE `user`.id = ?  "
+				+ "ORDER BY orderlist.orderTime DESC " + "limit ?,? ";
 		return DaoUtils.getListBySql(ShowOrderList.class, sql, userId, index, pageSize);
 	}
 
@@ -36,7 +37,8 @@ public class IShowOrderListDaoImpl implements IShowOrderListDao {
 				+ "INNER JOIN product ON product.id = warehouse.proId " + "INNER JOIN img ON img.proId = product.id "
 				+ "INNER JOIN `user` ON `user`.id = receive.userPkid "
 				+ "INNER JOIN ordercondition ON ordercondition.orderConditionPkid = orderlist.orderConditionPkid "
-				+ "WHERE `user`.id = ?  " + "ORDER BY orderlist.orderTime DESC ";
+				+ "LEFT JOIN `comment` ON `comment`.commentPkid = orderlist.commentPkid " + "WHERE `user`.id = ?  "
+				+ "ORDER BY orderlist.orderTime DESC ";
 		return DaoUtils.getListBySql(ShowOrderList.class, sql, userId);
 	}
 

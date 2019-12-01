@@ -10,7 +10,8 @@
 						<div class="product-img">
 							<a href="tosingle/${pro.pro.id}"> <img width="225" height="265"
 								src="images/${pro.mainImg.imgUrl }" class="img-responsive" alt="item4">
-							</a> <a id="addShopCarItem"  class="button"  onclick="toAddShopCar(${pro.pro.id})"></a>
+							</a> 
+							<a id="addShopCarItem"  class="button"  onclick="toAddShopCar(${pro.pro.id})" type="hidden"></a>
 						</div>
 					</div>
 					<div class="shop-content" style="height: 80px;">
@@ -30,11 +31,10 @@
 	<div class="col-md-5 row_3">
 		<div class="about-block-content">
 			<div class="border-add"></div>
-			<h4>About Us</h4>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-				Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
-			<p></p>
+			<h2>关于我们</h2>
+			<p>这是我们的个人服装品牌BUYSHOP</p>
+			<p>每一件衣服都是我们用心制作出来的，选自上好的布料</p>
+			<p>希望你能在这里找到让你满意的衣服</p>
 		</div>
 		<img src="images/pic9.jpg" class="img-responsive" alt="" />
 	</div>

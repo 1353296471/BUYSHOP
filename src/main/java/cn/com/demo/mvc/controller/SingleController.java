@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import cn.com.single.servlet.AddCommentServlet;
 import cn.com.single.servlet.CommentCountServlet;
+import cn.com.single.servlet.CommentProNameServlet;
 import cn.com.single.servlet.ProCommentServlet;
 import cn.com.single.servlet.ProImgServlet;
 import cn.com.single.servlet.ProductDesServlet;
@@ -70,6 +72,18 @@ public class SingleController {
 	@RequestMapping("/proImgServlet")
 	public void proImgServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ProImgServlet s = new ProImgServlet();
+		s.service(request, response);
+	}
+
+	@RequestMapping("/addCommentServlet")
+	public void addCommentServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		AddCommentServlet s = new AddCommentServlet();
+		s.service(request, response);
+	}
+
+	@RequestMapping("/commentProNameServlet")
+	public void commentProNameServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		CommentProNameServlet s = new CommentProNameServlet();
 		s.service(request, response);
 	}
 }

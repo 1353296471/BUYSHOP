@@ -50,13 +50,26 @@ $(function () {
 						下单时间：
 						<span class="actual"> ${item.orderTime }</span>
 					</div>
-					<c:when test="">
-						<div class="login_button">
-							<a href="toPay?warehouseIds=${item.warehouseId }">单个结算</a>
-						</div>
-					</c:when>
+					<div class="login_button">
+						<c:if test="${2 eq item.orderConditionPkid}">
+							<c:if test="${0 eq item.commentPkid}">
 
+								<a href="comment.html?proId=${item.proId}&orderPkid=${item.orderPkid}">去评价</a>
 
+							</c:if>
+							<c:if test="${0 != item.commentPkid}">
+
+								<a>已评价</a>
+								<br>
+								
+								
+							</c:if>
+						</c:if>
+					</div>
+					<c:if test="${!empty item.commentDes }">
+					我的评论：<br>
+						<span class="actual"> ${item.commentDes }</span>
+					</c:if>
 					<br>
 
 					<div class="clearfix"></div>

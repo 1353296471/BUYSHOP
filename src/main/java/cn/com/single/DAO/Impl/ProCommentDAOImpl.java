@@ -93,4 +93,79 @@ public class ProCommentDAOImpl implements ProCommentDAO {
 		return commentList;
 	}
 
+	@Override
+	public boolean addComment(int proId, String commentDes, int userId, String commentTime) {
+		boolean flag = false;
+		Connection conn = DBConn.getDBConn();
+		PreparedStatement pstm = null;
+		int rs = 0;
+		String sql = "insert into comment (proPkid,commentDes,userPkid,commentTime) VALUE (?,?,?,?)  ";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, proId);
+			pstm.setString(2, commentDes);
+			pstm.setInt(3, userId);
+			pstm.setString(4, commentTime);
+			rs = pstm.executeUpdate();
+			while (rs == 1) {
+				flag = true;
+			}
+			System.out.println(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+		return flag;
+	}
+
+	@Override
+	public int getCommentPkid(int proId, String commentDes, int userId, String commentTime) {
+		int commentPkid = 0;
+		Connection conn = DBConn.getDBConn();
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		String sql = "select commentPkid from comment where proId=? and commentDes=? and userId=? and commentTime=?  ";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, proId);
+			pstm.setString(2, commentDes);
+			pstm.setInt(3, userId);
+			pstm.setString(4, commentTime);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				commentPkid = rs.getInt("commentPkid");
+			}
+			System.out.println(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConn.close(conn, pstm, rs);
+		}
+		return commentPkid;
+	}
+
+	@Override
+	public boolean updateOrder(int commentPkid, int orderPkid) {
+		boolean flag = false;
+		Connection conn = DBConn.getDBConn();
+		PreparedStatement pstm = null;
+		int rs = 0;
+		String sql = "update orderList set commentPkid=? where orderPkid=? ";
+		try {
+			pstm = conn.prepareStatement(sql);
+			pstm.setInt(1, commentPkid);
+			pstm.setInt(2, orderPkid);
+			rs = pstm.executeUpdate();
+			while (rs == 1) {
+				flag = true;
+			}
+			System.out.println(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		}
+		return flag;
+	}
+
 }

@@ -21,7 +21,12 @@ function isLogin() {
 }
 
 function search() {
-	document.location.href = "search.html?searchdata=" + $("#Sea").val();
+	if($("#Sea").val()==""){
+		alert("搜索内容不能为空");
+	}else{
+		document.location.href="search.html?searchdata="+$("#Sea").val();
+	}
+
 }
 
 // 初始化
@@ -155,3 +160,33 @@ function choseLocation() {
 	document.getElementById('qu').value = location;
 	
 }
+
+function payFormClick() {
+	var sheng = $('#province option:selected').text();
+	var shi = $('#city option:selected').text();
+	var qu = $('#county option:selected').text();
+	var userAddress = $('#userAddress').val();
+	var userPhone = $('#userPhone').val();
+	
+	if(sheng == "" || shi == ""){
+		alert("省份和市区不能为空！");
+		return;
+	}
+	
+	if(userAddress == ""){
+		alert("详细地址不能为空！");
+		return;
+	}
+	
+	//编译正则表达式
+	 var reg =/^1[3456789]\d{9}$/; 
+	 var result = reg.test(userPhone);
+	 if(!result){
+		 alert("请输入正确的电话格式！");
+		 return;
+	 }
+	 
+	 $("form[name='payForm']").submit();
+}
+
+	
