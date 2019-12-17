@@ -12,7 +12,7 @@
 	<br>
 	<br>
 	<br>
-	<h3 id="price">您需要支付$ ${price },请填写您的收货信息</h3>
+	<h3 id="price">您需要支付￥ ${price },请填写您的收货信息</h3>
 	<br>
 	<br>
 	省份： <select id="province" name="sheng" class="loc"></select> 城市： <select id="city" name="shi" class="loc"></select> 区县： <select id="county" name="qu" class="loc"></select>

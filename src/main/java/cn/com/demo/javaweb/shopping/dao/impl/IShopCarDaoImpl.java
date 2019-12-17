@@ -30,7 +30,7 @@ public class IShopCarDaoImpl implements IShopCarDao {
 	private IOrderDao orderDao;
 
 	@Override
-	public List<ShopCar> getShopCar(int userId) {
+	public List<ShopCar> getShopCarById(int userId) {
 		String sql = "select * from shopCar where userId = ?";
 		return DaoUtils.getListBySql(ShopCar.class, sql, userId);
 	}
@@ -73,7 +73,7 @@ public class IShopCarDaoImpl implements IShopCarDao {
 	}
 
 	@Override
-	public boolean deleteShopCar(Connection conn, ShopCar shopcar) throws SQLException {
+	public boolean deleteShopCarByConn(Connection conn, ShopCar shopcar) throws SQLException {
 		String sql = "delete from shopCar where userId = ? and warehouseId = ?";
 		return DaoUtils.insertOrUpdate(conn, sql, shopcar.getUserId(), shopcar.getWarehouseId());
 	}

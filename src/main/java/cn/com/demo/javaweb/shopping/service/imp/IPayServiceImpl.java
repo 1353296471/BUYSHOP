@@ -58,7 +58,7 @@ public class IPayServiceImpl implements IPayService {
 		ShopCar sc = shopCarDao.getShopCar(shopcar.getUserId(), shopcar.getWarehouseId());
 		if (sc != null) {
 			// 获取对应的商品和用户，判断价格是否足够
-			User user = userDao.getUser(shopcar.getUserId());
+			User user = userDao.getUserById(shopcar.getUserId());
 			int proId = warehouseDao.getWarehouse(shopcar.getWarehouseId()).getProId();
 			Product pro = proDao.getProduct(proId);
 			double price = shopcar.getNum() * pro.getPrice();
@@ -87,9 +87,9 @@ public class IPayServiceImpl implements IPayService {
 				Connection conn = DaoUtils.getConn();
 				try {
 					conn.setAutoCommit(false);
-					if (shopCarDao.deleteShopCar(conn, shopcar) && orderDao.add(conn, order)
-							&& warehouseDao.remove(conn, shopcar.getWarehouseId(), shopcar.getNum())
-							&& userDao.payMoney(conn, user, price)) {
+					if (shopCarDao.deleteShopCarByConn(conn, shopcar) && orderDao.addByConn(conn, order)
+							&& warehouseDao.removeByConn(conn, shopcar.getWarehouseId(), shopcar.getNum())
+							&& userDao.payMoneyByConn(conn, user, price)) {
 						falg = true;
 					}
 					conn.commit();
@@ -150,8 +150,8 @@ public class IPayServiceImpl implements IPayService {
 			Connection conn = DaoUtils.getConn();
 			try {
 				conn.setAutoCommit(false);
-				if (orderDao.add(conn, order) && warehouseDao.remove(conn, warehouseId, num)
-						&& userDao.payMoney(conn, user, price)) {
+				if (orderDao.addByConn(conn, order) && warehouseDao.removeByConn(conn, warehouseId, num)
+						&& userDao.payMoneyByConn(conn, user, price)) {
 					falg = true;
 				}
 				conn.commit();

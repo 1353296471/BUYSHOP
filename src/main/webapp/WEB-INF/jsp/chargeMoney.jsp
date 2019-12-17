@@ -2,7 +2,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h1>充值</h1>
 <center>
-	我的余额：$ ${cash }
+	我的余额：￥ ${cash }
 	<br>
 		<br>
 		充值金额：<input type="number" name="money" class="money">

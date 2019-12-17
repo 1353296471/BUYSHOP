@@ -61,7 +61,7 @@ public class ICheckoutServiceImpl implements cn.com.demo.javaweb.shopping.servic
 
 	@Override
 	public double getMoney(int userId) {
-		return userDao.getUser(userId).getMoney();
+		return userDao.getUserById(userId).getMoney();
 	}
 
 	@Override

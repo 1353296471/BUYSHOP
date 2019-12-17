@@ -64,7 +64,7 @@ public class IIndexServiceImpl implements IIndexService {
 	@Override
 	public List<ShowShopCar> getShopCar(int userId) {
 		List<ShowShopCar> items = new ArrayList<ShowShopCar>();
-		List<ShopCar> shopCars = shopCarDao.getShopCar(userId);
+		List<ShopCar> shopCars = shopCarDao.getShopCarById(userId);
 		for (ShopCar shopCar : shopCars) {
 			ShowShopCar item = new ShowShopCar();
 

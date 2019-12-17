@@ -11,17 +11,23 @@
 							<a href="tosingle/${pro.pro.id}"> <img width="225" height="265"
 								src="images/${pro.mainImg.imgUrl }" class="img-responsive" alt="item4">
 							</a> 
-							<a id="addShopCarItem"  class="button"  onclick="toAddShopCar(${pro.pro.id})" type="hidden"></a>
-						</div>
+							<a href="" class="hidden" ></a>
+							</div>
 					</div>
 					<div class="shop-content" style="height: 80px;">
-						<div>
-							<a href="single.html" rel="tag">${pro.pro.proName }</a>
+					<!-- 
+					<div>
+							<a href="tosingle/${pro.pro.id}" rel="tag">${pro.pro.proName }</a>
 						</div>
 						<h3>
-							<a href="single.html">${pro.catalog.sex  }-${pro.catalog.catalogTypeOne }-${ pro.catalog.catalogTypeTwo }</a>
+							<a href="tosingle/${pro.pro.id}">${pro.catalog.sex  }-${pro.catalog.catalogTypeOne }-${ pro.catalog.catalogTypeTwo }</a>
 						</h3>
-						<span><span class="amount">$${pro.pro.price }</span></span>
+					 -->
+						
+						<h3>
+							<a href="tosingle/${pro.pro.id}">${pro.pro.proName }</a>
+						</h3>
+						<span><span class="amount">￥${pro.pro.price }</span></span>
 					</div>
 				</div>
 			</c:forEach>

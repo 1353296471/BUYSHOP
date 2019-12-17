@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h3>
-	Recently added items(
+	最近添加的商品(
 	<c:choose>
 		<c:when test="${empty itemSize }">0</c:when>
 		<c:otherwise>${itemSize}</c:otherwise>
@@ -26,7 +26,7 @@
 							<a>${item.sizeType }</a>
 						</h4>
 						${item.num } x
-						<span class="actual"> $${item.showProduct.pro.price }</span>
+						<span class="actual"> ￥${item.showProduct.pro.price }</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -38,8 +38,8 @@
 <c:choose>
 	<c:when test="${itemSize>0 }">
 		<div class="total">
-			<div class="total_left">CartSubtotal :</div>
-			<div class="total_right">$${sum }</div>
+			<div class="total_left">总价 :</div>
+			<div class="total_right">￥${sum }</div>
 			<div class="clearfix"></div>
 		</div>
 	</c:when>

@@ -36,7 +36,7 @@ public class IUserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public User getUser(int userId) {
+	public User getUserById(int userId) {
 		String sql = "select * from user where id = ?";
 		return DaoUtils.getListBySql(User.class, sql, userId).get(0);
 	}
@@ -60,7 +60,7 @@ public class IUserDaoImpl implements IUserDao {
 	}
 
 	@Override
-	public boolean payMoney(Connection conn, User user, double price) throws SQLException {
+	public boolean payMoneyByConn(Connection conn, User user, double price) throws SQLException {
 		String sql = "update user set money = money - ? where id = ?";
 		return DaoUtils.insertOrUpdate(conn, sql, price, user.getId());
 	}

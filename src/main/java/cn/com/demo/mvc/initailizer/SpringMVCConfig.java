@@ -25,7 +25,7 @@ import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 //<context:component-scan base-package="cn.com.demo.mvc.controller"></context:component-scan>
-@ComponentScan(basePackages = { "cn.com.demo" })
+@ComponentScan(basePackages = { "cn.com.demo.mvc.controller" })
 //<mvc:annotation-driven ></mvc:annotation-driven>
 @EnableWebMvc // mvc:annotation-driven
 // 完成了SpringMVC得所有默认配置

@@ -23,13 +23,13 @@ $(function () {
 						<img src="images/${item.imgUrl }" class="img-responsive" alt="" width="100px" height="140px" />
 					</div>
 					<div class="list_desc">
-						<h4>
+						<h3>
 							<a href="#">${item.proName }</a>
-						</h4>
+						</h3>
 						${item.proNum } x
-						<span class="actual"> $${item.price }</span>
+						<span class="actual"> ￥${item.price }</span>
 						总价：
-						<span class="actual"> $${item.price*item.proNum }</span>
+						<span class="actual"> ￥${item.price*item.proNum }</span>
 						颜色：
 						<span class="actual"> ${item.colorType }</span>
 						尺码：

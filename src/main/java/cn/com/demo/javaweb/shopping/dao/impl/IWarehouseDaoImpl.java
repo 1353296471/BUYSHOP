@@ -20,12 +20,12 @@ public class IWarehouseDaoImpl implements IWarehouseDao {
 
 	@Override
 	public boolean add(int warehouseId, int num) {
-		// TODO 自动生成的方法存根
-		return false;
+		String sql = "update warehouse set num = num + ? where id = ?";
+		return DaoUtils.insertOrUpdate(sql, num, warehouseId);
 	}
 
 	@Override
-	public boolean remove(Connection conn, int warehouseId, int num) throws SQLException {
+	public boolean removeByConn(Connection conn, int warehouseId, int num) throws SQLException {
 		String sql = "update warehouse set num = num - ? where id = ?";
 		return DaoUtils.insertOrUpdate(conn, sql, num, warehouseId);
 	}

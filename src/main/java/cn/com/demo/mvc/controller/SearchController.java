@@ -13,6 +13,7 @@ public class SearchController {
 	@RequestMapping("/searchServlet")
 	public void commentCountServlet(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		SearchServlet s = new SearchServlet();
+		System.out.println("searchServlet");
 		s.service(request, response);
 	}
 }

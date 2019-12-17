@@ -59,7 +59,7 @@ public class IOrderDaoImpl implements IOrderDao {
 	}
 
 	@Override
-	public boolean add(Connection conn, OrderList order) throws SQLException {
+	public boolean addByConn(Connection conn, OrderList order) throws SQLException {
 		String sql = "insert into orderList (warehouseId,receivePkid,orderConditionPkid,orderTime,proNum) values (?,?,?,?,?) ";
 		return DaoUtils.insertOrUpdate(conn, sql, order.getWarehouseId(), order.getReceivePkid(),
 				order.getOrderConditionPkid(), order.getOrderTime(), order.getProNum());

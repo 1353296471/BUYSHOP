@@ -116,7 +116,7 @@ public class IPersonalServiceImpl implements IPersonalService {
 	@Override
 	public double getCash(int userId) {
 		double cash = 0;
-		cash = userDao.getUser(userId).getMoney();
+		cash = userDao.getUserById(userId).getMoney();
 		return cash;
 	}
 }

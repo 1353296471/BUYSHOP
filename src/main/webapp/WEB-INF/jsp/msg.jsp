@@ -77,11 +77,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<div class="col-xs-7 menu">
 					<ul class="megamenu skyblue">
 						<li class="active grid">
-							<a class="color1" href="search.html?searchdata=男">Men</a>
+							<a class="color1" href="search.html?searchdata=男">男装</a>
 
 						</li>
 						<li class="grid">
-							<a class="color2" href="search.html?searchdata=女">Women</a>
+							<a class="color2" href="search.html?searchdata=女">女装</a>
 
 						</li>
 						<li>
@@ -103,7 +103,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<ul class="sub-icon1 list" id="shopCarItemListDiv">
 							<div class="login_buttons">
 								<div class="login_button">
-									<a href="login.html">Login</a>
+									<a href="login.html">登录</a>
 								</div>
 								<div class="clearfix"></div>
 							</div>
@@ -165,128 +165,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<br>
 	<br>
 
-	<div class="footer">
-		<div class="container">
-			<div class="footer_top">
-				<div class="col-md-4 box_3">
-					<h3>Our Stores</h3>
-					<address class="address">
-						<p>
-							9870 St Vincent Place,
-							<br>
-							Glasgow, DC 45 Fr 45.
-						</p>
-						<dl>
-							<dt></dt>
-							<dd>
-								Freephone:
-								<span> +1 800 254 2478</span>
-							</dd>
-							<dd>
-								Telephone:
-								<span> +1 800 547 5478</span>
-							</dd>
-							<dd>
-								FAX:
-								<span>+1 800 658 5784</span>
-							</dd>
-							<dd>
-								E-mail:&nbsp;
-								<a href="mailto@example.com">info(at)buyshop.com</a>
-							</dd>
-						</dl>
-					</address>
-					<ul class="footer_social">
-						<li>
-							<a href="">
-								<i class="fb"> </i>
-							</a>
-						</li>
-						<li>
-							<a href="">
-								<i class="tw"> </i>
-							</a>
-						</li>
-						<li>
-							<a href="">
-								<i class="google"> </i>
-							</a>
-						</li>
-						<li>
-							<a href="">
-								<i class="instagram"> </i>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="col-md-4 box_3">
-					<h3>Blog Posts</h3>
-					<h4>
-						<a href="#">Sed ut perspiciatis unde omnis</a>
-					</h4>
-					<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced</p>
-					<h4>
-						<a href="#">Sed ut perspiciatis unde omnis</a>
-					</h4>
-					<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced</p>
-					<h4>
-						<a href="#">Sed ut perspiciatis unde omnis</a>
-					</h4>
-					<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced</p>
-				</div>
-				<div class="col-md-4 box_3">
-					<h3>Support</h3>
-					<ul class="list_1">
-						<li>
-							<a href="#">Terms & Conditions</a>
-						</li>
-						<li>
-							<a href="#">FAQ</a>
-						</li>
-						<li>
-							<a href="#">Payment</a>
-						</li>
-						<li>
-							<a href="#">Refunds</a>
-						</li>
-						<li>
-							<a href="#">Track Order</a>
-						</li>
-						<li>
-							<a href="#">Services</a>
-						</li>
-					</ul>
-					<ul class="list_1">
-						<li>
-							<a href="#">Services</a>
-						</li>
-						<li>
-							<a href="#">Press</a>
-						</li>
-						<li>
-							<a href="#">Blog</a>
-						</li>
-						<li>
-							<a href="#">About Us</a>
-						</li>
-						<li>
-							<a href="#">Contact Us</a>
-						</li>
-					</ul>
-					<div class="clearfix"></div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="footer_bottom">
-				<div class="copy">
-					<p>
-						Copyright &copy; 2015.Company name All rights reserved.
-						<a target="_blank" href="http://guantaow.taobao.com/">厚朴网络淘宝店</a>
-						<a target="_blank" href="http://www.moobnn.com">网页模板</a>
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	 
 </body>
 </html>

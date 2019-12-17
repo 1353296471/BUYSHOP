@@ -9,7 +9,7 @@ public class MyMvcInitailizer extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return null;// spring容器的配置类
+		return new Class[] { SpringConfig.class };// spring容器的配置类
 	}
 
 	@Override
