@@ -10,11 +10,14 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.demo.javaweb.shopping.dao.IUserDao;
 import cn.com.demo.javaweb.shopping.entity.User;
 import cn.com.demo.mvc.initailizer.SpringConfig;
 
+@Component
 public class TestDemo {
 	private IUserDao userDao;
 
@@ -27,6 +30,20 @@ public class TestDemo {
 	public void initApplicationContext() {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 		userDao = ctx.getBean(IUserDao.class);
+	}
+
+	@Transactional
+	@Test
+	public void test05() {
+		initApplicationContext();
+		String money = "aa";
+		User user = userDao.getUserById(1);
+		userDao.addUser(user);
+//		System.out.println(user);
+		boolean falg = false;
+		falg = userDao.payMoney(null, Integer.parseInt(money));
+		System.out.println(falg);
+
 	}
 
 	@Test

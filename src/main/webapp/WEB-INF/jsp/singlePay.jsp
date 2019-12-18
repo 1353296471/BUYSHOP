@@ -20,10 +20,15 @@
 	<br>
 	<br>
 	<form action="singlePay" method="post" name="payForm">
-		<input type="text" id="userPkid" name="userPkid" value="${userId }" hidden="true"> <input type="text" id="sheng" name="sheng" hidden="true" value="湖南省"> <input type="text" id="shi" name="shi" hidden="true" value="长沙市"> <input type="text" id="qu" name="qu" hidden="true" value="芙蓉区"> <label>详细地址：</label><input type="text" name="userAddress" >
+		<input type="text" id="userPkid" name="userPkid" value="${userId }" hidden="true">
+		 <input type="text" id="sheng" name="sheng" hidden="true" value="湖南省"> 
+		 <input type="text" id="shi" name="shi" hidden="true" value="长沙市"> 
+		 <input type="text" id="qu" name="qu" hidden="true" value="芙蓉区"> 
+		 测试：湖南省 长沙市 芙蓉区
+		 <label>详细地址：</label><input type="text" name="userAddress">
 		<br>
 		<br>
-		<label>电话号码：</label><input type="number" name="userPhone">
+		<label>电话号码：</label><input type="number" name="userPhone" id="userPhone" value="15147474396">
 		<br>
 		<br>
 		<input type="button" value="取消"> <input type="button" onclick="payFormClick()" value="确认付款">

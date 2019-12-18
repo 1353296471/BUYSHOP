@@ -137,7 +137,7 @@ $(function(){
 	$("#OKbtn").click(function(){
 		var proId=getUrlParam(location.href, "proId");
 		var orderPkid=getUrlParam(location.href, "orderPkid");
-		alert(orderPkid);
+		//alert(orderPkid);
 		var commentDes=$("#commentDesDiv").val();
 		//alert("commentdDes="+commentDes);
 		var mydate=new Date();
@@ -156,9 +156,10 @@ $(function(){
 			data:{proId:proId,commentDes:commentDes,commentTime:commentTime,orderPkid:orderPkid},
 			success:function(msg){
 				alert(msg);
+				document.location.href="personal.html";
 			}
 		});
-		document.location.href="personal.html";
+		
 		
 	});
 	

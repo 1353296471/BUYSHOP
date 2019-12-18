@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.com.demo.javaweb.shopping.dao.IOrderDao;
 import cn.com.demo.javaweb.shopping.dao.IProDao;
@@ -23,6 +24,7 @@ import cn.com.demo.javaweb.shopping.entity.User;
 import cn.com.demo.javaweb.shopping.service.IPayService;
 
 @Service
+@Transactional
 public class IPayServiceImpl implements IPayService {
 
 	@Autowired
@@ -42,6 +44,20 @@ public class IPayServiceImpl implements IPayService {
 
 	@Autowired
 	private IWarehouseDao warehouseDao;
+
+	public int getReceivePkId(Receive receive) {
+		int pkId = -1;
+		Receive rec;
+		if (!receiveDao.queryReceive(receive)) {
+			receiveDao.add(receive);
+
+			rec = receiveDao.getReceive(receive);
+		} else {
+			rec = receiveDao.getReceive(receive);
+		}
+		pkId = rec.getReceivePkid();
+		return pkId;
+	}
 
 	/**
 	 * 购买操作,添加了事务操作，出错了即可回滚
@@ -68,7 +84,7 @@ public class IPayServiceImpl implements IPayService {
 //				shopCarDao.deleteShopCar(shopcar);
 
 				// 2.生成对应的订单信息
-				int receivePkid = receiveDao.getReceivePkId(receive);
+				int receivePkid = getReceivePkId(receive);
 				OrderList order = new OrderList();
 				order.setWarehouseId(shopcar.getWarehouseId());
 				order.setProNum(shopcar.getNum());
@@ -93,7 +109,7 @@ public class IPayServiceImpl implements IPayService {
 						falg = true;
 					}
 					conn.commit();
-				} catch (SQLException e) {
+				} catch (Exception e) {
 					e.printStackTrace();
 					try {
 						conn.rollback();
@@ -131,7 +147,7 @@ public class IPayServiceImpl implements IPayService {
 			// 执行操作，应该采取事务包围，后续需要改进
 
 			// 2.生成对应的订单信息
-			int receivePkid = receiveDao.getReceivePkId(receive);
+			int receivePkid = getReceivePkId(receive);
 			OrderList order = new OrderList();
 			order.setWarehouseId(warehouseId);
 			order.setProNum(num);

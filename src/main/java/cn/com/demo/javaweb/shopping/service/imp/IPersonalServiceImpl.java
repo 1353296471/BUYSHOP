@@ -99,7 +99,8 @@ public class IPersonalServiceImpl implements IPersonalService {
 
 	@Override
 	public List<ShowOrderList> getShowOrderListsByPage(int userId, int pageNum, int pageSize) {
-		List<ShowOrderList> itemsPage = showOrderListDao.getShowOrderListsByPage(userId, pageNum, pageSize);
+		int index = (pageNum - 1) * pageSize;
+		List<ShowOrderList> itemsPage = showOrderListDao.getShowOrderListsByPage(userId, index, pageSize);
 		return itemsPage;
 	}
 

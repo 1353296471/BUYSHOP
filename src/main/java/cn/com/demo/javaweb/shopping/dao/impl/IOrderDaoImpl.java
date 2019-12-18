@@ -35,18 +35,6 @@ public class IOrderDaoImpl implements IOrderDao {
 	}
 
 	@Override
-	public boolean remove(OrderList order) {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	@Override
-	public boolean update(OrderList order) {
-		// TODO 自动生成的方法存根
-		return false;
-	}
-
-	@Override
 	public List<OrderList> getOrders(int receivePkid) {
 		String sql = "select * from orderList where receivePkid = ?";
 		return DaoUtils.getListBySql(OrderList.class, sql, receivePkid);

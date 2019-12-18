@@ -58,7 +58,12 @@ public class IIndexServiceImpl implements IIndexService {
 		shopCar.setUserId(userId);
 		shopCar.setWarehouseId(warehouseId);
 		shopCar.setNum(num);
-		return shopCarDao.addShopCar(shopCar);
+
+		if (shopCarDao.queryShopCar(shopCar.getUserId(), shopCar.getWarehouseId())) {
+			return shopCarDao.addNumShopCar(shopCar);
+		} else {
+			return shopCarDao.insertShopCar(shopCar);
+		}
 	}
 
 	@Override
@@ -95,7 +100,14 @@ public class IIndexServiceImpl implements IIndexService {
 			shopCar.setUserId(userId);
 			shopCar.setWarehouseId(warehouseId);
 			shopCar.setNum(num);
-			return shopCarDao.removeShopCar(shopCar);
+
+			ShopCar sc = shopCarDao.getShopCar(userId, warehouseId);
+			if (sc.getNum() <= 1) {
+				return shopCarDao.deleteShopCar(shopCar);
+			} else {
+				return shopCarDao.removeNumShopCar(shopCar);
+			}
+
 		}
 	}
 

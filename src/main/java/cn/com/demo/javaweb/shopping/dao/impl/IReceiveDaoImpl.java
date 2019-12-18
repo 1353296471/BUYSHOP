@@ -18,9 +18,10 @@ public class IReceiveDaoImpl implements IReceiveDao {
 	}
 
 	@Override
-	public Receive getReceive(int userId, int proId) {
-		// TODO 自动生成的方法存根
-		return null;
+	public Receive getReceive(Receive receive) {
+		String sql = "select * from receive where userPkid=? and sheng=? and shi=? and qu=? and userAddress =? and userPhone=?";
+		return DaoUtils.getListBySql(Receive.class, sql, receive.getUserPkid(), receive.getSheng(), receive.getShi(),
+				receive.getQu(), receive.getUserAddress(), receive.getUserPhone()).get(0);
 	}
 
 	@Override
@@ -37,23 +38,12 @@ public class IReceiveDaoImpl implements IReceiveDao {
 	}
 
 	@Override
-	public int getReceivePkId(Receive receive) {
-		int pkId = -1;
+	public boolean queryReceive(Receive receive) {
 		boolean falg = false;
 		String sql = "select * from receive where userPkid=? and sheng=? and shi=? and qu=? and userAddress =? and userPhone=?";
 		falg = DaoUtils.executeQuery(sql, receive.getUserPkid(), receive.getSheng(), receive.getShi(), receive.getQu(),
 				receive.getUserAddress(), receive.getUserPhone());
-		Receive rec;
-		if (!falg) {
-			add(receive);
-			rec = DaoUtils.getListBySql(Receive.class, sql, receive.getUserPkid(), receive.getSheng(), receive.getShi(),
-					receive.getQu(), receive.getUserAddress(), receive.getUserPhone()).get(0);
-		} else {
-			rec = DaoUtils.getListBySql(Receive.class, sql, receive.getUserPkid(), receive.getSheng(), receive.getShi(),
-					receive.getQu(), receive.getUserAddress(), receive.getUserPhone()).get(0);
-		}
-		pkId = rec.getReceivePkid();
-		return pkId;
+		return falg;
 	}
 
 }

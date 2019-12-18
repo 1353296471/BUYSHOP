@@ -36,28 +36,16 @@ public class IShopCarDaoImpl implements IShopCarDao {
 	}
 
 	@Override
-	public boolean addShopCar(ShopCar shopcar) {
-		String sql = "select * from shopCar where userId = ? and warehouseId = ?";
-		if (DaoUtils.executeQuery(sql, shopcar.getUserId(), shopcar.getWarehouseId())) {
-			sql = "update shopCar set num = num + ? where userId = ? and warehouseId = ?";
-			return DaoUtils.insertOrUpdate(sql, shopcar.getNum(), shopcar.getUserId(), shopcar.getWarehouseId());
-		} else {
-			sql = "insert into shopCar (userId , warehouseId , num) values (?,?,?)";
-			return DaoUtils.insertOrUpdate(sql, shopcar.getUserId(), shopcar.getWarehouseId(), shopcar.getNum());
-		}
+	public boolean insertShopCar(ShopCar shopcar) {
+		String sql = "insert into shopCar (userId , warehouseId , num) values (?,?,?)";
+		return DaoUtils.insertOrUpdate(sql, shopcar.getUserId(), shopcar.getWarehouseId(), shopcar.getNum());
 	}
 
 	@Override
-	public boolean removeShopCar(ShopCar shopcar) {
-		String sql = "select * from shopCar where userId = ? and warehouseId = ?";
-		ShopCar sc = DaoUtils.getListBySql(ShopCar.class, sql, shopcar.getUserId(), shopcar.getWarehouseId()).get(0);
+	public boolean removeNumShopCar(ShopCar shopcar) {
+		String sql = "update shopCar set num = num - ? where userId = ? and warehouseId = ?";
+		return DaoUtils.insertOrUpdate(sql, shopcar.getNum(), shopcar.getUserId(), shopcar.getWarehouseId());
 
-		if (sc.getNum() <= 1) {
-			return deleteShopCar(shopcar);
-		} else {
-			sql = "update shopCar set num = num - ? where userId = ? and warehouseId = ?";
-			return DaoUtils.insertOrUpdate(sql, shopcar.getNum(), shopcar.getUserId(), shopcar.getWarehouseId());
-		}
 	}
 
 	@Override
@@ -76,6 +64,19 @@ public class IShopCarDaoImpl implements IShopCarDao {
 	public boolean deleteShopCarByConn(Connection conn, ShopCar shopcar) throws SQLException {
 		String sql = "delete from shopCar where userId = ? and warehouseId = ?";
 		return DaoUtils.insertOrUpdate(conn, sql, shopcar.getUserId(), shopcar.getWarehouseId());
+	}
+
+	@Override
+	public boolean queryShopCar(int userId, int warehouseId) {
+		String sql = "select * from shopCar where userId = ? and warehouseId = ?";
+		return DaoUtils.executeQuery(sql, userId, warehouseId);
+	}
+
+	@Override
+	public boolean addNumShopCar(ShopCar shopcar) {
+		String sql = "update shopCar set num = num + ? where userId = ? and warehouseId = ?";
+		return DaoUtils.insertOrUpdate(sql, shopcar.getNum(), shopcar.getUserId(), shopcar.getWarehouseId());
+
 	}
 
 }

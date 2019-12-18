@@ -3,6 +3,24 @@ package cn.com.demo.javaweb.shopping.entity.toshow;
 public class Page {
 	private int pageNo;
 	private int maxPage;
+	private int pageSize;
+	private int index;
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
 	public int getPageNo() {
 		if (pageNo > maxPage) {
@@ -61,6 +79,17 @@ public class Page {
 			maxPage = 1;
 		}
 		this.maxPage = maxPage;
+	}
+
+	public Page(int pageNo, int maxPage, int pageSize) {
+		super();
+		this.pageNo = pageNo;
+		if (maxPage <= 0) {
+			maxPage = 1;
+		}
+		this.maxPage = maxPage;
+		this.pageSize = pageSize;
+		this.index = (pageNo - 1) * pageSize;
 	}
 
 	public Page() {

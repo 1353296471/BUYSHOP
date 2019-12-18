@@ -16,7 +16,7 @@ public interface IShowOrderListDao {
 			+ "INNER JOIN `user` ON `user`.id = receive.userPkid "
 			+ "INNER JOIN ordercondition ON ordercondition.orderConditionPkid = orderlist.orderConditionPkid "
 			+ "LEFT JOIN `comment` ON `comment`.commentPkid = orderlist.commentPkid " + "WHERE `user`.id = #{param1}  "
-			+ "ORDER BY orderlist.orderTime DESC " + "limit #{param3},#{param3} " })
+			+ "ORDER BY orderlist.orderTime DESC " + "limit #{param2},#{param3} " })
 	public List<ShowOrderList> getShowOrderListsByPage(int userId, int pageNum, int pageSize);
 
 	@Select({ "SELECT *  " + "FROM orderlist  " + "INNER JOIN receive ON receive.receivePkid = orderlist.receivePkid "

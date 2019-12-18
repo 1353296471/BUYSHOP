@@ -1,10 +1,19 @@
 package cn.com.single.entity;
 
 public class Comment {
+	private int commentPkid;
 	private int proPkid;
 	private String commentDes;
 	private int userPkid;
 	private String commentTime;
+
+	public int getCommentPkid() {
+		return commentPkid;
+	}
+
+	public void setCommentPkid(int commentPkid) {
+		this.commentPkid = commentPkid;
+	}
 
 	public int getUserPkid() {
 		return userPkid;

@@ -12,8 +12,8 @@ import cn.com.demo.javaweb.shopping.entity.toshow.ShowOrderList;
 public class IShowOrderListDaoImpl implements IShowOrderListDao {
 
 	@Override
-	public List<ShowOrderList> getShowOrderListsByPage(int userId, int pageNum, int pageSize) {
-		int index = (pageNum - 1) * pageSize;
+	public List<ShowOrderList> getShowOrderListsByPage(int userId, int index, int pageSize) {
+//		int index = (pageNum - 1) * pageSize;
 		String sql = "SELECT *  " + "FROM orderlist  "
 				+ "INNER JOIN receive ON receive.receivePkid = orderlist.receivePkid "
 				+ "INNER JOIN warehouse ON warehouse.id = orderlist.warehouseId "

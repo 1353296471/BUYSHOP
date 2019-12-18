@@ -107,7 +107,7 @@ public class ProCommentDAOImpl implements ProCommentDAO {
 			pstm.setInt(3, userId);
 			pstm.setString(4, commentTime);
 			rs = pstm.executeUpdate();
-			while (rs == 1) {
+			if (rs == 1) {
 				flag = true;
 			}
 			System.out.println(rs);
@@ -122,10 +122,13 @@ public class ProCommentDAOImpl implements ProCommentDAO {
 	@Override
 	public int getCommentPkid(int proId, String commentDes, int userId, String commentTime) {
 		int commentPkid = 0;
+		String sql = "select * from comment where proPkId=? and commentDes=? and userPkid=? and commentTime=?";
+//		Comment comment = DaoUtils.getListBySql(Comment.class, sql, proId, commentDes, userId, commentTime).get(0);
+//		commentPkid = comment.getCommentPkid();
 		Connection conn = DBConn.getDBConn();
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String sql = "select commentPkid from comment where proId=? and commentDes=? and userId=? and commentTime=?  ";
+
 		try {
 			pstm = conn.prepareStatement(sql);
 			pstm.setInt(1, proId);
@@ -157,7 +160,7 @@ public class ProCommentDAOImpl implements ProCommentDAO {
 			pstm.setInt(1, commentPkid);
 			pstm.setInt(2, orderPkid);
 			rs = pstm.executeUpdate();
-			while (rs == 1) {
+			if (rs == 1) {
 				flag = true;
 			}
 			System.out.println(rs);
