@@ -3,6 +3,7 @@ package cn.com.demo.javaweb.shopping.entity.toshow;
 import java.sql.Timestamp;
 
 public class ShowOrderList {
+	private String userName;
 	private String imgUrl;
 	private int orderPkid;
 	private int proId;
@@ -21,6 +22,14 @@ public class ShowOrderList {
 	private Timestamp orderTime;
 	private int commentPkid;
 	private String commentDes;
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public int getOrderPkid() {
 		return orderPkid;

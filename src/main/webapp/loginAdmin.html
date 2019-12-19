@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Login</title>
+<title>后台登录</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Flatro Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -105,7 +105,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			$.ajax({
 				async : false,
 				type : 'post',
-				url : 'login',
+				url : 'loginAdmin',
 				contentType : "application/json;charset=utf-8",
 				data : JSON.stringify(user),
 				success : function(msg) {
@@ -113,7 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						alert("登录失败！邮箱或密码错误！");
 					} else {
 						falg = true;
-						window.location.href = 'index.html';
+						window.location.href = 'personalAdmin.html';
 					}
 				}
 			});
@@ -125,15 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<div class="header_top">
 		<div class="container">
-			<div class="one-fifth column row_1">
-				<span class="selection-box">
-					<select class="domains valid" name="domains">
-						<option>English</option>
-						<option>French</option>
-						<option>German</option>
-					</select>
-				</span>
-			</div>
+			
 			<div class="cssmenu">
 				<ul>
 					<li class="active">
@@ -143,66 +135,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	<div class="header_bottom men_border">
-		<div class="container">
-			<div class="col-xs-9 header-bottom-left">
-				<div class="col-xs-2 logo">
-					<h1>
-						<a href="index.html">
-							<span>Buy</span>
-							shop
-						</a>
-					</h1>
-				</div>
-				<div class="col-xs-7 menu">
-					<ul class="megamenu skyblue">
-						<li class="grid">
-							<a class="color1" id="meun" href="search.html?searchdata=男">男装</a>
-						</li>
-						<li class="grid">
-							<a class="color2" id="meun" href="search.html?searchdata=女">女装</a>
-						</li>
-						<li class="grid" >
-							<a class="color4" id="meun" href="about.html">About</a>
-						</li>
-						<li class="grid">
-							<a class="color5" id="meun" href="404.html">Blog</a>
-						</li>
-						<li class="grid">
-							<a class="color6" id="meun" href="contact.html">Support</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-xs-3 header-bottom-right">
-				<ul class="icon1 sub-icon1 profile_img">
-					<li>
-						<a class="active-icon c1" onmouseover="toShowShopCarItem()" href="#"> </a>
-						<ul class="sub-icon1 list" id="shopCarItemListDiv">
-							<div class="login_buttons">
-								<div class="login_button">
-									<a href="login.html">登录</a>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</ul>
-					</li>
-				</ul>
-				<div class="search">
-					<input id="Sea" type="text" name="s" class="textbox" value="搜索" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"> <input type="submit" value="搜索" id="submit" name="submit" onclick="search()">
-					<div id="response"></div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
+	
 	<div class="single_top">
 		<div class="container">
 			<div class="register">
 				<div class="col-md-6 login-right">
 					<h3>登录</h3>
-					<p>如果您在我们这里有账户，请登录。</p>
+					<p>管理员，请登录。</p>
 
 					<!-- 登录表单 -->
 					<div>
@@ -228,22 +167,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<br>
 					<a class="forgot" href="#">Forgot Your Password?</a>
 					<input type="submit" value="登录" onclick="toLogin()">
-					<br>
-					---<a class="forgot" href="loginAdmin.html">我是管理员</a>
- 					
 				</div>
-				<div class="col-md-6 login-left">
-					<h3>新用户</h3>
-					<p>通过创建一个帐户享受更多功能。
-</p>
-					<a class="acount-btn" href="register.html">创建一个账号</a>
-					
-				</div>
-				<div class="clearfix"></div>
+				
 			</div>
 		</div>
 	</div>
 	 
-	
 </body>
 </html>

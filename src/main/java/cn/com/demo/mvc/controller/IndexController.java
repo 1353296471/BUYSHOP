@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.com.demo.javaweb.shopping.entity.Admin;
 import cn.com.demo.javaweb.shopping.entity.User;
 import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 import cn.com.demo.javaweb.shopping.service.IIndexService;
@@ -122,6 +123,26 @@ public class IndexController {
 			msg = "noLogin";
 		}
 		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/isAdmin")
+	public String isAdmin(HttpSession session) throws IOException {
+		Admin admin = (Admin) session.getAttribute("admin");
+		String msg = null;
+		if (admin != null) {
+			msg = "isAdmin";
+		} else {
+			msg = "noAdmin";
+		}
+		return msg;
+	}
+
+	@ResponseBody
+	@RequestMapping("/getStatus")
+	public String getStatus(HttpSession session) throws IOException {
+		String status = (String) session.getAttribute("status");
+		return status;
 	}
 
 	@RequestMapping("/getUser")

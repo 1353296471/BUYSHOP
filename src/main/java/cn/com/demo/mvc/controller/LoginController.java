@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cn.com.demo.javaweb.shopping.entity.Admin;
 import cn.com.demo.javaweb.shopping.entity.User;
 import cn.com.demo.javaweb.shopping.service.ILoginService;
 import cn.com.demo.javaweb.shopping.service.servlet.ValidateColorServlet;
@@ -45,6 +46,27 @@ public class LoginController {
 			System.out.println(result);
 		} else {
 			session.setAttribute("user", loginService.getUser(user));
+			session.setAttribute("status", "user");
+			flag = true;
+		}
+		return flag;
+	}
+
+	@ResponseBody
+	@RequestMapping("/loginAdmin")
+	public boolean loginAdmin(@RequestBody @Valid Admin user, BindingResult result, HttpSession session) {
+		System.out.println(user);
+		boolean flag = false;
+		if (result.getErrorCount() > 0) {
+			System.out.println("出错了!");
+			for (FieldError error : result.getFieldErrors()) {
+				System.out.println(error.getField() + ":" + error.getDefaultMessage());
+			}
+		} else if (!loginService.isRight(user)) {
+			System.out.println(result);
+		} else {
+			session.setAttribute("admin", loginService.getAdmin(user));
+			session.setAttribute("status", "admin");
 			flag = true;
 		}
 		return flag;

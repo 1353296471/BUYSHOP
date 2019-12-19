@@ -53,4 +53,10 @@ public class IOrderDaoImpl implements IOrderDao {
 				order.getOrderConditionPkid(), order.getOrderTime(), order.getProNum());
 	}
 
+	@Override
+	public boolean sendOrder(int orderPkid) {
+		// TODO 自动生成的方法存根
+		return false;
+	}
+
 }

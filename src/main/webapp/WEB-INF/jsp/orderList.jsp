@@ -11,9 +11,28 @@ $(function () {
 		}
 	})
 })
+
+function toSendOrder(orderPkid){
+	var orderPkid  = orderPkid;
+	var pageNo  =${requestScope.page.pageNo };
+	$.ajax({
+		async : false,
+		type : 'post',
+		url : 'toSendOrder/'+orderPkid,
+		success : function(falg) {
+			if(falg){
+				alert("发货成功！");
+				toOrderListPage(pageNo);
+			}else{
+				alert("发货失败！请重试！");
+			}
+		}
+	});
+	
+}
 </script>
 
-<h1>我的订单</h1>
+
 <div class="shopping_cart">
 	<c:if test="${!empty items }">
 		<c:forEach items="${items }" var="item">
@@ -35,6 +54,9 @@ $(function () {
 						尺码：
 						<span class="actual"> ${item.sizeType }</span>
 						<br>
+						收货人：
+						<span class="actual"> ${item.userName }</span>
+						<br>
 						地址：
 						<span class="actual"> ${item.sheng }</span>
 						<span class="actual"> ${item.shi }</span>
@@ -51,23 +73,37 @@ $(function () {
 						<span class="actual"> ${item.orderTime }</span>
 					</div>
 					<div class="login_button">
+
 						<c:if test="${2 eq item.orderConditionPkid}">
 							<c:if test="${0 eq item.commentPkid}">
-
-								<a href="comment.html?proId=${item.proId}&orderPkid=${item.orderPkid}">去评价</a>
-
+								<c:if test="${sessionScope.status == 'admin'}">
+									<a>尚未评价</a>
+								</c:if>
+								<c:if test="${sessionScope.status == 'user'}">
+									<a href="comment.html?proId=${item.proId}&orderPkid=${item.orderPkid}">去评价</a>
+								</c:if>
 							</c:if>
 							<c:if test="${0 != item.commentPkid}">
-
 								<a>已评价</a>
 								<br>
-								
-								
 							</c:if>
 						</c:if>
 					</div>
+
+					<c:if test="${sessionScope.status == 'admin'}">
+						<div class="check_button">
+							<c:if test="${item.orderConditionPkid eq 1}">
+								<a href="#" onclick="toSendOrder(${item.orderPkid})">确认发货</a>
+							</c:if>
+							<c:if test=" ${item.orderConditionPkid eq 2}">
+								<a> ${item.conditionType }</a>
+								<br>
+							</c:if>
+						</div>
+					</c:if>
+
 					<c:if test="${!empty item.commentDes }">
-					我的评论：<br>
+					评论：<br>
 						<span class="actual"> ${item.commentDes }</span>
 					</c:if>
 					<br>

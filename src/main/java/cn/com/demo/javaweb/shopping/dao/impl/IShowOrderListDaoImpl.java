@@ -42,4 +42,16 @@ public class IShowOrderListDaoImpl implements IShowOrderListDao {
 		return DaoUtils.getListBySql(ShowOrderList.class, sql, userId);
 	}
 
+	@Override
+	public List<ShowOrderList> getAllShowOrderListsByPage(int index, int pageSize) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+	@Override
+	public List<ShowOrderList> getAllShowOrderLists() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

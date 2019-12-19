@@ -20,6 +20,23 @@ function isLogin() {
 	return flag;
 }
 
+function isAdmin() {
+	var flag = false;
+	$.ajax({
+		async : false,
+		type : 'post',
+		url : 'isAdmin',
+		success : function(msg) {
+			if (msg == "isAdmin") {
+				flag = true;
+			} else {
+				flag = false;
+			}
+		}
+	});
+	return flag;
+}
+
 function search() {
 	if($("#Sea").val()==""){
 		alert("搜索内容不能为空");
@@ -189,4 +206,24 @@ function payFormClick() {
 	 $("form[name='payForm']").submit();
 }
 
+//得到登录状态，是用户还是管理
+function getStatus() {
+	var status ;
+	$.ajax({
+		async : false,
+		type : 'post',
+		url : 'getStatus',
+		success : function(msg) {
+			status = msg;
+		}
+	});
+	return status;
+}
+
+var activeMeun;
+$(document).on("click","#meun",function(){
+	$(activeMeun).parents("li").attr("class","grid");
+	$(this).parents("li").attr("class","active");
+	activeMeun = this;
+});
 	
