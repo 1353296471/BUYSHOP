@@ -1,8 +1,16 @@
 package cn.com.demo.mvc.initailizer;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Signature;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +21,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import com.github.pagehelper.PageInterceptor;
+
 @Configuration
 @PropertySource(value = "classpath:db.properties", encoding = "utf-8")
 @MapperScan("cn.com.demo.javaweb.shopping.dao")
-public class MyBatisConfig implements EnvironmentAware {
+@Intercepts({ @Signature(type = Executor.class, method = "select", args = { MappedStatement.class, Object.class }) })
+public class MyBatisConfig implements EnvironmentAware, Interceptor {
 	@Value("${jdbc.driverName}")
 	private String driverClassName;
 	@Value("${jdbc.url}")
@@ -63,4 +74,26 @@ public class MyBatisConfig implements EnvironmentAware {
 	}
 
 	private Environment env;
+
+	private Properties properties = new Properties();
+
+	public Object intercept(Invocation invocation) throws Throwable {
+		// implement pre processing if need
+		Object returnObject = invocation.proceed();
+		// implement post processing if need
+		return returnObject;
+	}
+
+	public void setProperties(Properties properties) {
+		this.properties = properties;
+	}
+
+	@Override
+	public Object plugin(Object target) {
+		// TODO 自动生成的方法存根
+		PageInterceptor p = new PageInterceptor();
+		target = p.plugin(target);
+		return target;
+	}
+
 }

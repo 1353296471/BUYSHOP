@@ -12,4 +12,5 @@ public interface IProDao {
 
 	@Select({ "SELECT * from product where id = #{proId}" })
 	public Product getProduct(int proId);
+
 }

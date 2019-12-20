@@ -9,7 +9,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript">
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 </script>
@@ -27,6 +29,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
@@ -48,6 +53,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$.ajax({
 			type : 'post',
 			url : 'showAllOrderList/' + pageNo,
+			success : function(msg) {
+				$("#mainShow").html(msg);
+			}
+		});
+	}
+
+	function toProsPage(pageNo) {
+		$.ajax({
+			type : 'post',
+			url : 'toProsPage/' + pageNo,
 			success : function(msg) {
 				$("#mainShow").html(msg);
 			}
@@ -82,28 +97,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		}
 
 	}
-	
 
 	$(document).ready(function() {
 		init();
 		var status = getStatus();
-		if(status != "admin"){
+		if (status != "admin") {
 			window.location.href = "login.html";
-		}else{
+		} else {
 			toOrderListPage(1);
 		}
 	})
-	
-	
-	
-	
 </script>
 
 </head>
 <body>
 	<div class="header_top">
 		<div class="container">
-			
+
 			<div class="cssmenu">
 				<ul>
 					<li class="active">
@@ -113,7 +123,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	</div>
-	
+
 
 
 	<!-- -------------------personal meun--------------------------- -->
@@ -124,12 +134,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<a class="color1" href="#" id="meun" onclick="toOrderListPage(1)">订单管理</a>
 			</li>
 			<li class="grid">
-				<a class="color2" href="#" id="meun" onclick="toUsersPage(1)">用户管理</a>
+				<a class="color2" href="#" id="meun" onclick="toProsPage(1)">商品管理</a>
 			</li>
 			<li class="grid">
-				<a class="color4" href="#" id="meun" onclick="toProsPage(1)">商品管理</a>
+				<a class="color4" href="#" id="meun" onclick="toProsPage(1)">用户管理</a>
 			</li>
-			<li class="grid" >
+			<li class="grid">
 				<a class="color5" href="#" id="meun" onclick="toAdminsPage(1)">管理员操作</a>
 			</li>
 			<li class="grid">
@@ -156,6 +166,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<br>
 	<br>
 
-	 
+
 </body>
 </html>

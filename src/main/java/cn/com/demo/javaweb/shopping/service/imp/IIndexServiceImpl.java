@@ -72,7 +72,6 @@ public class IIndexServiceImpl implements IIndexService {
 		List<ShopCar> shopCars = shopCarDao.getShopCarById(userId);
 		for (ShopCar shopCar : shopCars) {
 			ShowShopCar item = new ShowShopCar();
-
 			ShowProduct showProduct = new ShowProduct();
 			System.out.println("getWarehouseId = " + shopCar.getWarehouseId());
 			Warehouse warehouse = warehouseDao.getWarehouse(shopCar.getWarehouseId());
