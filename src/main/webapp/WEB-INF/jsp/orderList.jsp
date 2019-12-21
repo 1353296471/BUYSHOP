@@ -5,7 +5,8 @@
 $(function () {
 	$("#pageNo").change(function () {
 		var val = $("#pageNo").val();
-		if(checkPage(val)){
+		var maxPage = "${requestScope.page.maxPage }";
+		if(checkPage(val,maxPage)){
 			//3. 页面跳转
 			toOrderListPage(val);
 		}

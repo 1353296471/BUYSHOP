@@ -32,6 +32,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
@@ -39,15 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </script>
 
 <script>
-	function checkMoney(money) {
-		var flag = false;
-		if (!(money > 0)) {
-			alert("请输入正确的充值金额！")
-		} else {
-			flag = true;
-		}
-		return flag;
-	}
+	
 
 	function toOrderListPage(pageNo) {
 		$.ajax({
@@ -99,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	}
 
 	$(document).ready(function() {
-		init();
+		initAdmin();
 		var status = getStatus();
 		if (status != "admin") {
 			window.location.href = "login.html";
@@ -127,7 +122,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	<!-- -------------------personal meun--------------------------- -->
-
+<div class="col-xs-2 logo">
+					<h1>
+						<a href="index.html">
+							<span>Buy</span>
+							shop
+						</a>
+					</h1>
+				</div>
 	<div class="col-xs-7 menu">
 		<ul class="megamenu skyblue">
 			<li class="grid">
@@ -136,15 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<li class="grid">
 				<a class="color2" href="#" id="meun" onclick="toProsPage(1)">商品管理</a>
 			</li>
-			<li class="grid">
-				<a class="color4" href="#" id="meun" onclick="toProsPage(1)">用户管理</a>
-			</li>
-			<li class="grid">
-				<a class="color5" href="#" id="meun" onclick="toAdminsPage(1)">管理员操作</a>
-			</li>
-			<li class="grid">
-				<a class="color6" href="contact.html" id="meun">Support</a>
-			</li>
+			
 		</ul>
 	</div>
 

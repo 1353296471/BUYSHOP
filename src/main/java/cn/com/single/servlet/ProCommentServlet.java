@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import cn.com.single.entity.Comment;
 import cn.com.single.service.ProCommentService;
 import cn.com.single.service.Impl.ProCommentServiceImpl;
 
-@WebServlet("/proCommentServlet")
 public class ProCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProCommentService commentService = new ProCommentServiceImpl();

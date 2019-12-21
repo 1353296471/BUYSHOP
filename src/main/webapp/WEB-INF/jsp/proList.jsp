@@ -5,7 +5,8 @@
 $(function () {
 	$("#pageNo").change(function () {
 		var val = $("#pageNo").val();
-		if(checkPage(val)){
+		var maxPage = "${requestScope.page.maxPage }";
+		if(checkPage(val,maxPage)){
 			//3. 页面跳转
 			toProsPage(val);
 		}
@@ -58,11 +59,18 @@ function toUpdatePro(id) {
 //点击更新，更新员工信息
 $("#emp_update_btn").click(function(){
 	
+	
+	
 	var pro = {
 			 proId : $("#emp_update_btn").attr("edit-id"),
 			 proName : $("#model_proName").val(),
 			 price : $("#model_price").val()
 		};
+	
+	
+	if(!checkMoney(pro.price) || !checkName(pro.proName)){
+		return;
+	}
 	
 		$.ajax({
 			async : false,
@@ -111,7 +119,7 @@ $("#emp_update_btn").click(function(){
 					<div class="form-group">
 						<label class="col-sm-2 control-label">价格</label>
 						<div class="col-sm-10">
-							<input type="text" name="email" class="form-control" id="model_price">
+							<input type="number" name="email" class="form-control" id="model_price">
 							<span class="help-block"></span>
 						</div>
 					</div>

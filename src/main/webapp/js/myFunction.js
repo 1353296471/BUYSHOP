@@ -53,8 +53,22 @@ function init() {
 			type : 'post',
 			url : 'getUser',
 			success : function(user) {
-				$("#account").html(user.userName);
+				$("#account").html("欢迎："+user.userName);
 				$('#account').attr('href', 'personal.html');
+			}
+		});
+	}
+}
+
+//初始化
+function initAdmin() {
+	if (isAdmin()) {
+		$.ajax({
+			type : 'post',
+			url : 'getAdmin',
+			success : function(admin) {
+				$("#account").html("欢迎管理员："+admin.adminName);
+				$('#account').attr('href', '#');
 			}
 		});
 	}
@@ -133,17 +147,18 @@ function deletePro(proId) {
 }
 
 // 检查页码格式是否正确 id = pageNo $("#pageNo").val()
-function checkPage(val) {
+function checkPage(val,maxPage) {
 	val = $.trim(val);
 	// 1. 校验 val 是否为数字 1, 2, 而不是 a12, b
 	var flag = false;
 	var reg = /^\d+$/g;
 	var pageNo = 0;
-
+	
 	if (reg.test(val)) {
 		// 2. 校验 val 在一个合法的范围内： 1-maxPage
 		pageNo = parseInt(val);
-		if (pageNo >= 1 && pageNo <= parseInt("${requestScope.page.maxPage }")) {
+		
+		if (pageNo >= 1 && pageNo <= parseInt(maxPage)) {
 			flag = true;
 		}
 	}
@@ -166,6 +181,26 @@ function checkEmail(email) {
 		falg = true;
 	}
 	return falg;
+}
+
+function checkMoney(money) {
+	var flag = false;
+	if (!(money > 0)) {
+		alert("请输入正确金额！")
+	} else {
+		flag = true;
+	}
+	return flag;
+}
+
+function checkName(name) {
+	var flag = false;
+	if (!(name != "")) {
+		alert("请输入正确的名称！")
+	} else {
+		flag = true;
+	}
+	return flag;
 }
 
 function choseLocation() {
@@ -227,3 +262,7 @@ $(document).on("click","#meun",function(){
 	activeMeun = this;
 });
 	
+
+function toCheckout(){
+	window.location.href = "checkout.html";
+}

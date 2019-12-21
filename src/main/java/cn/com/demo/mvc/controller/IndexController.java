@@ -152,6 +152,13 @@ public class IndexController {
 		return user;
 	}
 
+	@RequestMapping("/getAdmin")
+	@ResponseBody
+	public Admin getAdmin(HttpSession session, HttpServletResponse response) throws IOException {
+		Admin admin = (Admin) session.getAttribute("admin");
+		return admin;
+	}
+
 	@RequestMapping("/tosingle/{proId}")
 	public ModelAndView tosingle(@PathVariable("proId") String proId, HttpSession session) {
 		ModelAndView model = new ModelAndView();

@@ -18,9 +18,9 @@
 								<a>${item.colorType }</a>
 								<a>${item.sizeType }</a>
 							</h4>
-							<input type="button" name="remove" value="-" onclick="remove(${item.warehouseId })">
-							${item.num }
-							<input type="button" name="add" value="+" onclick="addPro(${item.warehouseId })">
+							<input type="button" name="remove" value="-" onclick="remove(${item.warehouseId })" >
+							<input name="countDiv" type="text" disabled="disabled" value='${item.num }' size="2" style="text-align: center" />
+							<input type="button" name="add" value="+" onclick="addPro(${item.warehouseId })" >
 							x
 							<span class="actual"> $${item.showProduct.pro.price }</span>
 						</div>
@@ -43,7 +43,7 @@
 	</div>
 	<div class="login_buttons">
 		<div class="login_button">
-			<input type="submit" value="全部结算">
+			<input type="submit" value="全部结算" class="btn btn-success">
 		</div>
 		<div class="clearfix"></div>
 	</div>

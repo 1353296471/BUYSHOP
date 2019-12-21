@@ -28,6 +28,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
 
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
@@ -46,15 +49,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<div class="header_top">
 		<div class="container">
-			<div class="one-fifth column row_1">
-				<span class="selection-box">
-					<select class="domains valid" name="domains">
-						<option>English</option>
-						<option>French</option>
-						<option>German</option>
-					</select>
-				</span>
-			</div>
+			 
 			<div class="cssmenu">
 				<ul>
 					<li class="active"><a href="login.html" id="account">My
@@ -82,15 +77,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="grid">
 							<a class="color2" id="meun" href="search.html?searchdata=女">女装</a>
 						</li>
-						<li class="grid" >
-							<a class="color4" id="meun" href="about.html">About</a>
-						</li>
-						<li class="grid">
-							<a class="color5" id="meun" href="404.html">Blog</a>
-						</li>
-						<li class="grid">
-							<a class="color6" id="meun" href="contact.html">Support</a>
-						</li>
+						 
 					</ul>
 				</div>
 			</div>

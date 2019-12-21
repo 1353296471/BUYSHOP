@@ -7,6 +7,10 @@
 $(function(){
 	
  $("#delete").click(function(){
+	 var count =  $("#countDiv").val();
+	 if(count<=1){
+		 return;
+	 }
 	 $("#add").attr("disabled",false);
 	$("#countDiv").val(parseInt($("#countDiv").val())-1);
 	var count=$("#countDiv").val();
@@ -16,6 +20,13 @@ $(function(){
 });
  
  $("#add").click(function(){
+	 var val = $("#wareCount").html();
+	 val = $.trim(val);
+	 wareCount = parseInt(val);
+	 var count =  $("#countDiv").val();
+	 if(wareCount<=count){
+		 return;
+	 }
 	 $("#delete").attr("disabled",false);
 	 $("#countDiv").val(parseInt($("#countDiv").val())+1);
 	 var count=$("#countDiv").val();
@@ -28,12 +39,17 @@ $(function(){
 
 </script>
 	  	         <ul class="back">
-                	  <li><i class="back_arrow"> </i>返回 <a href="index.html">Men's Clothing</a></li>
+                	  <li><i class="back_arrow"> </i>返回 <a href="index.html">首页</a></li>
                     </ul>
 					<h1>${requestScope.proName }</h1>
 					<ul class="price_single">
 					  <li class="head"><h2>￥${requestScope.price }</h2></li>
+					  
+					  <!-- 
 					  <li class="head_desc"><a href="#">12 reviews</a><img src="images/review.png" alt=""/></li>
+					  
+					   -->
+					  
 					  <div class="clearfix"></div>
 					</ul>
 				    

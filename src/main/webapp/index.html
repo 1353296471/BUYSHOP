@@ -14,7 +14,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	
 	
 	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 
 
 
@@ -35,6 +37,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/megamenu.js"></script>
 <script type="text/javascript" src="js/myFunction.js"></script>
+
+<link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
@@ -76,19 +81,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 	<div class="header_top">
 		<div class="container">
-			<div class="one-fifth column row_1">
-				<span class="selection-box">
-					<select class="domains valid" name="domains">
-						<option>English</option>
-						<option>French</option>
-						<option>German</option>
-					</select>
-				</span>
-			</div>
+
 			<div class="cssmenu">
 				<ul>
 					<li class="active">
-						<a href="login.html" id="account">我的账户</a>
+						<a href="login.html" id="account">请登录</a>
 					</li>
 				</ul>
 			</div>
@@ -115,15 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="grid">
 							<a class="color2" id="meun" href="search.html?searchdata=女">女装</a>
 						</li>
-						<li class="grid" >
-							<a class="color4" id="meun" href="about.html">About</a>
-						</li>
-						<li class="grid">
-							<a class="color5" id="meun" href="404.html">Blog</a>
-						</li>
-						<li class="grid">
-							<a class="color6" id="meun" href="contact.html">Support</a>
-						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -156,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1>新季到来！</h1>
 				<h2>看看新品吧！</h2>
 				<div class="button">
-					<a href="#" class="hvr-shutter-out-horizontal">现在购买</a>
+					<a href="search.html?searchdata=" class="hvr-shutter-out-horizontal">现在购买</a>
 				</div>
 			</div>
 		</div>
@@ -166,106 +155,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="container" id="showProduct"></div>
 	</div>
 	</div>
-	<div class="content_bottom">
-		<div class="container">
-			<h2 class="m_3">From the Blog</h2>
-			<div class="grid_1">
-				<div class="col-md-6 blog_1">
-					<div class="item-inner">
-						<img src="images/pic7.jpg" class="img-responsive" alt="" />
-						<div class="date-comments">
-							<div class="time">
-								<span class="date">
-									<span class="word1">14</span>
-									<span class="word2">Jan</span>
-								</span>
-							</div>
-							<div class="comments">
-								<span>
-									<span class="word1">0</span>
-									<span class="word2">comment</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 row_2">
-					<div class="item-inner">
-						<img src="images/pic8.jpg" class="img-responsive" alt="" />
-						<div class="date-comments">
-							<div class="time">
-								<span class="date">
-									<span class="word1">14</span>
-									<span class="word2">Jan</span>
-								</span>
-							</div>
-							<div class="comments">
-								<span>
-									<span class="word1">0</span>
-									<span class="word2">comment</span>
-								</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<div class="content_bottom-grid">
-		<div class="col-md-6 row_4"></div>
-		<div class="col-md-6">
-			<div class="row_5">
-				<div class="col_1_of_3 span_1_of_3">
-					<div class="shop-holder1">
-						<a href="single.html">
-							<img src="images/pic4.jpg" class="img-responsive" alt="" />
-						</a>
-					</div>
-					<div class="shop-content" style="height: 80px;">
-						<h3>
-							<a href="single.html">Non-charac</a>
-						</h3>
-						<span>
-							<span class="amount">$45.00</span>
-						</span>
-					</div>
-				</div>
-				<div class="col_1_of_3 span_1_of_3">
-					<div class="shop-holder1">
-						<a href="single.html">
-							<img src="images/pic5.jpg" class="img-responsive" alt="" />
-						</a>
-					</div>
-					<div class="shop-content" style="height: 80px;">
-						<h3>
-							<a href="single.html">Non-charac</a>
-						</h3>
-						<span>
-							<span class="amount">$45.00</span>
-						</span>
-					</div>
-				</div>
-				<div class="col_1_of_3 span_1_of_3">
-					<div class="shop-holder1">
-						<a href="single.html">
-							<img src="images/pic6.jpg" class="img-responsive" alt="" />
-						</a>
-					</div>
-					<div class="shop-content" style="height: 80px;">
-						<h3>
-							<a href="single.html">Non-charac</a>
-						</h3>
-						<span>
-							<span class="amount">$45.00</span>
-						</span>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
+
+
 
 </body>
 </html>
