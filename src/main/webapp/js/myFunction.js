@@ -55,6 +55,7 @@ function init() {
 			success : function(user) {
 				$("#account").html("欢迎："+user.userName);
 				$('#account').attr('href', 'personal.html');
+				$(".active").append($("<a></a>").append(" 退出").attr("href","logOut"));
 			}
 		});
 	}
@@ -69,6 +70,7 @@ function initAdmin() {
 			success : function(admin) {
 				$("#account").html("欢迎管理员："+admin.adminName);
 				$('#account').attr('href', '#');
+				$(".active").append($("<a></a>").append(" 退出").attr("href","logOut"));
 			}
 		});
 	}

@@ -168,4 +168,19 @@ public class IndexController {
 		return model;
 	}
 
+	@RequestMapping("/logOut")
+	public ModelAndView logOut(HttpSession session) {
+		ModelAndView model = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		if (user != null) {
+			session.removeAttribute("user");
+		}
+		Admin admin = (Admin) session.getAttribute("admin");
+		if (admin != null) {
+			session.removeAttribute("admin");
+		}
+		model.setViewName("redirect:/login.html");
+		return model;
+	}
+
 }
