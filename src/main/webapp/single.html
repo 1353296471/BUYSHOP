@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html id="html">
 <head>
-<title>Single</title>
+<title>商品详情</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Flatro Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -45,6 +45,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -69,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											show_hint : true,
 											click_callback : function(
 													image_anchor, instance_id) {
-												alert('Callback example:\nYou clicked on an image with the anchor: "'
+												swal('Callback example:\nYou clicked on an image with the anchor: "'
 														+ image_anchor
 														+ '"\n(in Etalage instance: "'
 														+ instance_id + '")');
@@ -124,8 +125,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		var sum = $("#countDiv").val();
 		var colorType = $('#colorDiv option:selected').text();
 		var sizeType = $('#sizeDiv option:selected').text();
-		//alert(colorType);
-		//alert(sizeType);
+		//swal(colorType);
+		//swal(sizeType);
 		var warehouseId = 0;
 		$.ajax({
 			async : false,
@@ -140,7 +141,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			}
 		});
 		if (warehouseId == 0) {
-			alert("请先选择好商品的属性！");
+			swal("请先选择好商品的属性！");
 			return;
 		}
 		toAddShopCar(warehouseId, sum);
@@ -166,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			});
 
 			if (warehouseId == 0) {
-				alert("请先选择好商品的属性！");
+				swal("请先选择好商品的属性！");
 				return;
 			}
 
@@ -179,7 +180,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				}
 			});
 		} else {
-			alert("请先登录！");
+			swal("请先登录！");
 			window.location.href = "login.html";
 		}
 	}

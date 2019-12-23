@@ -11,8 +11,11 @@
 <c:when test="${_size==2 }">
    <option value="2">M</option>
    </c:when>
- <c:otherwise> 
+   <c:when test="${_size==3 }">
    <option value="3">L</option>
+   </c:when>
+ <c:otherwise> 
+   <option value="4">XL</option>
  </c:otherwise> 
 </c:choose>
 </c:forEach>

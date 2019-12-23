@@ -36,4 +36,10 @@ public class IWarehouseDaoImpl implements IWarehouseDao {
 		return DaoUtils.getListBySql(Warehouse.class, sql, id).get(0);
 	}
 
+	@Override
+	public Integer getWarehouseNum(int id) {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
 }

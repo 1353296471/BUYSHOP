@@ -22,10 +22,10 @@ function toSendOrder(orderPkid){
 		url : 'toSendOrder/'+orderPkid,
 		success : function(falg) {
 			if(falg){
-				alert("发货成功！");
+				swal("发货成功！");
 				toOrderListPage(pageNo);
 			}else{
-				alert("发货失败！请重试！");
+				swal("发货失败！请重试！");
 			}
 		}
 	});
@@ -44,7 +44,7 @@ function toSendOrder(orderPkid){
 					</div>
 					<div class="list_desc">
 						<h3>
-							<a href="#">${item.proName }</a>
+							<a href="tosingle/${item.proId}">${item.proName }</a>
 						</h3>
 						${item.proNum } x
 						<span class="actual"> ￥${item.price }</span>
@@ -86,7 +86,11 @@ function toSendOrder(orderPkid){
 							</c:if>
 							<c:if test="${0 != item.commentPkid}">
 								<a>已评价</a>
-								<br>
+								<br><br>
+								<c:if test="${!empty item.commentDes }">
+								评论：<br>
+									<span class="actual"> ${item.commentDes }</span>
+								</c:if>
 							</c:if>
 						</c:if>
 					</div>
@@ -96,18 +100,13 @@ function toSendOrder(orderPkid){
 							<c:if test="${item.orderConditionPkid eq 1}">
 								<a href="#" onclick="toSendOrder(${item.orderPkid})">确认发货</a>
 							</c:if>
-							<c:if test=" ${item.orderConditionPkid eq 2}">
+							<c:if test="${item.orderConditionPkid eq 2}">
 								<a> ${item.conditionType }</a>
 								<br>
 							</c:if>
 						</div>
 					</c:if>
 
-					<c:if test="${!empty item.commentDes }">
-					评论：<br>
-						<span class="actual"> ${item.commentDes }</span>
-					</c:if>
-					<br>
 
 					<div class="clearfix"></div>
 				</div>

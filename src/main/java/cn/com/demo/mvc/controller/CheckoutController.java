@@ -91,4 +91,11 @@ public class CheckoutController {
 		double price = checkoutService.getPrice(warehouseIds, itemList);
 		return String.valueOf(price);
 	}
+
+	@ResponseBody
+	@RequestMapping("/getWarehouseNum/{warehouseId}")
+	public Integer getWarehouseNum(@PathVariable("warehouseId") Integer warehouseId) {
+
+		return checkoutService.getWarehouseNumById(warehouseId);
+	}
 }

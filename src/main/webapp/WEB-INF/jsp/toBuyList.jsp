@@ -19,10 +19,10 @@
 								<a>${item.sizeType }</a>
 							</h4>
 							<input type="button" name="remove" value="-" onclick="remove(${item.warehouseId })" >
-							<input name="countDiv" type="text" disabled="disabled" value='${item.num }' size="2" style="text-align: center" />
+							<input name="countDiv" type="text" id="countNum" disabled="disabled" value='${item.num }' size="2" style="text-align: center" />
 							<input type="button" name="add" value="+" onclick="addPro(${item.warehouseId })" >
 							x
-							<span class="actual"> $${item.showProduct.pro.price }</span>
+							<span class="actual"> ￥${item.showProduct.pro.price }</span>
 						</div>
 						<br>
 						<input type="checkbox" name="warehouseIds" value="${item.warehouseId }" checked="checked" onclick="checkPro()"/>
@@ -37,10 +37,11 @@
 		</c:if>
 	</div>
 	<div class="total">
-		<div class="total_left">CartSubtotal :</div>
-		<div class="total_right" id="totalPrice">$${sum }</div>
+		<div class="total_left">总价 :</div>
+		<div class="total_right" id="totalPrice">￥${sum }</div>
 		<div class="clearfix"></div>
 	</div>
+	<br>
 	<div class="login_buttons">
 		<div class="login_button">
 			<input type="submit" value="全部结算" class="btn btn-success">

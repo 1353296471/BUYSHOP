@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Checkout</title>
+<title>结算</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Flatro Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -28,6 +28,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="js/megamenu.js"></script>
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -55,27 +56,46 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	})
 
 	function remove(warehouseId) {
-		$.ajax({
-			type : 'post',
-			url : 'removeShopCarItem/' + warehouseId,
-			success : function(countMsg) {
-				if (countMsg == "操作成功！") {
-					updateBuyList();
+		var countNum = $("#countNum").val();
+		if(countNum == 1){
+			deletePro(warehouseId);
+		}else{
+			$.ajax({
+				type : 'post',
+				url : 'removeShopCarItem/' + warehouseId,
+				success : function(countMsg) {
+					if (countMsg == "操作成功！") {
+						updateBuyList();
+					}
 				}
-			}
-		});
+			});
+		}
+		
 	}
 
 	function addPro(warehouseId) {
+		var countNum = $("#countNum").val();
 		$.ajax({
 			type : 'post',
-			url : 'addShopCarItem/' + warehouseId,
-			success : function(countMsg) {
-				if (countMsg == "操作成功！") {
-					updateBuyList();
+			url : 'getWarehouseNum/' + warehouseId,
+			success : function(num) {
+				if (num > countNum) {
+					$.ajax({
+						type : 'post',
+						url : 'addShopCarItem/' + warehouseId,
+						success : function(countMsg) {
+							if (countMsg == "操作成功！") {
+								updateBuyList();
+							}
+						}
+					});
+				}else{
+					swal("库存不足！");
 				}
 			}
 		});
+		
+		
 	}
 
 	

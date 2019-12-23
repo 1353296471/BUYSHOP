@@ -20,4 +20,7 @@ public interface IWarehouseDao {
 
 	@Select({ "select * from warehouse where id = #{id}" })
 	public Warehouse getWarehouse(int id);
+
+	@Select({ "select num from warehouse where id = #{id}" })
+	public Integer getWarehouseNum(int id);
 }

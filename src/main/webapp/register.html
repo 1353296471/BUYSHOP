@@ -32,6 +32,8 @@
 <script type="text/javascript" src="js/megamenu.js"></script>
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -71,7 +73,7 @@
 				url : 'isCheck/' + email,
 				success : function(msg) {
 					if (msg == "isCheck") {
-						alert("邮箱已经被注册！请重新输入！");
+						swal("邮箱已经被注册！请重新输入！");
 					} else {
 						falg = true;
 					}
@@ -86,9 +88,9 @@
 		var confirmPassowrd = $(".confirmPassowrd").val();
 		var password = $(".password").val();
 		if (password != confirmPassowrd) {
-			alert("两次密码不一致！请重新输入！");
+			swal("两次密码不一致！请重新输入！");
 		} else if (password == "") {
-			alert("密码不能为空！");
+			swal("密码不能为空！");
 		} else {
 			falg = true;
 		}
@@ -99,7 +101,7 @@
 		var falg = false;
 		var userName = $(".userName").val();
 		if (userName == "") {
-			alert("用户名不能为空！");
+			swal("用户名不能为空！");
 		} else {
 			falg = true;
 		}
@@ -110,7 +112,7 @@
 		var falg = false;
 		var code = $(".code").val();
 		if (code == "") {
-			alert("验证码不能为空！");
+			swal("验证码不能为空！");
 		} else {
 			$.ajax({
 				async : false,
@@ -118,7 +120,7 @@
 				url : 'isCode/' + code,
 				success : function(msg) {
 					if (!msg) {
-						alert("验证码不正确！请重新输入！");
+						swal("验证码不正确！请重新输入！");
 					} else {
 						falg = true;
 					}
@@ -132,15 +134,15 @@
 		var email = $(".email").val();
 		
 		if (checkMail()) {
-			alert("发送成功！");
+			swal("发送成功！");
 			$.ajax({
 				type : 'post',
 				url : 'sendCode/' + email,
 				success : function(msg) {
 					if (!msg) {
-						alert("发送失败！");
+						swal("发送失败！");
 					} else {
-						alert("发送成功！");
+						swal("发送成功！");
 					}
 				}
 			});
@@ -175,7 +177,7 @@
 			password : $(".password").val()
 		};
 		if (checkUserName() && checkMail() && checkPassword() && checkCode()) {
-			alert("注册成功！");
+			swal("注册成功！");
 			window.location.href = 'login.html';
 			$.ajax({
 				type : 'post',
@@ -184,10 +186,10 @@
 				data : JSON.stringify(user),
 				success : function(data) {
 					if (data == "isRegister") {
-						alert("注册成功！");
+						swal("注册成功！");
 						window.location.href = 'login.html';
 					} else {
-						alert(data);
+						swal(data);
 					}
 				}
 			});

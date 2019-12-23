@@ -11,6 +11,7 @@ import cn.com.demo.javaweb.shopping.dao.IShopCarDao;
 import cn.com.demo.javaweb.shopping.dao.IUserDao;
 import cn.com.demo.javaweb.shopping.dao.IWarehouseDao;
 import cn.com.demo.javaweb.shopping.entity.ShopCar;
+import cn.com.demo.javaweb.shopping.entity.Warehouse;
 import cn.com.demo.javaweb.shopping.entity.toshow.ShowShopCar;
 
 @Service
@@ -79,6 +80,18 @@ public class ICheckoutServiceImpl implements cn.com.demo.javaweb.shopping.servic
 		int proId = warehouseDao.getWarehouse(warehouseId).getProId();
 		price = proDao.getProduct(proId).getPrice() * num;
 		return price;
+	}
+
+	@Override
+	public Warehouse getWarehouseById(int warehouseId) {
+		// TODO 自动生成的方法存根
+		return warehouseDao.getWarehouse(warehouseId);
+	}
+
+	@Override
+	public Integer getWarehouseNumById(int warehouseId) {
+		// TODO 自动生成的方法存根
+		return warehouseDao.getWarehouseNum(warehouseId);
 	}
 
 }

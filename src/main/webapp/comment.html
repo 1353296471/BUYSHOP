@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											show_hint : true,
 											click_callback : function(
 													image_anchor, instance_id) {
-												alert('Callback example:\nYou clicked on an image with the anchor: "'
+												swal('Callback example:\nYou clicked on an image with the anchor: "'
 														+ image_anchor
 														+ '"\n(in Etalage instance: "'
 														+ instance_id + '")');
@@ -113,6 +113,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <!-- 引入全局函数myFunction.js -->
 <script type="text/javascript" src="js/myFunction.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <link href="bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -143,9 +144,9 @@ $(function(){
 	$("#OKbtn").click(function(){
 		var proId=getUrlParam(location.href, "proId");
 		var orderPkid=getUrlParam(location.href, "orderPkid");
-		//alert(orderPkid);
+		//swal(orderPkid);
 		var commentDes=$("#commentDesDiv").val();
-		//alert("commentdDes="+commentDes);
+		//swal("commentdDes="+commentDes);
 		var mydate=new Date();
 		var year=mydate.getFullYear();
 		var month=mydate.getMonth();
@@ -154,14 +155,14 @@ $(function(){
 		var min=mydate.getMinutes();
 		var sec=mydate.getSeconds();
 		var commentTime=year+"-"+month+"-"+date+" "+hour+":"+min+":"+sec;
-		//alert(commentTime);
+		//swal(commentTime);
 		//proId=1;
 		$.ajax({
 			type:'post',
 			url:"addCommentServlet",
 			data:{proId:proId,commentDes:commentDes,commentTime:commentTime,orderPkid:orderPkid},
 			success:function(msg){
-				alert(msg);
+				swal(msg);
 				document.location.href="personal.html";
 			}
 		});

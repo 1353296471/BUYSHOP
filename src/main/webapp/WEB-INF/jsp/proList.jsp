@@ -14,22 +14,34 @@ $(function () {
 })
 
 function toDeletePro(id) {
-	
 	var proId = id;
-	var r = confirm("确定要删除此商品吗？");
-	if (r == true) {
-		$.ajax({
-			type : 'post',
-			url : 'toDeletePro/' + proId,
-			success : function(falg) {
-				if (falg) {
-					alert("删除成功！");
-				} else {
-					alert("删除失败！");
-				}
-			}
+	swal("确定要删除此商品吗？", {
+		  buttons: {
+		    cancel: "取消",
+		    
+		    defeat: "确认",
+		  },
+		})
+		.then((value) => {
+		  switch (value) {
+		    case "defeat":
+		    	$.ajax({
+					type : 'post',
+					url : 'toDeletePro/' + proId,
+					success : function(falg) {
+						if (falg) {
+							swal("删除成功！");
+						} else {
+							swal("删除失败！");
+						}
+					}
+				});
+		      break;
+		 
+		    default:
+		      break;
+		  }
 		});
-	}
 	var pageNo = ${requestScope.page.pageNo };
 	toProsPage(pageNo);
 }
@@ -81,9 +93,9 @@ $("#emp_update_btn").click(function(){
 			success : function(msg) {
 				$("#proUpdateModal").modal("hide");
 				if (!msg) {
-					alert("修改失败");
+					swal("修改失败");
 				} else {
-					alert("修改成功");
+					swal("修改成功");
 				}
 				//1、关闭对话框
 				

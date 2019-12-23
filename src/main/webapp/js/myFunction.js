@@ -39,7 +39,7 @@ function isAdmin() {
 
 function search() {
 	if($("#Sea").val()==""){
-		alert("搜索内容不能为空");
+		swal("搜索内容不能为空");
 	}else{
 		document.location.href="search.html?searchdata="+$("#Sea").val();
 	}
@@ -61,7 +61,7 @@ function init() {
 	}
 }
 
-//初始化
+// 初始化
 function initAdmin() {
 	if (isAdmin()) {
 		$.ajax({
@@ -78,7 +78,7 @@ function initAdmin() {
 
 function toAddShopCar(warehouseId) {
 	if(warehouseId == 0){
-		alert("请先选择好商品的属性！");
+		swal("请先选择好商品的属性！");
 		return;
 	}
 	
@@ -87,18 +87,18 @@ function toAddShopCar(warehouseId) {
 			type : 'post',
 			url : 'addShopCarItem/' + warehouseId,
 			success : function(countMsg) {
-				alert(countMsg);
+				swal(countMsg);
 			}
 		});
 	} else {
-		alert("请先登录！");
+		swal("请先登录！");
 		window.location.href = "login.html";
 	}
 }
 
 function toAddShopCar(warehouseId,num) {
 	if(warehouseId == 0 || num < 1){
-		alert("请先选择好商品的属性！");
+		swal("请先选择好商品的属性！");
 		return;
 	}
 	
@@ -107,11 +107,11 @@ function toAddShopCar(warehouseId,num) {
 			type : 'post',
 			url : 'addShopCarItem/' + warehouseId + '/'+num,
 			success : function(countMsg) {
-				alert(countMsg);
+				swal(countMsg);
 			}
 		});
 	} else {
-		alert("请先登录！");
+		swal("请先登录！");
 		window.location.href = "login.html";
 	}
 }
@@ -131,21 +131,50 @@ function toShowShopCarItem() {
 
 }
 
-function deletePro(proId) {
-	var r = confirm("确定要删除购物项吗？");
-	if (r == true) {
-		$.ajax({
-			type : 'post',
-			url : 'deleteShopCarItem/' + proId,
-			success : function(countMsg) {
-				if (countMsg == "操作成功！") {
-					alert("删除成功！");
-				} else {
-					alert("删除失败！");
+function deletePro(warehouseId) {
+	
+
+	swal("确定要删除购物项吗？", {
+	  buttons: {
+	    cancel: "取消",
+	    
+	    defeat: "确认",
+	  },
+	})
+	.then((value) => {
+	  switch (value) {
+	    case "defeat":
+	      $.ajax({
+				type : 'post',
+				url : 'deleteShopCarItem/' + warehouseId,
+				success : function(countMsg) {
+					if (countMsg == "操作成功！") {
+						swal("删除成功！");
+					} else {
+						swal("删除失败！");
+					}
 				}
-			}
-		});
-	}
+			});
+	      break;
+	 
+	    default:
+	      break;
+	  }
+	});
+// var r = confirm("确定要删除购物项吗？");
+	// if (r == true) {
+	// $.ajax({
+	// type : 'post',
+	// url : 'deleteShopCarItem/' + proId,
+	// success : function(countMsg) {
+	// if (countMsg == "操作成功！") {
+	// swal("删除成功！");
+	// } else {
+	// swal("删除失败！");
+	// }
+	// }
+	// });
+	// }
 }
 
 // 检查页码格式是否正确 id = pageNo $("#pageNo").val()
@@ -166,7 +195,7 @@ function checkPage(val,maxPage) {
 	}
 
 	if (!flag) {
-		alert("输入的不是合法的页码.");
+		swal("输入的不是合法的页码.");
 		$(this).val("");
 	}
 	return flag;
@@ -178,7 +207,7 @@ function checkEmail(email) {
 	var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
 	var result = reg.test(email);
 	if (!result) {
-		alert("邮箱格式错误！请重新输入！");
+		swal("邮箱格式错误！请重新输入！");
 	} else {
 		falg = true;
 	}
@@ -188,7 +217,7 @@ function checkEmail(email) {
 function checkMoney(money) {
 	var flag = false;
 	if (!(money > 0)) {
-		alert("请输入正确金额！")
+		swal("请输入正确金额！")
 	} else {
 		flag = true;
 	}
@@ -198,7 +227,7 @@ function checkMoney(money) {
 function checkName(name) {
 	var flag = false;
 	if (!(name != "")) {
-		alert("请输入正确的名称！")
+		swal("请输入正确的名称！")
 	} else {
 		flag = true;
 	}
@@ -223,27 +252,27 @@ function payFormClick() {
 	var userPhone = $('#userPhone').val();
 	
 	if(sheng == "" || shi == ""){
-		alert("省份和市区不能为空！");
+		swal("省份和市区不能为空！");
 		return;
 	}
 	
 	if(userAddress == ""){
-		alert("详细地址不能为空！");
+		swal("详细地址不能为空！");
 		return;
 	}
 	
-	//编译正则表达式
+	// 编译正则表达式
 	 var reg =/^1[3456789]\d{9}$/; 
 	 var result = reg.test(userPhone);
 	 if(!result){
-		 alert("请输入正确的电话格式！");
+		 swal("请输入正确的电话格式！");
 		 return;
 	 }
 	 
 	 $("form[name='payForm']").submit();
 }
 
-//得到登录状态，是用户还是管理
+// 得到登录状态，是用户还是管理
 function getStatus() {
 	var status ;
 	$.ajax({
