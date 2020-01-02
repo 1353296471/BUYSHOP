@@ -92,18 +92,45 @@ $("#emp_update_btn").click(function(){
 			data : JSON.stringify(pro),
 			success : function(msg) {
 				$("#proUpdateModal").modal("hide");
-				if (!msg) {
-					swal("修改失败");
-				} else {
-					swal("修改成功");
-				}
-				//1、关闭对话框
 				
+				if (!msg) {
+					swal("修改失败！", {
+						  buttons: { 
+							    defeat: "确认",
+							  },
+							}).then((value) => {
+						  switch (value) {
+						    case "defeat":
+						    	//2、回到本页面
+								var pageNo = ${requestScope.page.pageNo };
+								toProsPage(pageNo);
+						      break;
+						 
+						    default:
+						      break;
+						  }
+						});
+				} else {
+					swal("修改成功！", {
+						  buttons: { 
+							    defeat: "确认",
+							  },
+							}).then((value) => {
+						  switch (value) {
+						    case "defeat":
+						    	//2、回到本页面
+								var pageNo = ${requestScope.page.pageNo };
+								toProsPage(pageNo);
+						      break;
+						 
+						    default:
+						      break;
+						  }
+						});
+				}
 			}
 		});
-		//2、回到本页面
-		var pageNo = ${requestScope.page.pageNo };
-		toProsPage(pageNo);
+		
 });
 
 	
